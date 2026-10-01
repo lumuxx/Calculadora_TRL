@@ -1,0 +1,30 @@
+﻿Title;Segmento;Peso;Ordem
+Torno convencional;Usinagem;0.5;1
+Torno CNC;Usinagem;1.0;2
+Fresadora 3 eixos;Usinagem;1.0;3
+Fresadora 5 eixos;Usinagem;0.5;4
+Eletroerosão;Usinagem;0.5;5
+Retífica;Usinagem;0.5;6
+MMC;Usinagem;1.0;7
+Corte;Caldeiraria;1.0;8
+Dobra;Caldeiraria;1.0;9
+Calandra;Caldeiraria;0.5;10
+Soldagem de aço;Caldeiraria;1.0;11
+Soldagem de inox;Caldeiraria;0.5;12
+Soldagem de alumínio;Caldeiraria;0.5;13
+Chapas espessas (maior que 10mm de espessura);Caldeiraria;0.5;14
+Pintura;Pintura;1.0;15
+Oxidação negra;Pintura;1.0;16
+Anodização;Pintura;1.0;17
+Zincagem;Pintura;1.0;18
+Níquelagem;Pintura;1.0;19
+Têmpera/Revenimento;Tratamento Térmico/Superficial;1.0;20
+Recozimento/Alívio de tensões;Tratamento Térmico/Superficial;1.0;21
+Nitretação;Tratamento Térmico/Superficial;1.0;22
+Cementação;Tratamento Térmico/Superficial;1.0;23
+Tratamento de ligas não ferrosas;Tratamento Térmico/Superficial;1.0;24
+Impressão 3D;Prototipagem (Compósito);1.0;25
+Molde de injeção;Prototipagem (Compósito);1.0;26
+Processo PRFV;Prototipagem (Compósito);1.0;27
+Vacuum casting;Prototipagem (Compósito);1.0;28
+Fundição;Prototipagem (Compósito);1.0;29

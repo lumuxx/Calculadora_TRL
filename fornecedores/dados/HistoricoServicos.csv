@@ -1,0 +1,11 @@
+﻿Fornecedor;Segmento;DataOrcamento;Projeto;Projetista;NotaQualidade;NotaPrazo;NotaCusto
+EISEN;Usinagem;2024-08-19;RDA-R;André;4;3;1
+EISEN;Usinagem;2024-08-20;RDA-R;André;4;5;5
+EISEN;Usinagem;2024-09-02;RDA-R;André;5;3;3
+EISEN;Usinagem;2025-01-29;RDA-R;André;1;3;1
+EISEN;Usinagem;2025-11-14;MICROSEAL;André;2;1;1
+EISEN;Usinagem;2026-05-11;CORAL-SOL;André;4;5;1
+USITEC;Usinagem;2026-02-03;RDA-R;André;5;5;3
+GUERCAM;Usinagem;2025-01-20;RDA-R;André;5;5;1
+VITARI;Caldeiraria;2024-09-17;RDA-R;André;4;4;1
+VITARI;Caldeiraria;2026-08-10;CORAL-SOL;André;5;5;3

@@ -1,0 +1,37 @@
+﻿Segmento;Dimensao;Nota;Title
+Usinagem;Qualidade;5;Peça conforme na primeira inspeção
+;Prazo;5;No prazo
+;Custo;5;Mais de 10% abaixo da média dos orçamentos
+Usinagem;Qualidade;4;1-2 cotas precisam de ajuste
+;Prazo;4;1 dia de atraso
+;Custo;4;Entre 10% abaixo e na média dos orçamentos
+Usinagem;Qualidade;3;3-4 cotas precisam de ajuste
+;Prazo;3;2 dias de atraso
+;Custo;3;Entre 10% acima e na média dos orçamentos
+Usinagem;Qualidade;2;5-6 cotas precisam de ajuste
+;Prazo;2;4 dias de atraso
+;Custo;2;Entre 10% e 20% acima da média dos orçamentos
+Usinagem;Qualidade;1;>8 cotas precisam de ajuste
+;Prazo;1;> de 1 semana de atraso
+;Custo;1;Mais de 20% acima da média dos orçamentos
+Usinagem;Qualidade;0;Peça morta
+;Prazo;0;Não entregou
+;Custo;0;Mais de 50% acima da média dos orçamentos
+Caldeiraria;Qualidade;5;Peça conforme na primeira inspeção
+Caldeiraria;Qualidade;4;1-2 cotas precisam de ajuste
+Caldeiraria;Qualidade;3;3-4 cotas precisam de ajuste
+Caldeiraria;Qualidade;2;5-6 cotas precisam de ajuste
+Caldeiraria;Qualidade;1;>8 cotas precisam de ajuste
+Caldeiraria;Qualidade;0;Peça morta
+Pintura;Qualidade;5;Camada perfeita
+Pintura;Qualidade;4;Espessura de camada irregular
+Pintura;Qualidade;3;Presença de manchas ou sangramento
+Pintura;Qualidade;2;Presença de: escorrimento, enrugamento ou empolamento
+Pintura;Qualidade;1;Inclusão de abrasivos, contaminantes ou pelos
+Pintura;Qualidade;0;Presença de: cracreamento, descascamento ou poros
+Tratamento Térmico/Superficial;Qualidade;5;Dentro dos parâmetros de dureza
+Tratamento Térmico/Superficial;Qualidade;4;Até 2% de variação na dureza
+Tratamento Térmico/Superficial;Qualidade;3;Até 3% de variação na dureza
+Tratamento Térmico/Superficial;Qualidade;2;Até 5% de variação na dureza
+Tratamento Térmico/Superficial;Qualidade;1;Até 10% de variação na dureza
+Tratamento Térmico/Superficial;Qualidade;0;Mais de 10% de variação na dureza

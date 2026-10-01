@@ -1,0 +1,161 @@
+﻿Fornecedor;Segmento;Capacidade;Nota
+EISEN;Usinagem;Torno convencional;0.5
+EISEN;Usinagem;Torno CNC;0.5
+EISEN;Usinagem;Fresadora 3 eixos;1.0
+EISEN;Usinagem;Fresadora 5 eixos;0.0
+EISEN;Usinagem;Eletroerosão;0.0
+EISEN;Usinagem;Retífica;0.5
+EISEN;Usinagem;MMC;0.0
+USITEC;Usinagem;Torno convencional;0.5
+USITEC;Usinagem;Torno CNC;0.5
+USITEC;Usinagem;Fresadora 3 eixos;1.0
+USITEC;Usinagem;Fresadora 5 eixos;0.0
+USITEC;Usinagem;Eletroerosão;0.0
+USITEC;Usinagem;Retífica;0.0
+USITEC;Usinagem;MMC;0.0
+GUERCAM;Usinagem;Torno convencional;0.5
+GUERCAM;Usinagem;Torno CNC;0.0
+GUERCAM;Usinagem;Fresadora 3 eixos;1.0
+GUERCAM;Usinagem;Fresadora 5 eixos;0.5
+GUERCAM;Usinagem;Eletroerosão;0.5
+GUERCAM;Usinagem;Retífica;0.0
+GUERCAM;Usinagem;MMC;0.0
+USIFIL;Usinagem;Torno convencional;0.0
+USIFIL;Usinagem;Torno CNC;0.0
+USIFIL;Usinagem;Fresadora 3 eixos;0.0
+USIFIL;Usinagem;Fresadora 5 eixos;0.0
+USIFIL;Usinagem;Eletroerosão;0.5
+USIFIL;Usinagem;Retífica;0.0
+USIFIL;Usinagem;MMC;0.0
+VRM;Usinagem;Torno convencional;0.0
+VRM;Usinagem;Torno CNC;0.0
+VRM;Usinagem;Fresadora 3 eixos;1.0
+VRM;Usinagem;Fresadora 5 eixos;0.0
+VRM;Usinagem;Eletroerosão;0.0
+VRM;Usinagem;Retífica;0.5
+VRM;Usinagem;MMC;0.0
+TECHNOFIL;Usinagem;Torno convencional;0.0
+TECHNOFIL;Usinagem;Torno CNC;0.0
+TECHNOFIL;Usinagem;Fresadora 3 eixos;0.0
+TECHNOFIL;Usinagem;Fresadora 5 eixos;0.0
+TECHNOFIL;Usinagem;Eletroerosão;0.5
+TECHNOFIL;Usinagem;Retífica;0.0
+TECHNOFIL;Usinagem;MMC;0.0
+FAG (engrenagens);Usinagem;Torno convencional;0.0
+FAG (engrenagens);Usinagem;Torno CNC;1.0
+FAG (engrenagens);Usinagem;Fresadora 3 eixos;1.0
+FAG (engrenagens);Usinagem;Fresadora 5 eixos;0.0
+FAG (engrenagens);Usinagem;Eletroerosão;0.0
+FAG (engrenagens);Usinagem;Retífica;0.0
+FAG (engrenagens);Usinagem;MMC;0.0
+PERFECTON;Usinagem;Torno convencional;0.5
+PERFECTON;Usinagem;Torno CNC;1.0
+PERFECTON;Usinagem;Fresadora 3 eixos;1.0
+PERFECTON;Usinagem;Fresadora 5 eixos;0.0
+PERFECTON;Usinagem;Eletroerosão;0.0
+PERFECTON;Usinagem;Retífica;0.0
+PERFECTON;Usinagem;MMC;0.0
+VITARI;Caldeiraria;Corte;1.0
+VITARI;Caldeiraria;Dobra;1.0
+VITARI;Caldeiraria;Calandra;0.5
+VITARI;Caldeiraria;Soldagem de aço;1.0
+VITARI;Caldeiraria;Soldagem de inox;0.5
+VITARI;Caldeiraria;Soldagem de alumínio;0.5
+VITARI;Caldeiraria;Chapas espessas (maior que 10mm de espessura);0.0
+ELMECA;Caldeiraria;Corte;1.0
+ELMECA;Caldeiraria;Dobra;1.0
+ELMECA;Caldeiraria;Calandra;0.5
+ELMECA;Caldeiraria;Soldagem de aço;1.0
+ELMECA;Caldeiraria;Soldagem de inox;0.5
+ELMECA;Caldeiraria;Soldagem de alumínio;0.0
+ELMECA;Caldeiraria;Chapas espessas (maior que 10mm de espessura);0.0
+MAC LASER;Caldeiraria;Corte;1.0
+MAC LASER;Caldeiraria;Dobra;1.0
+MAC LASER;Caldeiraria;Calandra;0.0
+MAC LASER;Caldeiraria;Soldagem de aço;1.0
+MAC LASER;Caldeiraria;Soldagem de inox;0.5
+MAC LASER;Caldeiraria;Soldagem de alumínio;0.0
+MAC LASER;Caldeiraria;Chapas espessas (maior que 10mm de espessura);0.0
+LASERVILLE;Caldeiraria;Corte;1.0
+LASERVILLE;Caldeiraria;Dobra;1.0
+LASERVILLE;Caldeiraria;Calandra;0.5
+LASERVILLE;Caldeiraria;Soldagem de aço;1.0
+LASERVILLE;Caldeiraria;Soldagem de inox;0.5
+LASERVILLE;Caldeiraria;Soldagem de alumínio;0.0
+LASERVILLE;Caldeiraria;Chapas espessas (maior que 10mm de espessura);0.5
+KALDEVILLE;Caldeiraria;Corte;1.0
+KALDEVILLE;Caldeiraria;Dobra;1.0
+KALDEVILLE;Caldeiraria;Calandra;0.5
+KALDEVILLE;Caldeiraria;Soldagem de aço;1.0
+KALDEVILLE;Caldeiraria;Soldagem de inox;0.5
+KALDEVILLE;Caldeiraria;Soldagem de alumínio;0.0
+KALDEVILLE;Caldeiraria;Chapas espessas (maior que 10mm de espessura);0.5
+DARC;Caldeiraria;Corte;1.0
+DARC;Caldeiraria;Dobra;1.0
+DARC;Caldeiraria;Calandra;0.0
+DARC;Caldeiraria;Soldagem de aço;1.0
+DARC;Caldeiraria;Soldagem de inox;0.5
+DARC;Caldeiraria;Soldagem de alumínio;0.5
+DARC;Caldeiraria;Chapas espessas (maior que 10mm de espessura);0.5
+SCM;Caldeiraria;Corte;1.0
+SCM;Caldeiraria;Dobra;1.0
+SCM;Caldeiraria;Calandra;0.5
+SCM;Caldeiraria;Soldagem de aço;1.0
+SCM;Caldeiraria;Soldagem de inox;0.5
+WELDVISION;Caldeiraria;Corte;1.0
+WELDVISION;Caldeiraria;Dobra;1.0
+WELDVISION;Caldeiraria;Calandra;0.0
+WELDVISION;Caldeiraria;Soldagem de aço;1.0
+WELDVISION;Caldeiraria;Soldagem de inox;0.5
+WELDVISION;Caldeiraria;Soldagem de alumínio;0.0
+WELDVISION;Caldeiraria;Chapas espessas (maior que 10mm de espessura);0.5
+LADI'S;Pintura;Pintura;0.0
+LADI'S;Pintura;Oxidação negra;0.0
+LADI'S;Pintura;Anodização;1.0
+LADI'S;Pintura;Zincagem;0.0
+LADI'S;Pintura;Níquelagem;0.0
+POLICROMO;Pintura;Pintura;0.0
+POLICROMO;Pintura;Oxidação negra;1.0
+POLICROMO;Pintura;Anodização;1.0
+POLICROMO;Pintura;Zincagem;1.0
+POLICROMO;Pintura;Níquelagem;1.0
+GALVANO;Pintura;Pintura;1.0
+GALVANO;Pintura;Oxidação negra;0.0
+GALVANO;Pintura;Anodização;0.0
+GALVANO;Pintura;Zincagem;1.0
+GALVANO;Pintura;Níquelagem;1.0
+EVGALVANOPLASTIA;Pintura;Pintura;0.0
+EVGALVANOPLASTIA;Pintura;Oxidação negra;1.0
+EVGALVANOPLASTIA;Pintura;Anodização;0.0
+EVGALVANOPLASTIA;Pintura;Zincagem;1.0
+EVGALVANOPLASTIA;Pintura;Níquelagem;1.0
+ANGRA;Tratamento Térmico/Superficial;Têmpera/Revenimento;1.0
+ANGRA;Tratamento Térmico/Superficial;Recozimento/Alívio de tensões;1.0
+ANGRA;Tratamento Térmico/Superficial;Nitretação;1.0
+ANGRA;Tratamento Térmico/Superficial;Cementação;1.0
+ANGRA;Tratamento Térmico/Superficial;Tratamento de ligas não ferrosas;0.0
+TECNOTÊMPERA;Tratamento Térmico/Superficial;Têmpera/Revenimento;1.0
+TECNOTÊMPERA;Tratamento Térmico/Superficial;Recozimento/Alívio de tensões;1.0
+TECNOTÊMPERA;Tratamento Térmico/Superficial;Nitretação;1.0
+TECNOTÊMPERA;Tratamento Térmico/Superficial;Cementação;1.0
+TECNOTÊMPERA;Tratamento Térmico/Superficial;Tratamento de ligas não ferrosas;1.0
+TEMPERAVILLE;Tratamento Térmico/Superficial;Têmpera/Revenimento;1.0
+TEMPERAVILLE;Tratamento Térmico/Superficial;Recozimento/Alívio de tensões;1.0
+TEMPERAVILLE;Tratamento Térmico/Superficial;Nitretação;1.0
+TEMPERAVILLE;Tratamento Térmico/Superficial;Cementação;1.0
+TEMPERAVILLE;Tratamento Térmico/Superficial;Tratamento de ligas não ferrosas;1.0
+PROTVILLE;Prototipagem (Compósito);Impressão 3D;1.0
+PROTVILLE;Prototipagem (Compósito);Molde de injeção;1.0
+PROTVILLE;Prototipagem (Compósito);Processo PRFV;1.0
+PROTVILLE;Prototipagem (Compósito);Vacuum casting;1.0
+PROTVILLE;Prototipagem (Compósito);Fundição;1.0
+LANFIBRAS;Prototipagem (Compósito);Impressão 3D;0.0
+LANFIBRAS;Prototipagem (Compósito);Molde de injeção;0.0
+LANFIBRAS;Prototipagem (Compósito);Processo PRFV;1.0
+LANFIBRAS;Prototipagem (Compósito);Vacuum casting;0.0
+LANFIBRAS;Prototipagem (Compósito);Fundição;0.0
+FASTPARTS;Prototipagem (Compósito);Impressão 3D;1.0
+FASTPARTS;Prototipagem (Compósito);Molde de injeção;1.0
+FASTPARTS;Prototipagem (Compósito);Processo PRFV;1.0
+FASTPARTS;Prototipagem (Compósito);Vacuum casting;1.0
+FASTPARTS;Prototipagem (Compósito);Fundição;0.0
