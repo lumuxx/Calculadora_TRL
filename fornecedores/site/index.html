@@ -579,7 +579,10 @@ function vMetodologia() {
     const pesos = sum(caps, c => c.peso);
     const crit = criterios(sg.id, "Qualidade");
     return `<section class="panel">
-      <div class="row spread"><h3>${esc(sg.nome)}</h3><span class="muted" style="font-size:.82rem">soma dos pesos: <b class="num">${fmt(pesos, 1)}</b></span></div>
+      <div class="row spread"><h3>${esc(sg.nome)}</h3>
+        <div class="row"><span class="muted" style="font-size:.82rem">soma dos pesos: <b class="num">${fmt(pesos, 1)}</b></span>
+        ${ro ? "" : ui.confirm === "seg:" + sg.id ? "" : `<button class="btn small danger" type="button" data-act="pedir-excluir-seg" data-id="${esc(sg.id)}">Excluir segmento</button>`}</div></div>
+      ${!ro && ui.confirm === "seg:" + sg.id ? confirmaSegmento(sg) : ""}
       <div class="two">
         <div><div class="label" style="margin-bottom:6px">Capacidades exigidas</div>
           <div class="scroll"><table><thead><tr><th>Capacidade</th><th>Peso</th>${ro ? "" : "<th></th>"}</tr></thead><tbody>
@@ -615,6 +618,26 @@ function vMetodologia() {
   </section>
   ${blocos}
   ${ro ? "" : `<section class="panel"><h3>Novo segmento</h3><div class="row"><input type="text" id="novoSeg" placeholder="Ex.: Corte a laser" aria-label="Nome do segmento" style="flex:1;max-width:320px"><button class="btn" type="button" data-act="add-seg">Adicionar segmento</button></div></section>`}`;
+}
+function impactoSegmento(segId) {
+  const vs = [...S.vinculos].filter(([, v]) => v.segmentoId === segId).map(([id]) => id);
+  return {
+    vinculos: vs,
+    servicos: [...S.servicos].filter(([, sv]) => vs.includes(sv.vinculoId)).map(([id]) => id),
+    capacidades: [...S.capacidades].filter(([, c]) => c.segmentoId === segId).map(([id]) => id),
+    criterios: [...S.criterios].filter(([, c]) => c.segmentoId === segId).map(([id]) => id),
+  };
+}
+function confirmaSegmento(sg) {
+  const im = impactoSegmento(sg.id);
+  const plural = (n, um, varios) => `${n} ${n === 1 ? um : varios}`;
+  return `<div class="banner" role="alert" style="border-color:color-mix(in srgb, var(--bad) 45%, transparent);background:color-mix(in srgb, var(--bad) 8%, transparent)">
+    <b>Excluir o segmento ${esc(sg.nome)}?</b> Isto apaga também
+    ${plural(im.capacidades.length, "capacidade", "capacidades")}, ${plural(im.criterios.length, "critério de qualidade", "critérios de qualidade")},
+    a ligação de ${plural(im.vinculos.length, "fornecedor", "fornecedores")} com este segmento e ${plural(im.servicos.length, "serviço registrado", "serviços registrados")} nele.
+    Os fornecedores continuam cadastrados. Não dá para desfazer; se precisar guardar o histórico, baixe os CSVs na aba Exportar antes.
+    <div class="row" style="margin-top:10px"><button class="btn danger" type="button" data-act="excluir-seg" data-id="${esc(sg.id)}">Excluir ${esc(sg.nome)}</button><button class="btn" type="button" data-act="cancelar">Cancelar</button></div>
+  </div>`;
 }
 function critTabela(crit, ro, segId, dim) {
   const notas = [5, 4, 3, 2, 1, 0];
@@ -784,7 +807,7 @@ document.addEventListener("click", async e => {
   const el = e.target.closest("[data-act]");
   if (!el || !document.getElementById("app").contains(el)) return;
   const act = el.dataset.act, id = el.dataset.id;
-  if (act !== "pedir-confirmacao" && act !== "excluir-servico") ui.confirm = null;
+  if (!["pedir-confirmacao", "excluir-servico", "pedir-excluir-seg", "excluir-seg"].includes(act)) ui.confirm = null;
   switch (act) {
     case "filtro-seg": ui.seg = ui.seg === id ? "" : id; render(); break;
     case "abrir": ui.fornecedorId = el.dataset.f; ui.vinculoId = el.dataset.v || null; ui.tab = "detalhe"; history.replaceState(null, "", "#fornecedores"); render(); window.scrollTo(0, 0); break;
@@ -807,6 +830,22 @@ document.addEventListener("click", async e => {
       const ordem = Math.max(0, ...capsDo(id).map(c => c.ordem || 0)) + 1;
       inp.value = ""; inp.blur();
       await save("capacidades", novoId("cap"), { segmentoId: id, nome, peso: 1, ordem, ativa: true }); break;
+    }
+    case "cancelar": render(); break;
+    case "pedir-excluir-seg": ui.confirm = "seg:" + id; render(); break;
+    case "excluir-seg": {
+      if (!perm.admin) break;
+      const sg = S.segmentos.get(id); if (!sg) break;
+      const im = impactoSegmento(id);
+      ui.confirm = null;
+      if (ui.seg === id) ui.seg = "";
+      for (const sid of im.servicos) await remove("servicos", sid);
+      for (const vid of im.vinculos) await remove("vinculos", vid);
+      for (const cid of im.capacidades) await remove("capacidades", cid);
+      for (const cid of im.criterios) await remove("criterios", cid);
+      await remove("segmentos", id);
+      toast(`Segmento ${sg.nome} excluído`);
+      break;
     }
     case "add-seg": {
       const inp = document.getElementById("novoSeg"); const nome = inp && inp.value.trim(); if (!nome) break;
