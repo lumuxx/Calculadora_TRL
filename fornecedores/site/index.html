@@ -18,6 +18,7 @@
   --warn: #A86400;
   --bad: #B3261E;
   --idle: #6B7280;
+  --star: #D99A00;
   --display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
   --body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
@@ -26,13 +27,13 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #0E1117; --surface: #161A22; --sunken: #1D222C; --ink: #E6E9EF; --muted: #98A1B1; --line: #2A303C;
-    --accent: #8C99FF; --accent-ink: #0E1117; --ok: #5CC28A; --spec: #4EC3D2; --warn: #E3A63E; --bad: #F2786E; --idle: #8E96A4;
+    --accent: #8C99FF; --accent-ink: #0E1117; --ok: #5CC28A; --spec: #4EC3D2; --warn: #E3A63E; --bad: #F2786E; --idle: #8E96A4; --star: #F2B935;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #0E1117; --surface: #161A22; --sunken: #1D222C; --ink: #E6E9EF; --muted: #98A1B1; --line: #2A303C;
-  --accent: #8C99FF; --accent-ink: #0E1117; --ok: #5CC28A; --spec: #4EC3D2; --warn: #E3A63E; --bad: #F2786E; --idle: #8E96A4;
+  --accent: #8C99FF; --accent-ink: #0E1117; --ok: #5CC28A; --spec: #4EC3D2; --warn: #E3A63E; --bad: #F2786E; --idle: #8E96A4; --star: #F2B935;
   color-scheme: dark;
 }
 
@@ -94,7 +95,7 @@ textarea { min-height: 76px; resize: vertical; }
 .hint { font-size: .74rem; color: var(--warn); white-space: nowrap; }
 
 /* ---------- régua 0–5 ---------- */
-.gauge { display: grid; grid-template-columns: 1fr 2.6em; align-items: center; gap: 8px; min-width: 90px; }
+.gauge { display: grid; grid-template-columns: 1fr 2.6em; align-items: center; gap: 6px; min-width: 72px; }
 .gauge .track { position: relative; height: 8px; background: var(--sunken); border-radius: 2px; overflow: hidden;
   background-image: repeating-linear-gradient(90deg, transparent 0 calc(20% - 1px), var(--line) calc(20% - 1px) 20%); }
 .gauge .fill { position: absolute; inset: 0 auto 0 0; background: var(--b); border-radius: 2px; }
@@ -104,8 +105,8 @@ textarea { min-height: 76px; resize: vertical; }
 /* ---------- tabelas ---------- */
 .scroll { overflow-x: auto; min-width: 0; }
 table { width: 100%; border-collapse: collapse; }
-th { text-align: left; font-size: .72rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); font-weight: 600; padding: 8px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
-td { padding: 9px 10px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+th { text-align: left; font-size: .72rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); font-weight: 600; padding: 8px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+td { padding: 9px 8px; border-bottom: 1px solid var(--line); vertical-align: middle; }
 tr:last-child td { border-bottom: 0; }
 tbody tr.link { cursor: pointer; }
 tbody tr.link:hover td { background: color-mix(in srgb, var(--accent) 6%, transparent); }
@@ -161,6 +162,12 @@ dialog::backdrop { background: rgb(10 12 18 / .45); }
 dialog form { padding: 20px; display: grid; gap: 14px; max-height: calc(100dvh - 64px); overflow-y: auto; }
 .checks { display: flex; flex-wrap: wrap; gap: 8px 16px; }
 .checks label { display: inline-flex; gap: 6px; align-items: center; }
+
+/* ---------- estrelas (índice global 0–5) ---------- */
+.stars { position: relative; display: inline-block; font-size: 1rem; line-height: 1; letter-spacing: 1px; white-space: nowrap; color: var(--line); }
+.stars .on { position: absolute; inset: 0 auto 0 0; overflow: hidden; color: var(--star); }
+.rating { display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+.stars.none { color: var(--muted); font-size: .8rem; letter-spacing: 0; }
 
 @media (prefers-reduced-motion: no-preference) { .gauge .fill { transition: width .35s ease; } }
 </style>
@@ -321,6 +328,9 @@ const hoje = () => new Date().toISOString().slice(0, 10);
 const stCls = s => "st-" + String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/\s+/g, "-");
 const pill = s => `<span class="pill ${stCls(s)}">${esc(s)}</span>`;
 const band = n => n >= 3.5 ? "b-hi" : n >= 2 ? "b-mid" : "b-lo";
+const estrelas = n => n == null
+  ? `<span class="stars none" title="Sem serviço avaliado">–</span>`
+  : `<span class="stars" role="img" aria-label="${fmt(n, 1)} de 5 estrelas" title="${fmt(n)} de 5">★★★★★<span class="on" style="width:${Math.max(0, Math.min(100, n / 5 * 100))}%" aria-hidden="true">★★★★★</span></span>`;
 const gauge = n => n == null
   ? `<div class="gauge"><div class="track"></div><span class="v muted">–</span></div>`
   : `<div class="gauge ${band(n)}" title="${fmt(n)} de 5"><div class="track"><div class="fill" style="width:${Math.max(0, Math.min(100, n / 5 * 100))}%"></div></div><span class="v">${fmt(n, 1)}</span></div>`;
@@ -383,9 +393,8 @@ function vPainel() {
       <td>${esc(l.seg)}</td>
       <td>${pill(l.status)}${l.sug !== l.status ? `<div class="hint">sugerido: ${esc(l.sug)}</div>` : ""}</td>
       <td>${gauge(l.cap)}</td><td>${gauge(l.ix.q)}</td><td>${gauge(l.ix.p)}</td><td>${gauge(l.ix.c)}</td>
-      <td class="center"><b class="num">${fmt(l.ix.g)}</b></td>
-      <td class="center num">${l.ix.n}</td>
-      <td class="num">${dataBR(l.ix.ultimo)}</td>
+      <td>${l.ix.g == null ? `<span class="muted" title="Sem serviço avaliado">–</span>` : `<div class="rating">${estrelas(l.ix.g)}<b class="num">${fmt(l.ix.g)}</b></div>`}</td>
+      <td class="center"><b class="num">${l.ix.n}</b>${l.ix.ultimo ? `<div class="num muted" style="font-size:.74rem;white-space:nowrap">últ. ${dataBR(l.ix.ultimo)}</div>` : ""}</td>
     </tr>`).join("");
 
   return `
@@ -408,10 +417,10 @@ function vPainel() {
       </div>
     </div>
     <div class="scroll"><table>
-      <thead><tr><th>Fornecedor</th><th>Segmento</th><th>Status</th><th>Capacidade</th><th>Qualidade</th><th>Prazo</th><th>Custo</th><th class="center">Global</th><th class="center">Serviços</th><th>Último</th></tr></thead>
-      <tbody>${rows || `<tr><td colspan="10" class="muted">Nenhum fornecedor com esses filtros.</td></tr>`}</tbody>
+      <thead><tr><th>Fornecedor</th><th>Segmento</th><th>Status</th><th>Capacidade</th><th>Qualidade</th><th>Prazo</th><th>Custo</th><th>Global</th><th class="center">Serviços</th></tr></thead>
+      <tbody>${rows || `<tr><td colspan="9" class="muted">Nenhum fornecedor com esses filtros.</td></tr>`}</tbody>
     </table></div>
-    <p class="note">Todas as notas vão de 0 a 5. <b>Global</b> = média de qualidade, prazo e custo de todos os serviços. <b>Capacidade</b> = soma das notas ponderadas pelos pesos do segmento. O <b>status sugerido</b> segue a regra da aba Metodologia; quem decide o status é Suprimentos.</p>
+    <p class="note">Todas as notas vão de 0 a 5. <b>Global</b> = média de qualidade, prazo e custo de todos os serviços; as estrelas mostram a mesma nota (1 estrela = 1 ponto, preenchimento proporcional). <b>Capacidade</b> = soma das notas ponderadas pelos pesos do segmento. O <b>status sugerido</b> segue a regra da aba Metodologia; quem decide o status é Suprimentos.</p>
   </section>`;
 }
 function vazio() {
