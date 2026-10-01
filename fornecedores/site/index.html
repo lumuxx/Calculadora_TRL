@@ -188,7 +188,7 @@ dialog form { padding: 20px; display: grid; gap: 14px; max-height: calc(100dvh -
       <a href="#painel" data-tab="painel">Painel</a>
       <a href="#fornecedores" data-tab="fornecedores">Fornecedores</a>
       <a href="#metodologia" data-tab="metodologia">Metodologia</a>
-      <a href="#exportar" data-tab="exportar">Exportar</a>
+      <!-- aba Exportar oculta por enquanto; a tela (vExportar) continua no código -->
     </nav>
     <div class="who" id="who"></div>
   </div>
@@ -391,7 +391,7 @@ function render() {
     app.innerHTML = `<div class="panel empty"><h2>Entre na sua conta para ver os fornecedores</h2><p class="note">Os cadastros e avaliações ficam salvos para toda a equipe e só aparecem para quem está conectado ao claude.ai com acesso a esta página.</p></div>`;
     return;
   }
-  const view = { painel: vPainel, fornecedores: vFornecedores, detalhe: vDetalhe, metodologia: vMetodologia, exportar: vExportar }[ui.tab] || vPainel;
+  const view = { painel: vPainel, fornecedores: vFornecedores, detalhe: vDetalhe, metodologia: vMetodologia }[ui.tab] || vPainel;
   app.innerHTML = view();
 }
 document.addEventListener("focusout", () => { if (deferred) setTimeout(() => { if (deferred) render(); }, 0); });
@@ -644,7 +644,7 @@ function confirmaSegmento(sg) {
     <b>Excluir o segmento ${esc(sg.nome)}?</b> Isto apaga também
     ${plural(im.capacidades.length, "capacidade", "capacidades")}, ${plural(im.criterios.length, "critério de qualidade", "critérios de qualidade")},
     a ligação de ${plural(im.vinculos.length, "fornecedor", "fornecedores")} com este segmento e ${plural(im.servicos.length, "serviço registrado", "serviços registrados")} nele.
-    Os fornecedores continuam cadastrados. Não dá para desfazer; se precisar guardar o histórico, baixe os CSVs na aba Exportar antes.
+    Os fornecedores continuam cadastrados. Não dá para desfazer.
     <div class="row" style="margin-top:10px"><button class="btn danger" type="button" data-act="excluir-seg" data-id="${esc(sg.id)}">Excluir ${esc(sg.nome)}</button><button class="btn" type="button" data-act="cancelar">Cancelar</button></div>
   </div>`;
 }
@@ -909,7 +909,7 @@ document.addEventListener("change", async e => {
 });
 function rota() {
   const h = location.hash.replace("#", "");
-  if (["painel", "fornecedores", "metodologia", "exportar"].includes(h)) {
+  if (["painel", "fornecedores", "metodologia"].includes(h)) {
     if (!(h === "fornecedores" && ui.tab === "detalhe")) ui.tab = h;
   }
   render();
