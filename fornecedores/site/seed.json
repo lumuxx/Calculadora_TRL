@@ -1,0 +1,1279 @@
+{
+ "segmentos": {
+  "seg-usinagem": {
+   "nome": "Usinagem",
+   "ordem": 1
+  },
+  "seg-caldeiraria": {
+   "nome": "Caldeiraria",
+   "ordem": 2
+  },
+  "seg-pintura": {
+   "nome": "Pintura",
+   "ordem": 3
+  },
+  "seg-tratamento-termico-superficial": {
+   "nome": "Tratamento Térmico/Superficial",
+   "ordem": 4
+  },
+  "seg-prototipagem-composito": {
+   "nome": "Prototipagem (Compósito)",
+   "ordem": 5
+  }
+ },
+ "capacidades": {
+  "cap-usinagem-torno-convencional": {
+   "segmentoId": "seg-usinagem",
+   "nome": "Torno convencional",
+   "peso": 0.5,
+   "ordem": 1,
+   "ativa": true
+  },
+  "cap-usinagem-torno-cnc": {
+   "segmentoId": "seg-usinagem",
+   "nome": "Torno CNC",
+   "peso": 1.0,
+   "ordem": 2,
+   "ativa": true
+  },
+  "cap-usinagem-fresadora-3-eixos": {
+   "segmentoId": "seg-usinagem",
+   "nome": "Fresadora 3 eixos",
+   "peso": 1.0,
+   "ordem": 3,
+   "ativa": true
+  },
+  "cap-usinagem-fresadora-5-eixos": {
+   "segmentoId": "seg-usinagem",
+   "nome": "Fresadora 5 eixos",
+   "peso": 0.5,
+   "ordem": 4,
+   "ativa": true
+  },
+  "cap-usinagem-eletroerosao": {
+   "segmentoId": "seg-usinagem",
+   "nome": "Eletroerosão",
+   "peso": 0.5,
+   "ordem": 5,
+   "ativa": true
+  },
+  "cap-usinagem-retifica": {
+   "segmentoId": "seg-usinagem",
+   "nome": "Retífica",
+   "peso": 0.5,
+   "ordem": 6,
+   "ativa": true
+  },
+  "cap-usinagem-mmc": {
+   "segmentoId": "seg-usinagem",
+   "nome": "MMC",
+   "peso": 1.0,
+   "ordem": 7,
+   "ativa": true
+  },
+  "cap-caldeiraria-corte": {
+   "segmentoId": "seg-caldeiraria",
+   "nome": "Corte",
+   "peso": 1.0,
+   "ordem": 8,
+   "ativa": true
+  },
+  "cap-caldeiraria-dobra": {
+   "segmentoId": "seg-caldeiraria",
+   "nome": "Dobra",
+   "peso": 1.0,
+   "ordem": 9,
+   "ativa": true
+  },
+  "cap-caldeiraria-calandra": {
+   "segmentoId": "seg-caldeiraria",
+   "nome": "Calandra",
+   "peso": 0.5,
+   "ordem": 10,
+   "ativa": true
+  },
+  "cap-caldeiraria-soldagem-de-aco": {
+   "segmentoId": "seg-caldeiraria",
+   "nome": "Soldagem de aço",
+   "peso": 1.0,
+   "ordem": 11,
+   "ativa": true
+  },
+  "cap-caldeiraria-soldagem-de-inox": {
+   "segmentoId": "seg-caldeiraria",
+   "nome": "Soldagem de inox",
+   "peso": 0.5,
+   "ordem": 12,
+   "ativa": true
+  },
+  "cap-caldeiraria-soldagem-de-aluminio": {
+   "segmentoId": "seg-caldeiraria",
+   "nome": "Soldagem de alumínio",
+   "peso": 0.5,
+   "ordem": 13,
+   "ativa": true
+  },
+  "cap-caldeiraria-chapas-espessas-maior-que-10mm-de-espessura": {
+   "segmentoId": "seg-caldeiraria",
+   "nome": "Chapas espessas (maior que 10mm de espessura)",
+   "peso": 0.5,
+   "ordem": 14,
+   "ativa": true
+  },
+  "cap-pintura-pintura": {
+   "segmentoId": "seg-pintura",
+   "nome": "Pintura",
+   "peso": 1.0,
+   "ordem": 15,
+   "ativa": true
+  },
+  "cap-pintura-oxidacao-negra": {
+   "segmentoId": "seg-pintura",
+   "nome": "Oxidação negra",
+   "peso": 1.0,
+   "ordem": 16,
+   "ativa": true
+  },
+  "cap-pintura-anodizacao": {
+   "segmentoId": "seg-pintura",
+   "nome": "Anodização",
+   "peso": 1.0,
+   "ordem": 17,
+   "ativa": true
+  },
+  "cap-pintura-zincagem": {
+   "segmentoId": "seg-pintura",
+   "nome": "Zincagem",
+   "peso": 1.0,
+   "ordem": 18,
+   "ativa": true
+  },
+  "cap-pintura-niquelagem": {
+   "segmentoId": "seg-pintura",
+   "nome": "Níquelagem",
+   "peso": 1.0,
+   "ordem": 19,
+   "ativa": true
+  },
+  "cap-tratamento-termico-superficial-tempera-revenimento": {
+   "segmentoId": "seg-tratamento-termico-superficial",
+   "nome": "Têmpera/Revenimento",
+   "peso": 1.0,
+   "ordem": 20,
+   "ativa": true
+  },
+  "cap-tratamento-termico-superficial-recozimento-alivio-de-tensoes": {
+   "segmentoId": "seg-tratamento-termico-superficial",
+   "nome": "Recozimento/Alívio de tensões",
+   "peso": 1.0,
+   "ordem": 21,
+   "ativa": true
+  },
+  "cap-tratamento-termico-superficial-nitretacao": {
+   "segmentoId": "seg-tratamento-termico-superficial",
+   "nome": "Nitretação",
+   "peso": 1.0,
+   "ordem": 22,
+   "ativa": true
+  },
+  "cap-tratamento-termico-superficial-cementacao": {
+   "segmentoId": "seg-tratamento-termico-superficial",
+   "nome": "Cementação",
+   "peso": 1.0,
+   "ordem": 23,
+   "ativa": true
+  },
+  "cap-tratamento-termico-superficial-tratamento-de-ligas-nao-ferrosas": {
+   "segmentoId": "seg-tratamento-termico-superficial",
+   "nome": "Tratamento de ligas não ferrosas",
+   "peso": 1.0,
+   "ordem": 24,
+   "ativa": true
+  },
+  "cap-prototipagem-composito-impressao-3d": {
+   "segmentoId": "seg-prototipagem-composito",
+   "nome": "Impressão 3D",
+   "peso": 1.0,
+   "ordem": 25,
+   "ativa": true
+  },
+  "cap-prototipagem-composito-molde-de-injecao": {
+   "segmentoId": "seg-prototipagem-composito",
+   "nome": "Molde de injeção",
+   "peso": 1.0,
+   "ordem": 26,
+   "ativa": true
+  },
+  "cap-prototipagem-composito-processo-prfv": {
+   "segmentoId": "seg-prototipagem-composito",
+   "nome": "Processo PRFV",
+   "peso": 1.0,
+   "ordem": 27,
+   "ativa": true
+  },
+  "cap-prototipagem-composito-vacuum-casting": {
+   "segmentoId": "seg-prototipagem-composito",
+   "nome": "Vacuum casting",
+   "peso": 1.0,
+   "ordem": 28,
+   "ativa": true
+  },
+  "cap-prototipagem-composito-fundicao": {
+   "segmentoId": "seg-prototipagem-composito",
+   "nome": "Fundição",
+   "peso": 1.0,
+   "ordem": 29,
+   "ativa": true
+  }
+ },
+ "criterios": {
+  "crit-001": {
+   "segmentoId": "seg-usinagem",
+   "dimensao": "Qualidade",
+   "nota": 5,
+   "descricao": "Peça conforme na primeira inspeção"
+  },
+  "crit-002": {
+   "segmentoId": null,
+   "dimensao": "Prazo",
+   "nota": 5,
+   "descricao": "No prazo"
+  },
+  "crit-003": {
+   "segmentoId": null,
+   "dimensao": "Custo",
+   "nota": 5,
+   "descricao": "Mais de 10% abaixo da média dos orçamentos"
+  },
+  "crit-004": {
+   "segmentoId": "seg-usinagem",
+   "dimensao": "Qualidade",
+   "nota": 4,
+   "descricao": "1-2 cotas precisam de ajuste"
+  },
+  "crit-005": {
+   "segmentoId": null,
+   "dimensao": "Prazo",
+   "nota": 4,
+   "descricao": "1 dia de atraso"
+  },
+  "crit-006": {
+   "segmentoId": null,
+   "dimensao": "Custo",
+   "nota": 4,
+   "descricao": "Entre 10% abaixo e na média dos orçamentos"
+  },
+  "crit-007": {
+   "segmentoId": "seg-usinagem",
+   "dimensao": "Qualidade",
+   "nota": 3,
+   "descricao": "3-4 cotas precisam de ajuste"
+  },
+  "crit-008": {
+   "segmentoId": null,
+   "dimensao": "Prazo",
+   "nota": 3,
+   "descricao": "2 dias de atraso"
+  },
+  "crit-009": {
+   "segmentoId": null,
+   "dimensao": "Custo",
+   "nota": 3,
+   "descricao": "Entre 10% acima e na média dos orçamentos"
+  },
+  "crit-010": {
+   "segmentoId": "seg-usinagem",
+   "dimensao": "Qualidade",
+   "nota": 2,
+   "descricao": "5-6 cotas precisam de ajuste"
+  },
+  "crit-011": {
+   "segmentoId": null,
+   "dimensao": "Prazo",
+   "nota": 2,
+   "descricao": "4 dias de atraso"
+  },
+  "crit-012": {
+   "segmentoId": null,
+   "dimensao": "Custo",
+   "nota": 2,
+   "descricao": "Entre 10% e 20% acima da média dos orçamentos"
+  },
+  "crit-013": {
+   "segmentoId": "seg-usinagem",
+   "dimensao": "Qualidade",
+   "nota": 1,
+   "descricao": ">8 cotas precisam de ajuste"
+  },
+  "crit-014": {
+   "segmentoId": null,
+   "dimensao": "Prazo",
+   "nota": 1,
+   "descricao": "> de 1 semana de atraso"
+  },
+  "crit-015": {
+   "segmentoId": null,
+   "dimensao": "Custo",
+   "nota": 1,
+   "descricao": "Mais de 20% acima da média dos orçamentos"
+  },
+  "crit-016": {
+   "segmentoId": "seg-usinagem",
+   "dimensao": "Qualidade",
+   "nota": 0,
+   "descricao": "Peça morta"
+  },
+  "crit-017": {
+   "segmentoId": null,
+   "dimensao": "Prazo",
+   "nota": 0,
+   "descricao": "Não entregou"
+  },
+  "crit-018": {
+   "segmentoId": null,
+   "dimensao": "Custo",
+   "nota": 0,
+   "descricao": "Mais de 50% acima da média dos orçamentos"
+  },
+  "crit-019": {
+   "segmentoId": "seg-caldeiraria",
+   "dimensao": "Qualidade",
+   "nota": 5,
+   "descricao": "Peça conforme na primeira inspeção"
+  },
+  "crit-020": {
+   "segmentoId": "seg-caldeiraria",
+   "dimensao": "Qualidade",
+   "nota": 4,
+   "descricao": "1-2 cotas precisam de ajuste"
+  },
+  "crit-021": {
+   "segmentoId": "seg-caldeiraria",
+   "dimensao": "Qualidade",
+   "nota": 3,
+   "descricao": "3-4 cotas precisam de ajuste"
+  },
+  "crit-022": {
+   "segmentoId": "seg-caldeiraria",
+   "dimensao": "Qualidade",
+   "nota": 2,
+   "descricao": "5-6 cotas precisam de ajuste"
+  },
+  "crit-023": {
+   "segmentoId": "seg-caldeiraria",
+   "dimensao": "Qualidade",
+   "nota": 1,
+   "descricao": ">8 cotas precisam de ajuste"
+  },
+  "crit-024": {
+   "segmentoId": "seg-caldeiraria",
+   "dimensao": "Qualidade",
+   "nota": 0,
+   "descricao": "Peça morta"
+  },
+  "crit-025": {
+   "segmentoId": "seg-pintura",
+   "dimensao": "Qualidade",
+   "nota": 5,
+   "descricao": "Camada perfeita"
+  },
+  "crit-026": {
+   "segmentoId": "seg-pintura",
+   "dimensao": "Qualidade",
+   "nota": 4,
+   "descricao": "Espessura de camada irregular"
+  },
+  "crit-027": {
+   "segmentoId": "seg-pintura",
+   "dimensao": "Qualidade",
+   "nota": 3,
+   "descricao": "Presença de manchas ou sangramento"
+  },
+  "crit-028": {
+   "segmentoId": "seg-pintura",
+   "dimensao": "Qualidade",
+   "nota": 2,
+   "descricao": "Presença de: escorrimento, enrugamento ou empolamento"
+  },
+  "crit-029": {
+   "segmentoId": "seg-pintura",
+   "dimensao": "Qualidade",
+   "nota": 1,
+   "descricao": "Inclusão de abrasivos, contaminantes ou pelos"
+  },
+  "crit-030": {
+   "segmentoId": "seg-pintura",
+   "dimensao": "Qualidade",
+   "nota": 0,
+   "descricao": "Presença de: cracreamento, descascamento ou poros"
+  },
+  "crit-031": {
+   "segmentoId": "seg-tratamento-termico-superficial",
+   "dimensao": "Qualidade",
+   "nota": 5,
+   "descricao": "Dentro dos parâmetros de dureza"
+  },
+  "crit-032": {
+   "segmentoId": "seg-tratamento-termico-superficial",
+   "dimensao": "Qualidade",
+   "nota": 4,
+   "descricao": "Até 2% de variação na dureza"
+  },
+  "crit-033": {
+   "segmentoId": "seg-tratamento-termico-superficial",
+   "dimensao": "Qualidade",
+   "nota": 3,
+   "descricao": "Até 3% de variação na dureza"
+  },
+  "crit-034": {
+   "segmentoId": "seg-tratamento-termico-superficial",
+   "dimensao": "Qualidade",
+   "nota": 2,
+   "descricao": "Até 5% de variação na dureza"
+  },
+  "crit-035": {
+   "segmentoId": "seg-tratamento-termico-superficial",
+   "dimensao": "Qualidade",
+   "nota": 1,
+   "descricao": "Até 10% de variação na dureza"
+  },
+  "crit-036": {
+   "segmentoId": "seg-tratamento-termico-superficial",
+   "dimensao": "Qualidade",
+   "nota": 0,
+   "descricao": "Mais de 10% de variação na dureza"
+  }
+ },
+ "fornecedores": {
+  "f-angra": {
+   "empresa": "ANGRA",
+   "cnpj": "",
+   "telefone": "",
+   "email": "",
+   "endereco": "",
+   "responsavel": "",
+   "ativo": true,
+   "observacoes": ""
+  },
+  "f-calinus": {
+   "empresa": "CALINUS",
+   "cnpj": "",
+   "telefone": "",
+   "email": "",
+   "endereco": "",
+   "responsavel": "",
+   "ativo": true,
+   "observacoes": ""
+  },
+  "f-darc": {
+   "empresa": "DARC",
+   "cnpj": "",
+   "telefone": "",
+   "email": "",
+   "endereco": "",
+   "responsavel": "",
+   "ativo": true,
+   "observacoes": ""
+  },
+  "f-eisen": {
+   "empresa": "EISEN",
+   "cnpj": "",
+   "telefone": "479917-0757",
+   "email": "",
+   "endereco": "R. dos Suíços, 135 - Vila Nova, Joinville - SC, 89237-000",
+   "responsavel": "Eleandro",
+   "ativo": true,
+   "observacoes": ""
+  },
+  "f-ejp": {
+   "empresa": "EJP",
+   "cnpj": "",
+   "telefone": "4799621-1551",
+   "email": "",
+   "endereco": "Rua Tenente Antonio Joao, 2405 - CEP: 89223-100, Bom Retiro - Joinville - SC",
+   "responsavel": "Jonatan",
+   "ativo": true,
+   "observacoes": ""
+  },
+  "f-elmeca": {
+   "empresa": "ELMECA",
+   "cnpj": "",
+   "telefone": "",
+   "email": "",
+   "endereco": "",
+   "responsavel": "",
+   "ativo": true,
+   "observacoes": ""
+  },
+  "f-evgalvanoplastia": {
+   "empresa": "EVGALVANOPLASTIA",
+   "cnpj": "",
+   "telefone": "",
+   "email": "",
+   "endereco": "",
+   "responsavel": "",
+   "ativo": true,
+   "observacoes": ""
+  },
+  "f-fag-engrenagens": {
+   "empresa": "FAG (engrenagens)",
+   "cnpj": "",
+   "telefone": "",
+   "email": "",
+   "endereco": "",
+   "responsavel": "",
+   "ativo": true,
+   "observacoes": ""
+  },
+  "f-fastparts": {
+   "empresa": "FASTPARTS",
+   "cnpj": "",
+   "telefone": "",
+   "email": "",
+   "endereco": "",
+   "responsavel": "",
+   "ativo": true,
+   "observacoes": ""
+  },
+  "f-galvano": {
+   "empresa": "GALVANO",
+   "cnpj": "",
+   "telefone": "",
+   "email": "",
+   "endereco": "",
+   "responsavel": "",
+   "ativo": true,
+   "observacoes": ""
+  },
+  "f-guercam": {
+   "empresa": "GUERCAM",
+   "cnpj": "",
+   "telefone": "",
+   "email": "",
+   "endereco": "",
+   "responsavel": "",
+   "ativo": true,
+   "observacoes": ""
+  },
+  "f-kaldeville": {
+   "empresa": "KALDEVILLE",
+   "cnpj": "",
+   "telefone": "",
+   "email": "",
+   "endereco": "",
+   "responsavel": "",
+   "ativo": true,
+   "observacoes": ""
+  },
+  "f-ladi-s": {
+   "empresa": "LADI'S",
+   "cnpj": "",
+   "telefone": "",
+   "email": "",
+   "endereco": "",
+   "responsavel": "",
+   "ativo": true,
+   "observacoes": ""
+  },
+  "f-lanfibras": {
+   "empresa": "LANFIBRAS",
+   "cnpj": "",
+   "telefone": "",
+   "email": "",
+   "endereco": "",
+   "responsavel": "",
+   "ativo": true,
+   "observacoes": ""
+  },
+  "f-laserville": {
+   "empresa": "LASERVILLE",
+   "cnpj": "",
+   "telefone": "",
+   "email": "",
+   "endereco": "",
+   "responsavel": "",
+   "ativo": true,
+   "observacoes": ""
+  },
+  "f-mac-laser": {
+   "empresa": "MAC LASER",
+   "cnpj": "",
+   "telefone": "",
+   "email": "",
+   "endereco": "",
+   "responsavel": "",
+   "ativo": true,
+   "observacoes": ""
+  },
+  "f-medeiros": {
+   "empresa": "MEDEIROS",
+   "cnpj": "",
+   "telefone": "",
+   "email": "",
+   "endereco": "",
+   "responsavel": "",
+   "ativo": true,
+   "observacoes": ""
+  },
+  "f-perfecton": {
+   "empresa": "PERFECTON",
+   "cnpj": "",
+   "telefone": "",
+   "email": "",
+   "endereco": "",
+   "responsavel": "",
+   "ativo": true,
+   "observacoes": ""
+  },
+  "f-policromo": {
+   "empresa": "POLICROMO",
+   "cnpj": "",
+   "telefone": "",
+   "email": "",
+   "endereco": "",
+   "responsavel": "",
+   "ativo": true,
+   "observacoes": ""
+  },
+  "f-protville": {
+   "empresa": "PROTVILLE",
+   "cnpj": "",
+   "telefone": "",
+   "email": "",
+   "endereco": "",
+   "responsavel": "",
+   "ativo": true,
+   "observacoes": ""
+  },
+  "f-scm": {
+   "empresa": "SCM",
+   "cnpj": "",
+   "telefone": "",
+   "email": "",
+   "endereco": "",
+   "responsavel": "",
+   "ativo": true,
+   "observacoes": ""
+  },
+  "f-solusi": {
+   "empresa": "SOLUSI",
+   "cnpj": "",
+   "telefone": "",
+   "email": "",
+   "endereco": "",
+   "responsavel": "",
+   "ativo": true,
+   "observacoes": ""
+  },
+  "f-technofil": {
+   "empresa": "TECHNOFIL",
+   "cnpj": "",
+   "telefone": "",
+   "email": "",
+   "endereco": "",
+   "responsavel": "",
+   "ativo": true,
+   "observacoes": ""
+  },
+  "f-tecnotempera": {
+   "empresa": "TECNOTÊMPERA",
+   "cnpj": "",
+   "telefone": "",
+   "email": "",
+   "endereco": "",
+   "responsavel": "",
+   "ativo": true,
+   "observacoes": ""
+  },
+  "f-temperaville": {
+   "empresa": "TEMPERAVILLE",
+   "cnpj": "",
+   "telefone": "",
+   "email": "",
+   "endereco": "",
+   "responsavel": "",
+   "ativo": true,
+   "observacoes": ""
+  },
+  "f-usifil": {
+   "empresa": "USIFIL",
+   "cnpj": "",
+   "telefone": "",
+   "email": "",
+   "endereco": "",
+   "responsavel": "",
+   "ativo": true,
+   "observacoes": ""
+  },
+  "f-usitec": {
+   "empresa": "USITEC",
+   "cnpj": "",
+   "telefone": "4799942-4736",
+   "email": "",
+   "endereco": "Rua Werner Goll, 64 - Nova brasilia - Joinville / SC - CEP 89.214-620",
+   "responsavel": "Gabriel",
+   "ativo": true,
+   "observacoes": ""
+  },
+  "f-vitari": {
+   "empresa": "VITARI",
+   "cnpj": "",
+   "telefone": "",
+   "email": "",
+   "endereco": "",
+   "responsavel": "",
+   "ativo": true,
+   "observacoes": ""
+  },
+  "f-vrm": {
+   "empresa": "VRM",
+   "cnpj": "",
+   "telefone": "",
+   "email": "",
+   "endereco": "",
+   "responsavel": "",
+   "ativo": true,
+   "observacoes": ""
+  },
+  "f-weldvision": {
+   "empresa": "WELDVISION",
+   "cnpj": "",
+   "telefone": "",
+   "email": "",
+   "endereco": "",
+   "responsavel": "",
+   "ativo": true,
+   "observacoes": ""
+  }
+ },
+ "vinculos": {
+  "v-eisen-usinagem": {
+   "fornecedorId": "f-eisen",
+   "segmentoId": "seg-usinagem",
+   "status": "Homologado",
+   "capacidades": {
+    "cap-usinagem-torno-convencional": "atende",
+    "cap-usinagem-torno-cnc": "parcial",
+    "cap-usinagem-fresadora-3-eixos": "atende",
+    "cap-usinagem-fresadora-5-eixos": "nao",
+    "cap-usinagem-eletroerosao": "nao",
+    "cap-usinagem-retifica": "atende",
+    "cap-usinagem-mmc": "nao"
+   },
+   "historicoStatus": []
+  },
+  "v-usitec-usinagem": {
+   "fornecedorId": "f-usitec",
+   "segmentoId": "seg-usinagem",
+   "status": "Em avaliação",
+   "capacidades": {
+    "cap-usinagem-torno-convencional": "atende",
+    "cap-usinagem-torno-cnc": "parcial",
+    "cap-usinagem-fresadora-3-eixos": "atende",
+    "cap-usinagem-fresadora-5-eixos": "nao",
+    "cap-usinagem-eletroerosao": "nao",
+    "cap-usinagem-retifica": "nao",
+    "cap-usinagem-mmc": "nao"
+   },
+   "historicoStatus": []
+  },
+  "v-guercam-usinagem": {
+   "fornecedorId": "f-guercam",
+   "segmentoId": "seg-usinagem",
+   "status": "Em avaliação",
+   "capacidades": {
+    "cap-usinagem-torno-convencional": "atende",
+    "cap-usinagem-torno-cnc": "nao",
+    "cap-usinagem-fresadora-3-eixos": "atende",
+    "cap-usinagem-fresadora-5-eixos": "atende",
+    "cap-usinagem-eletroerosao": "atende",
+    "cap-usinagem-retifica": "nao",
+    "cap-usinagem-mmc": "nao"
+   },
+   "historicoStatus": []
+  },
+  "v-usifil-usinagem": {
+   "fornecedorId": "f-usifil",
+   "segmentoId": "seg-usinagem",
+   "status": "Especializado",
+   "capacidades": {
+    "cap-usinagem-torno-convencional": "nao",
+    "cap-usinagem-torno-cnc": "nao",
+    "cap-usinagem-fresadora-3-eixos": "nao",
+    "cap-usinagem-fresadora-5-eixos": "nao",
+    "cap-usinagem-eletroerosao": "atende",
+    "cap-usinagem-retifica": "nao",
+    "cap-usinagem-mmc": "nao"
+   },
+   "historicoStatus": []
+  },
+  "v-medeiros-usinagem": {
+   "fornecedorId": "f-medeiros",
+   "segmentoId": "seg-usinagem",
+   "status": "Em avaliação",
+   "capacidades": {},
+   "historicoStatus": []
+  },
+  "v-solusi-usinagem": {
+   "fornecedorId": "f-solusi",
+   "segmentoId": "seg-usinagem",
+   "status": "Em avaliação",
+   "capacidades": {},
+   "historicoStatus": []
+  },
+  "v-vrm-usinagem": {
+   "fornecedorId": "f-vrm",
+   "segmentoId": "seg-usinagem",
+   "status": "Em avaliação",
+   "capacidades": {
+    "cap-usinagem-torno-convencional": "nao",
+    "cap-usinagem-torno-cnc": "nao",
+    "cap-usinagem-fresadora-3-eixos": "atende",
+    "cap-usinagem-fresadora-5-eixos": "nao",
+    "cap-usinagem-eletroerosao": "nao",
+    "cap-usinagem-retifica": "atende",
+    "cap-usinagem-mmc": "nao"
+   },
+   "historicoStatus": []
+  },
+  "v-technofil-usinagem": {
+   "fornecedorId": "f-technofil",
+   "segmentoId": "seg-usinagem",
+   "status": "Especializado",
+   "capacidades": {
+    "cap-usinagem-torno-convencional": "nao",
+    "cap-usinagem-torno-cnc": "nao",
+    "cap-usinagem-fresadora-3-eixos": "nao",
+    "cap-usinagem-fresadora-5-eixos": "nao",
+    "cap-usinagem-eletroerosao": "atende",
+    "cap-usinagem-retifica": "nao",
+    "cap-usinagem-mmc": "nao"
+   },
+   "historicoStatus": []
+  },
+  "v-fag-engrenagens-usinagem": {
+   "fornecedorId": "f-fag-engrenagens",
+   "segmentoId": "seg-usinagem",
+   "status": "Especializado",
+   "capacidades": {
+    "cap-usinagem-torno-convencional": "nao",
+    "cap-usinagem-torno-cnc": "atende",
+    "cap-usinagem-fresadora-3-eixos": "atende",
+    "cap-usinagem-fresadora-5-eixos": "nao",
+    "cap-usinagem-eletroerosao": "nao",
+    "cap-usinagem-retifica": "nao",
+    "cap-usinagem-mmc": "nao"
+   },
+   "historicoStatus": []
+  },
+  "v-perfecton-usinagem": {
+   "fornecedorId": "f-perfecton",
+   "segmentoId": "seg-usinagem",
+   "status": "Em avaliação",
+   "capacidades": {
+    "cap-usinagem-torno-convencional": "atende",
+    "cap-usinagem-torno-cnc": "atende",
+    "cap-usinagem-fresadora-3-eixos": "atende",
+    "cap-usinagem-fresadora-5-eixos": "nao",
+    "cap-usinagem-eletroerosao": "nao",
+    "cap-usinagem-retifica": "nao",
+    "cap-usinagem-mmc": "nao"
+   },
+   "historicoStatus": []
+  },
+  "v-vitari-caldeiraria": {
+   "fornecedorId": "f-vitari",
+   "segmentoId": "seg-caldeiraria",
+   "status": "Homologado",
+   "capacidades": {
+    "cap-caldeiraria-corte": "atende",
+    "cap-caldeiraria-dobra": "atende",
+    "cap-caldeiraria-calandra": "atende",
+    "cap-caldeiraria-soldagem-de-aco": "atende",
+    "cap-caldeiraria-soldagem-de-inox": "atende",
+    "cap-caldeiraria-soldagem-de-aluminio": "atende",
+    "cap-caldeiraria-chapas-espessas-maior-que-10mm-de-espessura": "nao"
+   },
+   "historicoStatus": []
+  },
+  "v-elmeca-caldeiraria": {
+   "fornecedorId": "f-elmeca",
+   "segmentoId": "seg-caldeiraria",
+   "status": "Em avaliação",
+   "capacidades": {
+    "cap-caldeiraria-corte": "atende",
+    "cap-caldeiraria-dobra": "atende",
+    "cap-caldeiraria-calandra": "atende",
+    "cap-caldeiraria-soldagem-de-aco": "atende",
+    "cap-caldeiraria-soldagem-de-inox": "atende",
+    "cap-caldeiraria-soldagem-de-aluminio": "nao",
+    "cap-caldeiraria-chapas-espessas-maior-que-10mm-de-espessura": "nao"
+   },
+   "historicoStatus": []
+  },
+  "v-calinus-caldeiraria": {
+   "fornecedorId": "f-calinus",
+   "segmentoId": "seg-caldeiraria",
+   "status": "Em avaliação",
+   "capacidades": {},
+   "historicoStatus": []
+  },
+  "v-mac-laser-caldeiraria": {
+   "fornecedorId": "f-mac-laser",
+   "segmentoId": "seg-caldeiraria",
+   "status": "Em avaliação",
+   "capacidades": {
+    "cap-caldeiraria-corte": "atende",
+    "cap-caldeiraria-dobra": "atende",
+    "cap-caldeiraria-calandra": "nao",
+    "cap-caldeiraria-soldagem-de-aco": "atende",
+    "cap-caldeiraria-soldagem-de-inox": "atende",
+    "cap-caldeiraria-soldagem-de-aluminio": "nao",
+    "cap-caldeiraria-chapas-espessas-maior-que-10mm-de-espessura": "nao"
+   },
+   "historicoStatus": []
+  },
+  "v-laserville-caldeiraria": {
+   "fornecedorId": "f-laserville",
+   "segmentoId": "seg-caldeiraria",
+   "status": "Em avaliação",
+   "capacidades": {
+    "cap-caldeiraria-corte": "atende",
+    "cap-caldeiraria-dobra": "atende",
+    "cap-caldeiraria-calandra": "atende",
+    "cap-caldeiraria-soldagem-de-aco": "atende",
+    "cap-caldeiraria-soldagem-de-inox": "atende",
+    "cap-caldeiraria-soldagem-de-aluminio": "nao",
+    "cap-caldeiraria-chapas-espessas-maior-que-10mm-de-espessura": "atende"
+   },
+   "historicoStatus": []
+  },
+  "v-kaldeville-caldeiraria": {
+   "fornecedorId": "f-kaldeville",
+   "segmentoId": "seg-caldeiraria",
+   "status": "Em avaliação",
+   "capacidades": {
+    "cap-caldeiraria-corte": "atende",
+    "cap-caldeiraria-dobra": "atende",
+    "cap-caldeiraria-calandra": "atende",
+    "cap-caldeiraria-soldagem-de-aco": "atende",
+    "cap-caldeiraria-soldagem-de-inox": "atende",
+    "cap-caldeiraria-soldagem-de-aluminio": "nao",
+    "cap-caldeiraria-chapas-espessas-maior-que-10mm-de-espessura": "atende"
+   },
+   "historicoStatus": []
+  },
+  "v-darc-caldeiraria": {
+   "fornecedorId": "f-darc",
+   "segmentoId": "seg-caldeiraria",
+   "status": "Em avaliação",
+   "capacidades": {
+    "cap-caldeiraria-corte": "atende",
+    "cap-caldeiraria-dobra": "atende",
+    "cap-caldeiraria-calandra": "nao",
+    "cap-caldeiraria-soldagem-de-aco": "atende",
+    "cap-caldeiraria-soldagem-de-inox": "atende",
+    "cap-caldeiraria-soldagem-de-aluminio": "atende",
+    "cap-caldeiraria-chapas-espessas-maior-que-10mm-de-espessura": "atende"
+   },
+   "historicoStatus": []
+  },
+  "v-scm-caldeiraria": {
+   "fornecedorId": "f-scm",
+   "segmentoId": "seg-caldeiraria",
+   "status": "Em avaliação",
+   "capacidades": {
+    "cap-caldeiraria-corte": "atende",
+    "cap-caldeiraria-dobra": "atende",
+    "cap-caldeiraria-calandra": "atende",
+    "cap-caldeiraria-soldagem-de-aco": "atende",
+    "cap-caldeiraria-soldagem-de-inox": "atende"
+   },
+   "historicoStatus": []
+  },
+  "v-weldvision-caldeiraria": {
+   "fornecedorId": "f-weldvision",
+   "segmentoId": "seg-caldeiraria",
+   "status": "Em avaliação",
+   "capacidades": {
+    "cap-caldeiraria-corte": "atende",
+    "cap-caldeiraria-dobra": "atende",
+    "cap-caldeiraria-calandra": "nao",
+    "cap-caldeiraria-soldagem-de-aco": "atende",
+    "cap-caldeiraria-soldagem-de-inox": "atende",
+    "cap-caldeiraria-soldagem-de-aluminio": "nao",
+    "cap-caldeiraria-chapas-espessas-maior-que-10mm-de-espessura": "atende"
+   },
+   "historicoStatus": []
+  },
+  "v-ladi-s-pintura": {
+   "fornecedorId": "f-ladi-s",
+   "segmentoId": "seg-pintura",
+   "status": "Especializado",
+   "capacidades": {
+    "cap-pintura-pintura": "nao",
+    "cap-pintura-oxidacao-negra": "nao",
+    "cap-pintura-anodizacao": "atende",
+    "cap-pintura-zincagem": "nao",
+    "cap-pintura-niquelagem": "nao"
+   },
+   "historicoStatus": []
+  },
+  "v-policromo-pintura": {
+   "fornecedorId": "f-policromo",
+   "segmentoId": "seg-pintura",
+   "status": "Em avaliação",
+   "capacidades": {
+    "cap-pintura-pintura": "nao",
+    "cap-pintura-oxidacao-negra": "atende",
+    "cap-pintura-anodizacao": "atende",
+    "cap-pintura-zincagem": "atende",
+    "cap-pintura-niquelagem": "atende"
+   },
+   "historicoStatus": []
+  },
+  "v-galvano-pintura": {
+   "fornecedorId": "f-galvano",
+   "segmentoId": "seg-pintura",
+   "status": "Em avaliação",
+   "capacidades": {
+    "cap-pintura-pintura": "atende",
+    "cap-pintura-oxidacao-negra": "nao",
+    "cap-pintura-anodizacao": "nao",
+    "cap-pintura-zincagem": "atende",
+    "cap-pintura-niquelagem": "atende"
+   },
+   "historicoStatus": []
+  },
+  "v-evgalvanoplastia-pintura": {
+   "fornecedorId": "f-evgalvanoplastia",
+   "segmentoId": "seg-pintura",
+   "status": "Em avaliação",
+   "capacidades": {
+    "cap-pintura-pintura": "nao",
+    "cap-pintura-oxidacao-negra": "atende",
+    "cap-pintura-anodizacao": "nao",
+    "cap-pintura-zincagem": "atende",
+    "cap-pintura-niquelagem": "atende"
+   },
+   "historicoStatus": []
+  },
+  "v-angra-tratamento-termico-superficial": {
+   "fornecedorId": "f-angra",
+   "segmentoId": "seg-tratamento-termico-superficial",
+   "status": "Em avaliação",
+   "capacidades": {
+    "cap-tratamento-termico-superficial-tempera-revenimento": "atende",
+    "cap-tratamento-termico-superficial-recozimento-alivio-de-tensoes": "atende",
+    "cap-tratamento-termico-superficial-nitretacao": "atende",
+    "cap-tratamento-termico-superficial-cementacao": "atende",
+    "cap-tratamento-termico-superficial-tratamento-de-ligas-nao-ferrosas": "nao"
+   },
+   "historicoStatus": []
+  },
+  "v-tecnotempera-tratamento-termico-superficial": {
+   "fornecedorId": "f-tecnotempera",
+   "segmentoId": "seg-tratamento-termico-superficial",
+   "status": "Em avaliação",
+   "capacidades": {
+    "cap-tratamento-termico-superficial-tempera-revenimento": "atende",
+    "cap-tratamento-termico-superficial-recozimento-alivio-de-tensoes": "atende",
+    "cap-tratamento-termico-superficial-nitretacao": "atende",
+    "cap-tratamento-termico-superficial-cementacao": "atende",
+    "cap-tratamento-termico-superficial-tratamento-de-ligas-nao-ferrosas": "atende"
+   },
+   "historicoStatus": []
+  },
+  "v-temperaville-tratamento-termico-superficial": {
+   "fornecedorId": "f-temperaville",
+   "segmentoId": "seg-tratamento-termico-superficial",
+   "status": "Em avaliação",
+   "capacidades": {
+    "cap-tratamento-termico-superficial-tempera-revenimento": "atende",
+    "cap-tratamento-termico-superficial-recozimento-alivio-de-tensoes": "atende",
+    "cap-tratamento-termico-superficial-nitretacao": "atende",
+    "cap-tratamento-termico-superficial-cementacao": "atende",
+    "cap-tratamento-termico-superficial-tratamento-de-ligas-nao-ferrosas": "atende"
+   },
+   "historicoStatus": []
+  },
+  "v-protville-prototipagem-composito": {
+   "fornecedorId": "f-protville",
+   "segmentoId": "seg-prototipagem-composito",
+   "status": "Em avaliação",
+   "capacidades": {
+    "cap-prototipagem-composito-impressao-3d": "atende",
+    "cap-prototipagem-composito-molde-de-injecao": "atende",
+    "cap-prototipagem-composito-processo-prfv": "atende",
+    "cap-prototipagem-composito-vacuum-casting": "atende",
+    "cap-prototipagem-composito-fundicao": "atende"
+   },
+   "historicoStatus": []
+  },
+  "v-lanfibras-prototipagem-composito": {
+   "fornecedorId": "f-lanfibras",
+   "segmentoId": "seg-prototipagem-composito",
+   "status": "Especializado",
+   "capacidades": {
+    "cap-prototipagem-composito-impressao-3d": "nao",
+    "cap-prototipagem-composito-molde-de-injecao": "nao",
+    "cap-prototipagem-composito-processo-prfv": "atende",
+    "cap-prototipagem-composito-vacuum-casting": "nao",
+    "cap-prototipagem-composito-fundicao": "nao"
+   },
+   "historicoStatus": []
+  },
+  "v-fastparts-prototipagem-composito": {
+   "fornecedorId": "f-fastparts",
+   "segmentoId": "seg-prototipagem-composito",
+   "status": "Em avaliação",
+   "capacidades": {
+    "cap-prototipagem-composito-impressao-3d": "atende",
+    "cap-prototipagem-composito-molde-de-injecao": "atende",
+    "cap-prototipagem-composito-processo-prfv": "atende",
+    "cap-prototipagem-composito-vacuum-casting": "atende",
+    "cap-prototipagem-composito-fundicao": "nao"
+   },
+   "historicoStatus": []
+  },
+  "v-ejp-caldeiraria": {
+   "fornecedorId": "f-ejp",
+   "segmentoId": "seg-caldeiraria",
+   "status": "Em avaliação",
+   "capacidades": {},
+   "historicoStatus": []
+  }
+ },
+ "servicos": {
+  "s-0001": {
+   "vinculoId": "v-eisen-usinagem",
+   "data": "2024-08-19",
+   "projeto": "RDA-R",
+   "projetista": "André",
+   "relato": "",
+   "valor": null,
+   "dataPrevista": null,
+   "dataEntrega": null,
+   "q": 4,
+   "p": 3,
+   "c": 1
+  },
+  "s-0002": {
+   "vinculoId": "v-eisen-usinagem",
+   "data": "2024-08-20",
+   "projeto": "RDA-R",
+   "projetista": "André",
+   "relato": "",
+   "valor": null,
+   "dataPrevista": null,
+   "dataEntrega": null,
+   "q": 4,
+   "p": 5,
+   "c": 5
+  },
+  "s-0003": {
+   "vinculoId": "v-eisen-usinagem",
+   "data": "2024-09-02",
+   "projeto": "RDA-R",
+   "projetista": "André",
+   "relato": "",
+   "valor": null,
+   "dataPrevista": null,
+   "dataEntrega": null,
+   "q": 5,
+   "p": 3,
+   "c": 3
+  },
+  "s-0004": {
+   "vinculoId": "v-eisen-usinagem",
+   "data": "2025-01-29",
+   "projeto": "RDA-R",
+   "projetista": "André",
+   "relato": "",
+   "valor": null,
+   "dataPrevista": null,
+   "dataEntrega": null,
+   "q": 1,
+   "p": 3,
+   "c": 1
+  },
+  "s-0005": {
+   "vinculoId": "v-eisen-usinagem",
+   "data": "2025-11-14",
+   "projeto": "MICROSEAL",
+   "projetista": "André",
+   "relato": "",
+   "valor": null,
+   "dataPrevista": null,
+   "dataEntrega": null,
+   "q": 2,
+   "p": 1,
+   "c": 1
+  },
+  "s-0006": {
+   "vinculoId": "v-eisen-usinagem",
+   "data": "2026-05-11",
+   "projeto": "CORAL-SOL",
+   "projetista": "André",
+   "relato": "",
+   "valor": null,
+   "dataPrevista": null,
+   "dataEntrega": null,
+   "q": 4,
+   "p": 5,
+   "c": 1
+  },
+  "s-0007": {
+   "vinculoId": "v-usitec-usinagem",
+   "data": "2026-02-03",
+   "projeto": "RDA-R",
+   "projetista": "André",
+   "relato": "",
+   "valor": null,
+   "dataPrevista": null,
+   "dataEntrega": null,
+   "q": 5,
+   "p": 5,
+   "c": 3
+  },
+  "s-0008": {
+   "vinculoId": "v-guercam-usinagem",
+   "data": "2025-01-20",
+   "projeto": "RDA-R",
+   "projetista": "André",
+   "relato": "",
+   "valor": null,
+   "dataPrevista": null,
+   "dataEntrega": null,
+   "q": 5,
+   "p": 5,
+   "c": 1
+  },
+  "s-0009": {
+   "vinculoId": "v-vitari-caldeiraria",
+   "data": "2024-09-17",
+   "projeto": "RDA-R",
+   "projetista": "André",
+   "relato": "",
+   "valor": null,
+   "dataPrevista": null,
+   "dataEntrega": null,
+   "q": 4,
+   "p": 4,
+   "c": 1
+  },
+  "s-0010": {
+   "vinculoId": "v-vitari-caldeiraria",
+   "data": "2026-08-10",
+   "projeto": "CORAL-SOL",
+   "projetista": "André",
+   "relato": "",
+   "valor": null,
+   "dataPrevista": null,
+   "dataEntrega": null,
+   "q": 5,
+   "p": 5,
+   "c": 3
+  }
+ }
+}

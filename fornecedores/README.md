@@ -19,6 +19,12 @@ Arquivos desta pasta:
 | `extrair_excel.py` | Lê a planilha e gera os CSVs da pasta `dados/` (rode de novo se a planilha mudar) |
 | `dados/*.csv` | Dados atuais da planilha, já normalizados (29+1 fornecedores, 160 notas de capacidade, 10 serviços) |
 | `powerfx.md` | Fórmulas do app, tela por tela, prontas para colar |
+| `site/index.html` | Versão site do app (painel, cadastro, capacidade, histórico, metodologia, exportação CSV para o Dataverse) |
+| `site/seed.json` | Dados da planilha no formato do site (gerado por `site/gerar_seed.py`) |
+
+**Versão site:** publicada no claude.ai com os dados compartilhados pela equipe. Fora do claude.ai
+(por ex. GitHub Pages, ou `python3 -m http.server` dentro de `site/`), ela funciona sozinha,
+carrega `seed.json` e guarda as alterações só no navegador de quem usa.
 
 ---
 
