@@ -1,5 +1,10 @@
 # Gestão de Fornecedores — SharePoint Lists + Power Apps
 
+> **Caminho escolhido: Dataverse.** O passo a passo atualizado, com as tabelas do Dataverse,
+> os dados para importar e as telas do app no mesmo visual do site, está em
+> [`powerapps/README.md`](powerapps/README.md). Este documento e o `powerfx.md` descrevem a
+> primeira proposta, com SharePoint Lists, e ficam como referência.
+
 Proposta de estrutura para levar a planilha **"Estruturação de Fornecedores"** para um app
 no Microsoft 365, com o mesmo raciocínio que já existe no Excel:
 

@@ -1,0 +1,161 @@
+﻿Nome,Vinculo,Capacidade,Atendimento
+EISEN — Torno convencional,EISEN — Usinagem,Torno convencional,atende
+EISEN — Torno CNC,EISEN — Usinagem,Torno CNC,parcial
+EISEN — Fresadora 3 eixos,EISEN — Usinagem,Fresadora 3 eixos,atende
+EISEN — Fresadora 5 eixos,EISEN — Usinagem,Fresadora 5 eixos,nao
+EISEN — Eletroerosão,EISEN — Usinagem,Eletroerosão,nao
+EISEN — Retífica,EISEN — Usinagem,Retífica,atende
+EISEN — MMC,EISEN — Usinagem,MMC,nao
+USITEC — Torno convencional,USITEC — Usinagem,Torno convencional,atende
+USITEC — Torno CNC,USITEC — Usinagem,Torno CNC,parcial
+USITEC — Fresadora 3 eixos,USITEC — Usinagem,Fresadora 3 eixos,atende
+USITEC — Fresadora 5 eixos,USITEC — Usinagem,Fresadora 5 eixos,nao
+USITEC — Eletroerosão,USITEC — Usinagem,Eletroerosão,nao
+USITEC — Retífica,USITEC — Usinagem,Retífica,nao
+USITEC — MMC,USITEC — Usinagem,MMC,nao
+GUERCAM — Torno convencional,GUERCAM — Usinagem,Torno convencional,atende
+GUERCAM — Torno CNC,GUERCAM — Usinagem,Torno CNC,nao
+GUERCAM — Fresadora 3 eixos,GUERCAM — Usinagem,Fresadora 3 eixos,atende
+GUERCAM — Fresadora 5 eixos,GUERCAM — Usinagem,Fresadora 5 eixos,atende
+GUERCAM — Eletroerosão,GUERCAM — Usinagem,Eletroerosão,atende
+GUERCAM — Retífica,GUERCAM — Usinagem,Retífica,nao
+GUERCAM — MMC,GUERCAM — Usinagem,MMC,nao
+USIFIL — Torno convencional,USIFIL — Usinagem,Torno convencional,nao
+USIFIL — Torno CNC,USIFIL — Usinagem,Torno CNC,nao
+USIFIL — Fresadora 3 eixos,USIFIL — Usinagem,Fresadora 3 eixos,nao
+USIFIL — Fresadora 5 eixos,USIFIL — Usinagem,Fresadora 5 eixos,nao
+USIFIL — Eletroerosão,USIFIL — Usinagem,Eletroerosão,atende
+USIFIL — Retífica,USIFIL — Usinagem,Retífica,nao
+USIFIL — MMC,USIFIL — Usinagem,MMC,nao
+VRM — Torno convencional,VRM — Usinagem,Torno convencional,nao
+VRM — Torno CNC,VRM — Usinagem,Torno CNC,nao
+VRM — Fresadora 3 eixos,VRM — Usinagem,Fresadora 3 eixos,atende
+VRM — Fresadora 5 eixos,VRM — Usinagem,Fresadora 5 eixos,nao
+VRM — Eletroerosão,VRM — Usinagem,Eletroerosão,nao
+VRM — Retífica,VRM — Usinagem,Retífica,atende
+VRM — MMC,VRM — Usinagem,MMC,nao
+TECHNOFIL — Torno convencional,TECHNOFIL — Usinagem,Torno convencional,nao
+TECHNOFIL — Torno CNC,TECHNOFIL — Usinagem,Torno CNC,nao
+TECHNOFIL — Fresadora 3 eixos,TECHNOFIL — Usinagem,Fresadora 3 eixos,nao
+TECHNOFIL — Fresadora 5 eixos,TECHNOFIL — Usinagem,Fresadora 5 eixos,nao
+TECHNOFIL — Eletroerosão,TECHNOFIL — Usinagem,Eletroerosão,atende
+TECHNOFIL — Retífica,TECHNOFIL — Usinagem,Retífica,nao
+TECHNOFIL — MMC,TECHNOFIL — Usinagem,MMC,nao
+FAG (engrenagens) — Torno convencional,FAG (engrenagens) — Usinagem,Torno convencional,nao
+FAG (engrenagens) — Torno CNC,FAG (engrenagens) — Usinagem,Torno CNC,atende
+FAG (engrenagens) — Fresadora 3 eixos,FAG (engrenagens) — Usinagem,Fresadora 3 eixos,atende
+FAG (engrenagens) — Fresadora 5 eixos,FAG (engrenagens) — Usinagem,Fresadora 5 eixos,nao
+FAG (engrenagens) — Eletroerosão,FAG (engrenagens) — Usinagem,Eletroerosão,nao
+FAG (engrenagens) — Retífica,FAG (engrenagens) — Usinagem,Retífica,nao
+FAG (engrenagens) — MMC,FAG (engrenagens) — Usinagem,MMC,nao
+PERFECTON — Torno convencional,PERFECTON — Usinagem,Torno convencional,atende
+PERFECTON — Torno CNC,PERFECTON — Usinagem,Torno CNC,atende
+PERFECTON — Fresadora 3 eixos,PERFECTON — Usinagem,Fresadora 3 eixos,atende
+PERFECTON — Fresadora 5 eixos,PERFECTON — Usinagem,Fresadora 5 eixos,nao
+PERFECTON — Eletroerosão,PERFECTON — Usinagem,Eletroerosão,nao
+PERFECTON — Retífica,PERFECTON — Usinagem,Retífica,nao
+PERFECTON — MMC,PERFECTON — Usinagem,MMC,nao
+VITARI — Corte,VITARI — Caldeiraria,Corte,atende
+VITARI — Dobra,VITARI — Caldeiraria,Dobra,atende
+VITARI — Calandra,VITARI — Caldeiraria,Calandra,atende
+VITARI — Soldagem de aço,VITARI — Caldeiraria,Soldagem de aço,atende
+VITARI — Soldagem de inox,VITARI — Caldeiraria,Soldagem de inox,atende
+VITARI — Soldagem de alumínio,VITARI — Caldeiraria,Soldagem de alumínio,atende
+VITARI — Chapas espessas (maior que 10mm de espessura),VITARI — Caldeiraria,Chapas espessas (maior que 10mm de espessura),nao
+ELMECA — Corte,ELMECA — Caldeiraria,Corte,atende
+ELMECA — Dobra,ELMECA — Caldeiraria,Dobra,atende
+ELMECA — Calandra,ELMECA — Caldeiraria,Calandra,atende
+ELMECA — Soldagem de aço,ELMECA — Caldeiraria,Soldagem de aço,atende
+ELMECA — Soldagem de inox,ELMECA — Caldeiraria,Soldagem de inox,atende
+ELMECA — Soldagem de alumínio,ELMECA — Caldeiraria,Soldagem de alumínio,nao
+ELMECA — Chapas espessas (maior que 10mm de espessura),ELMECA — Caldeiraria,Chapas espessas (maior que 10mm de espessura),nao
+MAC LASER — Corte,MAC LASER — Caldeiraria,Corte,atende
+MAC LASER — Dobra,MAC LASER — Caldeiraria,Dobra,atende
+MAC LASER — Calandra,MAC LASER — Caldeiraria,Calandra,nao
+MAC LASER — Soldagem de aço,MAC LASER — Caldeiraria,Soldagem de aço,atende
+MAC LASER — Soldagem de inox,MAC LASER — Caldeiraria,Soldagem de inox,atende
+MAC LASER — Soldagem de alumínio,MAC LASER — Caldeiraria,Soldagem de alumínio,nao
+MAC LASER — Chapas espessas (maior que 10mm de espessura),MAC LASER — Caldeiraria,Chapas espessas (maior que 10mm de espessura),nao
+LASERVILLE — Corte,LASERVILLE — Caldeiraria,Corte,atende
+LASERVILLE — Dobra,LASERVILLE — Caldeiraria,Dobra,atende
+LASERVILLE — Calandra,LASERVILLE — Caldeiraria,Calandra,atende
+LASERVILLE — Soldagem de aço,LASERVILLE — Caldeiraria,Soldagem de aço,atende
+LASERVILLE — Soldagem de inox,LASERVILLE — Caldeiraria,Soldagem de inox,atende
+LASERVILLE — Soldagem de alumínio,LASERVILLE — Caldeiraria,Soldagem de alumínio,nao
+LASERVILLE — Chapas espessas (maior que 10mm de espessura),LASERVILLE — Caldeiraria,Chapas espessas (maior que 10mm de espessura),atende
+KALDEVILLE — Corte,KALDEVILLE — Caldeiraria,Corte,atende
+KALDEVILLE — Dobra,KALDEVILLE — Caldeiraria,Dobra,atende
+KALDEVILLE — Calandra,KALDEVILLE — Caldeiraria,Calandra,atende
+KALDEVILLE — Soldagem de aço,KALDEVILLE — Caldeiraria,Soldagem de aço,atende
+KALDEVILLE — Soldagem de inox,KALDEVILLE — Caldeiraria,Soldagem de inox,atende
+KALDEVILLE — Soldagem de alumínio,KALDEVILLE — Caldeiraria,Soldagem de alumínio,nao
+KALDEVILLE — Chapas espessas (maior que 10mm de espessura),KALDEVILLE — Caldeiraria,Chapas espessas (maior que 10mm de espessura),atende
+DARC — Corte,DARC — Caldeiraria,Corte,atende
+DARC — Dobra,DARC — Caldeiraria,Dobra,atende
+DARC — Calandra,DARC — Caldeiraria,Calandra,nao
+DARC — Soldagem de aço,DARC — Caldeiraria,Soldagem de aço,atende
+DARC — Soldagem de inox,DARC — Caldeiraria,Soldagem de inox,atende
+DARC — Soldagem de alumínio,DARC — Caldeiraria,Soldagem de alumínio,atende
+DARC — Chapas espessas (maior que 10mm de espessura),DARC — Caldeiraria,Chapas espessas (maior que 10mm de espessura),atende
+SCM — Corte,SCM — Caldeiraria,Corte,atende
+SCM — Dobra,SCM — Caldeiraria,Dobra,atende
+SCM — Calandra,SCM — Caldeiraria,Calandra,atende
+SCM — Soldagem de aço,SCM — Caldeiraria,Soldagem de aço,atende
+SCM — Soldagem de inox,SCM — Caldeiraria,Soldagem de inox,atende
+WELDVISION — Corte,WELDVISION — Caldeiraria,Corte,atende
+WELDVISION — Dobra,WELDVISION — Caldeiraria,Dobra,atende
+WELDVISION — Calandra,WELDVISION — Caldeiraria,Calandra,nao
+WELDVISION — Soldagem de aço,WELDVISION — Caldeiraria,Soldagem de aço,atende
+WELDVISION — Soldagem de inox,WELDVISION — Caldeiraria,Soldagem de inox,atende
+WELDVISION — Soldagem de alumínio,WELDVISION — Caldeiraria,Soldagem de alumínio,nao
+WELDVISION — Chapas espessas (maior que 10mm de espessura),WELDVISION — Caldeiraria,Chapas espessas (maior que 10mm de espessura),atende
+LADI'S — Pintura,LADI'S — Pintura,Pintura,nao
+LADI'S — Oxidação negra,LADI'S — Pintura,Oxidação negra,nao
+LADI'S — Anodização,LADI'S — Pintura,Anodização,atende
+LADI'S — Zincagem,LADI'S — Pintura,Zincagem,nao
+LADI'S — Níquelagem,LADI'S — Pintura,Níquelagem,nao
+POLICROMO — Pintura,POLICROMO — Pintura,Pintura,nao
+POLICROMO — Oxidação negra,POLICROMO — Pintura,Oxidação negra,atende
+POLICROMO — Anodização,POLICROMO — Pintura,Anodização,atende
+POLICROMO — Zincagem,POLICROMO — Pintura,Zincagem,atende
+POLICROMO — Níquelagem,POLICROMO — Pintura,Níquelagem,atende
+GALVANO — Pintura,GALVANO — Pintura,Pintura,atende
+GALVANO — Oxidação negra,GALVANO — Pintura,Oxidação negra,nao
+GALVANO — Anodização,GALVANO — Pintura,Anodização,nao
+GALVANO — Zincagem,GALVANO — Pintura,Zincagem,atende
+GALVANO — Níquelagem,GALVANO — Pintura,Níquelagem,atende
+EVGALVANOPLASTIA — Pintura,EVGALVANOPLASTIA — Pintura,Pintura,nao
+EVGALVANOPLASTIA — Oxidação negra,EVGALVANOPLASTIA — Pintura,Oxidação negra,atende
+EVGALVANOPLASTIA — Anodização,EVGALVANOPLASTIA — Pintura,Anodização,nao
+EVGALVANOPLASTIA — Zincagem,EVGALVANOPLASTIA — Pintura,Zincagem,atende
+EVGALVANOPLASTIA — Níquelagem,EVGALVANOPLASTIA — Pintura,Níquelagem,atende
+ANGRA — Têmpera/Revenimento,ANGRA — Tratamento Térmico/Superficial,Têmpera/Revenimento,atende
+ANGRA — Recozimento/Alívio de tensões,ANGRA — Tratamento Térmico/Superficial,Recozimento/Alívio de tensões,atende
+ANGRA — Nitretação,ANGRA — Tratamento Térmico/Superficial,Nitretação,atende
+ANGRA — Cementação,ANGRA — Tratamento Térmico/Superficial,Cementação,atende
+ANGRA — Tratamento de ligas não ferrosas,ANGRA — Tratamento Térmico/Superficial,Tratamento de ligas não ferrosas,nao
+TECNOTÊMPERA — Têmpera/Revenimento,TECNOTÊMPERA — Tratamento Térmico/Superficial,Têmpera/Revenimento,atende
+TECNOTÊMPERA — Recozimento/Alívio de tensões,TECNOTÊMPERA — Tratamento Térmico/Superficial,Recozimento/Alívio de tensões,atende
+TECNOTÊMPERA — Nitretação,TECNOTÊMPERA — Tratamento Térmico/Superficial,Nitretação,atende
+TECNOTÊMPERA — Cementação,TECNOTÊMPERA — Tratamento Térmico/Superficial,Cementação,atende
+TECNOTÊMPERA — Tratamento de ligas não ferrosas,TECNOTÊMPERA — Tratamento Térmico/Superficial,Tratamento de ligas não ferrosas,atende
+TEMPERAVILLE — Têmpera/Revenimento,TEMPERAVILLE — Tratamento Térmico/Superficial,Têmpera/Revenimento,atende
+TEMPERAVILLE — Recozimento/Alívio de tensões,TEMPERAVILLE — Tratamento Térmico/Superficial,Recozimento/Alívio de tensões,atende
+TEMPERAVILLE — Nitretação,TEMPERAVILLE — Tratamento Térmico/Superficial,Nitretação,atende
+TEMPERAVILLE — Cementação,TEMPERAVILLE — Tratamento Térmico/Superficial,Cementação,atende
+TEMPERAVILLE — Tratamento de ligas não ferrosas,TEMPERAVILLE — Tratamento Térmico/Superficial,Tratamento de ligas não ferrosas,atende
+PROTVILLE — Impressão 3D,PROTVILLE — Prototipagem (Compósito),Impressão 3D,atende
+PROTVILLE — Molde de injeção,PROTVILLE — Prototipagem (Compósito),Molde de injeção,atende
+PROTVILLE — Processo PRFV,PROTVILLE — Prototipagem (Compósito),Processo PRFV,atende
+PROTVILLE — Vacuum casting,PROTVILLE — Prototipagem (Compósito),Vacuum casting,atende
+PROTVILLE — Fundição,PROTVILLE — Prototipagem (Compósito),Fundição,atende
+LANFIBRAS — Impressão 3D,LANFIBRAS — Prototipagem (Compósito),Impressão 3D,nao
+LANFIBRAS — Molde de injeção,LANFIBRAS — Prototipagem (Compósito),Molde de injeção,nao
+LANFIBRAS — Processo PRFV,LANFIBRAS — Prototipagem (Compósito),Processo PRFV,atende
+LANFIBRAS — Vacuum casting,LANFIBRAS — Prototipagem (Compósito),Vacuum casting,nao
+LANFIBRAS — Fundição,LANFIBRAS — Prototipagem (Compósito),Fundição,nao
+FASTPARTS — Impressão 3D,FASTPARTS — Prototipagem (Compósito),Impressão 3D,atende
+FASTPARTS — Molde de injeção,FASTPARTS — Prototipagem (Compósito),Molde de injeção,atende
+FASTPARTS — Processo PRFV,FASTPARTS — Prototipagem (Compósito),Processo PRFV,atende
+FASTPARTS — Vacuum casting,FASTPARTS — Prototipagem (Compósito),Vacuum casting,atende
+FASTPARTS — Fundição,FASTPARTS — Prototipagem (Compósito),Fundição,nao

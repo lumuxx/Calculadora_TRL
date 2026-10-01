@@ -1,5 +1,10 @@
 # Fórmulas Power Fx do app
 
+> **Caminho escolhido: Dataverse.** O passo a passo atualizado, com as tabelas do Dataverse,
+> os dados para importar e as telas do app no mesmo visual do site, está em
+> [`powerapps/README.md`](powerapps/README.md). Este documento e o `powerfx.md` descrevem a
+> primeira proposta, com SharePoint Lists, e ficam como referência.
+
 Fórmulas prontas para colar no Power Apps (app de tela / canvas), usando as listas criadas
 por `provisionar-listas.ps1`. Os nomes de controles (`ddSegmento`, `galCap`…) são sugestões:
 se você der outros nomes, troque nas fórmulas.

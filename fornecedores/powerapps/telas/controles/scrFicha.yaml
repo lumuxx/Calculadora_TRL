@@ -1,0 +1,2129 @@
+- recTopoD:
+    Control: Rectangle
+    Properties:
+      X: =0
+      Y: =0
+      Width: =Parent.Width
+      Height: =72
+      Fill: =Cor.Superficie
+- recTopoLinhaD:
+    Control: Rectangle
+    Properties:
+      X: =0
+      Y: =72
+      Width: =Parent.Width
+      Height: =1
+      Fill: =Cor.Linha
+- imgLogoD:
+    Control: Image
+    Properties:
+      Image: =logoSenai
+      X: =24
+      Y: =14
+      Width: =204
+      Height: =44
+      ImagePosition: =ImagePosition.Fit
+- recTopoSepD:
+    Control: Rectangle
+    Properties:
+      X: =244
+      Y: =18
+      Width: =1
+      Height: =36
+      Fill: =Cor.Linha
+- lblTituloD:
+    Control: Label
+    Properties:
+      Text: ="Qualificação de Fornecedores"
+      X: =260
+      Y: =12
+      Width: =420
+      Height: =30
+      Size: =18
+      Color: =Cor.Tinta
+      Font: =Fonte
+      PaddingLeft: =0
+      PaddingRight: =0
+      PaddingTop: =0
+      PaddingBottom: =0
+      FontWeight: =FontWeight.Bold
+- lblSubtituloD:
+    Control: Label
+    Properties:
+      Text: ="Dados compartilhados no Dataverse"
+      X: =260
+      Y: =42
+      Width: =420
+      Height: =18
+      Size: =10
+      Color: =Cor.Suave
+      Font: =Fonte
+      PaddingLeft: =0
+      PaddingRight: =0
+      PaddingTop: =0
+      PaddingBottom: =0
+- btnAbaPainelD:
+    Control: Classic/Button
+    Properties:
+      Text: ="Painel"
+      X: =Parent.Width - 24 - 3 * 132
+      Y: =18
+      Width: =128
+      Height: =40
+      OnSelect: =Navigate(scrPainel, ScreenTransition.None)
+      Fill: =Color.Transparent
+      Color: =Cor.Suave
+      BorderColor: =Cor.Linha
+      BorderThickness: =0
+      HoverFill: =Cor.Afundado
+      HoverColor: =Cor.Tinta
+      HoverBorderColor: =Cor.Linha
+      PressedFill: =Cor.Afundado
+      PressedColor: =Cor.Tinta
+      PressedBorderColor: =Cor.Linha
+      RadiusTopLeft: =6
+      RadiusTopRight: =6
+      RadiusBottomLeft: =6
+      RadiusBottomRight: =6
+      Size: =11
+      FontWeight: =FontWeight.Normal
+      Font: =Fonte
+- btnAbaFornecedoresD:
+    Control: Classic/Button
+    Properties:
+      Text: ="Fornecedores"
+      X: =Parent.Width - 24 - 2 * 132
+      Y: =18
+      Width: =128
+      Height: =40
+      OnSelect: =Navigate(scrFornecedores, ScreenTransition.None)
+      Fill: =Color.Transparent
+      Color: =Cor.Tinta
+      BorderColor: =Cor.Linha
+      BorderThickness: =0
+      HoverFill: =Cor.Afundado
+      HoverColor: =Cor.Tinta
+      HoverBorderColor: =Cor.Linha
+      PressedFill: =Cor.Afundado
+      PressedColor: =Cor.Tinta
+      PressedBorderColor: =Cor.Linha
+      RadiusTopLeft: =6
+      RadiusTopRight: =6
+      RadiusBottomLeft: =6
+      RadiusBottomRight: =6
+      Size: =11
+      FontWeight: =FontWeight.Semibold
+      Font: =Fonte
+- recAbaAtivaD:
+    Control: Rectangle
+    Properties:
+      X: =Parent.Width - 24 - 2 * 132
+      Y: =69
+      Width: =128
+      Height: =3
+      Fill: =Cor.Destaque
+- btnAbaMetodologiaD:
+    Control: Classic/Button
+    Properties:
+      Text: ="Metodologia"
+      X: =Parent.Width - 24 - 1 * 132
+      Y: =18
+      Width: =128
+      Height: =40
+      OnSelect: =Navigate(scrMetodologia, ScreenTransition.None)
+      Fill: =Color.Transparent
+      Color: =Cor.Suave
+      BorderColor: =Cor.Linha
+      BorderThickness: =0
+      HoverFill: =Cor.Afundado
+      HoverColor: =Cor.Tinta
+      HoverBorderColor: =Cor.Linha
+      PressedFill: =Cor.Afundado
+      PressedColor: =Cor.Tinta
+      PressedBorderColor: =Cor.Linha
+      RadiusTopLeft: =6
+      RadiusTopRight: =6
+      RadiusBottomLeft: =6
+      RadiusBottomRight: =6
+      Size: =11
+      FontWeight: =FontWeight.Normal
+      Font: =Fonte
+- btnVoltarFicha:
+    Control: Classic/Button
+    Properties:
+      Text: ="‹ Fornecedores"
+      X: =24
+      Y: =84
+      Width: =140
+      Height: =30
+      OnSelect: =Navigate(scrFornecedores, ScreenTransition.None)
+      Fill: =Color.Transparent
+      Color: =Cor.Destaque
+      BorderColor: =Cor.Linha
+      BorderThickness: =0
+      HoverFill: =Cor.Afundado
+      HoverColor: =Cor.Destaque
+      HoverBorderColor: =Cor.Linha
+      PressedFill: =Cor.Afundado
+      PressedColor: =Cor.Tinta
+      PressedBorderColor: =Cor.Linha
+      RadiusTopLeft: =6
+      RadiusTopRight: =6
+      RadiusBottomLeft: =6
+      RadiusBottomRight: =6
+      Size: =11
+      FontWeight: =FontWeight.Semibold
+      Font: =Fonte
+      Align: =Align.Left
+      PaddingLeft: =4
+- btnCarregarFicha:
+    Control: Classic/Button
+    Properties:
+      Text: ="carregar"
+      X: =0
+      Y: =0
+      Width: =10
+      Height: =10
+      OnSelect: |-
+        =ClearCollect(colAval, Filter(AvaliacoesCapacidade, Vinculo.Vinculo = varVinc.Vinculo));
+        ClearCollect(colHist, Sort(Filter(Servicos, Vinculo.Vinculo = varVinc.Vinculo), DataOrcamento, SortOrder.Ascending));
+        Clear(colTL);
+        If(CountRows(colHist) > 0, ClearCollect(colTL,
+            ForAll(Sequence(CountRows(colHist)) As i,
+                With({sub: FirstN(colHist, i.Value)},
+                    With({g: (Sum(sub, NotaQualidade) + Sum(sub, NotaPrazo) + Sum(sub, NotaCusto)) / (3 * i.Value)},
+                        {i: i.Value, data: Last(sub).DataOrcamento, g: g, st: StatusPor(i.Value, g)}
+                    )
+                )
+            )
+        ))
+      Fill: =Cor.Superficie
+      Color: =Cor.Tinta
+      BorderColor: =Cor.Linha
+      BorderThickness: =1
+      HoverFill: =Cor.Afundado
+      HoverColor: =Cor.Tinta
+      HoverBorderColor: =Cor.Linha
+      PressedFill: =Cor.Afundado
+      PressedColor: =Cor.Tinta
+      PressedBorderColor: =Cor.Linha
+      RadiusTopLeft: =6
+      RadiusTopRight: =6
+      RadiusBottomLeft: =6
+      RadiusBottomRight: =6
+      Size: =11
+      FontWeight: =FontWeight.Semibold
+      Font: =Fonte
+      Visible: =false
+- btnRecalcServ:
+    Control: Classic/Button
+    Properties:
+      Text: ="recalc"
+      X: =0
+      Y: =0
+      Width: =10
+      Height: =10
+      OnSelect: |-
+        =With({h: Filter(Servicos, Vinculo.Vinculo = varVinc.Vinculo)},
+            With({n: CountRows(h), q: Average(h, NotaQualidade), p: Average(h, NotaPrazo), c: Average(h, NotaCusto)},
+                Set(varVinc,
+                    Patch(Vinculos, LookUp(Vinculos, Vinculo = varVinc.Vinculo), {
+                        MediaQualidade: If(n > 0, Round(q, 2)),
+                        MediaPrazo: If(n > 0, Round(p, 2)),
+                        MediaCusto: If(n > 0, Round(c, 2)),
+                        IndiceGlobal: If(n > 0, Round((q + p + c) / 3, 2)),
+                        QtdServicos: n,
+                        UltimoServico: Max(h, DataOrcamento),
+                        StatusCalculado: StatusPor(n, If(n > 0, (q + p + c) / 3, 0))
+                    })
+                )
+            )
+        );
+        Select(btnCarregarFicha)
+      Fill: =Cor.Superficie
+      Color: =Cor.Tinta
+      BorderColor: =Cor.Linha
+      BorderThickness: =1
+      HoverFill: =Cor.Afundado
+      HoverColor: =Cor.Tinta
+      HoverBorderColor: =Cor.Linha
+      PressedFill: =Cor.Afundado
+      PressedColor: =Cor.Tinta
+      PressedBorderColor: =Cor.Linha
+      RadiusTopLeft: =6
+      RadiusTopRight: =6
+      RadiusBottomLeft: =6
+      RadiusBottomRight: =6
+      Size: =11
+      FontWeight: =FontWeight.Semibold
+      Font: =Fonte
+      Visible: =false
+- btnRecalcCap:
+    Control: Classic/Button
+    Properties:
+      Text: ="recalc cap"
+      X: =0
+      Y: =0
+      Width: =10
+      Height: =10
+      OnSelect: |-
+        =With({caps: Filter(Capacidades, Segmento.Segmento = varVinc.Segmento.Segmento && Ativa)},
+            With({pesos: Sum(caps, Peso)},
+                Set(varVinc,
+                    Patch(Vinculos, LookUp(Vinculos, Vinculo = varVinc.Vinculo), {
+                        NotaCapacidade: If(pesos > 0 && CountRows(colAval) > 0,
+                            Round(Sum(caps As k,
+                                Switch(LookUp(colAval, Capacidade.Capacidade = k.Capacidade).Atendimento,
+                                    "atende", k.Peso, "parcial", k.Peso / 2, 0)) / pesos * 5, 2))
+                    })
+                )
+            )
+        )
+      Fill: =Cor.Superficie
+      Color: =Cor.Tinta
+      BorderColor: =Cor.Linha
+      BorderThickness: =1
+      HoverFill: =Cor.Afundado
+      HoverColor: =Cor.Tinta
+      HoverBorderColor: =Cor.Linha
+      PressedFill: =Cor.Afundado
+      PressedColor: =Cor.Tinta
+      PressedBorderColor: =Cor.Linha
+      RadiusTopLeft: =6
+      RadiusTopRight: =6
+      RadiusBottomLeft: =6
+      RadiusBottomRight: =6
+      Size: =11
+      FontWeight: =FontWeight.Semibold
+      Font: =Fonte
+      Visible: =false
+- conFiDados:
+    Control: GroupContainer
+    Variant: ManualLayout
+    Properties:
+      X: =24
+      Y: =118
+      Width: =Parent.Width - 48
+      Height: =110
+      Fill: =Cor.Superficie
+      BorderColor: =Cor.Linha
+      BorderThickness: =1
+      RadiusTopLeft: =6
+      RadiusTopRight: =6
+      RadiusBottomLeft: =6
+      RadiusBottomRight: =6
+      DropShadow: =DropShadow.None
+    Children:
+    - lblFiEmpresa:
+        Control: Label
+        Properties:
+          Text: =varForn.Empresa & If(varForn.Ativo, "", "  (inativo)")
+          X: =16
+          Y: =10
+          Width: =Parent.Width - 200
+          Height: =34
+          Size: =20
+          Color: =Cor.Tinta
+          Font: =Fonte
+          PaddingLeft: =0
+          PaddingRight: =0
+          PaddingTop: =0
+          PaddingBottom: =0
+          FontWeight: =FontWeight.Bold
+    - btnEditarForn:
+        Control: Classic/Button
+        Properties:
+          Text: ="Editar cadastro"
+          X: =Parent.Width - 16 - 150
+          Y: =12
+          Width: =150
+          Height: =34
+          OnSelect: =Navigate(scrFornecedorForm, ScreenTransition.None)
+          Fill: =Cor.Superficie
+          Color: =Cor.Tinta
+          BorderColor: =Cor.Linha
+          BorderThickness: =1
+          HoverFill: =Cor.Afundado
+          HoverColor: =Cor.Tinta
+          HoverBorderColor: =Cor.Linha
+          PressedFill: =Cor.Afundado
+          PressedColor: =Cor.Tinta
+          PressedBorderColor: =Cor.Linha
+          RadiusTopLeft: =6
+          RadiusTopRight: =6
+          RadiusBottomLeft: =6
+          RadiusBottomRight: =6
+          Size: =11
+          FontWeight: =FontWeight.Semibold
+          Font: =Fonte
+          Visible: =PodeRegistrar
+    - lblFiRotResponsavel:
+        Control: Label
+        Properties:
+          Text: ="RESPONSÁVEL"
+          X: =16 + 0 * (Parent.Width - 32) / 5
+          Y: =52
+          Width: =(Parent.Width - 32) / 5 - 12
+          Height: =16
+          Size: =8
+          Color: =Cor.Suave
+          Font: =Fonte
+          PaddingLeft: =0
+          PaddingRight: =0
+          PaddingTop: =0
+          PaddingBottom: =0
+          FontWeight: =FontWeight.Semibold
+    - lblFiValResponsavel:
+        Control: Label
+        Properties:
+          Text: =Coalesce(varForn.Responsavel, "–")
+          X: =16 + 0 * (Parent.Width - 32) / 5
+          Y: =68
+          Width: =(Parent.Width - 32) / 5 - 12
+          Height: =36
+          Size: =10
+          Color: =Cor.Tinta
+          Font: =Fonte
+          PaddingLeft: =0
+          PaddingRight: =0
+          PaddingTop: =0
+          PaddingBottom: =0
+          Wrap: =true
+          VerticalAlign: =VerticalAlign.Top
+    - lblFiRotTelefone:
+        Control: Label
+        Properties:
+          Text: ="TELEFONE"
+          X: =16 + 1 * (Parent.Width - 32) / 5
+          Y: =52
+          Width: =(Parent.Width - 32) / 5 - 12
+          Height: =16
+          Size: =8
+          Color: =Cor.Suave
+          Font: =Fonte
+          PaddingLeft: =0
+          PaddingRight: =0
+          PaddingTop: =0
+          PaddingBottom: =0
+          FontWeight: =FontWeight.Semibold
+    - lblFiValTelefone:
+        Control: Label
+        Properties:
+          Text: =Coalesce(varForn.Telefone, "–")
+          X: =16 + 1 * (Parent.Width - 32) / 5
+          Y: =68
+          Width: =(Parent.Width - 32) / 5 - 12
+          Height: =36
+          Size: =10
+          Color: =Cor.Tinta
+          Font: =Fonte
+          PaddingLeft: =0
+          PaddingRight: =0
+          PaddingTop: =0
+          PaddingBottom: =0
+          Wrap: =true
+          VerticalAlign: =VerticalAlign.Top
+    - lblFiRotEmail:
+        Control: Label
+        Properties:
+          Text: ="E-MAIL"
+          X: =16 + 2 * (Parent.Width - 32) / 5
+          Y: =52
+          Width: =(Parent.Width - 32) / 5 - 12
+          Height: =16
+          Size: =8
+          Color: =Cor.Suave
+          Font: =Fonte
+          PaddingLeft: =0
+          PaddingRight: =0
+          PaddingTop: =0
+          PaddingBottom: =0
+          FontWeight: =FontWeight.Semibold
+    - lblFiValEmail:
+        Control: Label
+        Properties:
+          Text: =Coalesce(varForn.Email, "–")
+          X: =16 + 2 * (Parent.Width - 32) / 5
+          Y: =68
+          Width: =(Parent.Width - 32) / 5 - 12
+          Height: =36
+          Size: =10
+          Color: =Cor.Tinta
+          Font: =Fonte
+          PaddingLeft: =0
+          PaddingRight: =0
+          PaddingTop: =0
+          PaddingBottom: =0
+          Wrap: =true
+          VerticalAlign: =VerticalAlign.Top
+    - lblFiRotCNPJ:
+        Control: Label
+        Properties:
+          Text: ="CNPJ"
+          X: =16 + 3 * (Parent.Width - 32) / 5
+          Y: =52
+          Width: =(Parent.Width - 32) / 5 - 12
+          Height: =16
+          Size: =8
+          Color: =Cor.Suave
+          Font: =Fonte
+          PaddingLeft: =0
+          PaddingRight: =0
+          PaddingTop: =0
+          PaddingBottom: =0
+          FontWeight: =FontWeight.Semibold
+    - lblFiValCNPJ:
+        Control: Label
+        Properties:
+          Text: =Coalesce(varForn.CNPJ, "–")
+          X: =16 + 3 * (Parent.Width - 32) / 5
+          Y: =68
+          Width: =(Parent.Width - 32) / 5 - 12
+          Height: =36
+          Size: =10
+          Color: =Cor.Tinta
+          Font: =Fonte
+          PaddingLeft: =0
+          PaddingRight: =0
+          PaddingTop: =0
+          PaddingBottom: =0
+          Wrap: =true
+          VerticalAlign: =VerticalAlign.Top
+    - lblFiRotEndereco:
+        Control: Label
+        Properties:
+          Text: ="ENDEREÇO"
+          X: =16 + 4 * (Parent.Width - 32) / 5
+          Y: =52
+          Width: =(Parent.Width - 32) / 5 - 12
+          Height: =16
+          Size: =8
+          Color: =Cor.Suave
+          Font: =Fonte
+          PaddingLeft: =0
+          PaddingRight: =0
+          PaddingTop: =0
+          PaddingBottom: =0
+          FontWeight: =FontWeight.Semibold
+    - lblFiValEndereco:
+        Control: Label
+        Properties:
+          Text: =Coalesce(varForn.Endereco, "–")
+          X: =16 + 4 * (Parent.Width - 32) / 5
+          Y: =68
+          Width: =(Parent.Width - 32) / 5 - 12
+          Height: =36
+          Size: =10
+          Color: =Cor.Tinta
+          Font: =Fonte
+          PaddingLeft: =0
+          PaddingRight: =0
+          PaddingTop: =0
+          PaddingBottom: =0
+          Wrap: =true
+          VerticalAlign: =VerticalAlign.Top
+- galFiSegs:
+    Control: Gallery
+    Variant: BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0
+    Properties:
+      Items: =Filter(Vinculos, Fornecedor.Fornecedor = varForn.Fornecedor)
+      X: =24
+      Y: =238
+      Width: =Parent.Width - 48
+      Height: =36
+      TemplateSize: =34
+      TemplatePadding: =0
+      WrapCount: =6
+      ShowScrollbar: =false
+      BorderThickness: =0
+      Visible: =CountRows(Filter(Vinculos, Fornecedor.Fornecedor = varForn.Fornecedor)) > 1
+    Children:
+    - btnFiSegChip:
+        Control: Classic/Button
+        Properties:
+          Text: =ThisItem.Segmento.Nome
+          X: =0
+          Y: =0
+          Width: =Parent.TemplateWidth - 8
+          Height: =32
+          OnSelect: =Set(varVinc, ThisItem); Select(btnCarregarFicha)
+          Fill: =If(ThisItem.Vinculo = varVinc.Vinculo, Cor.Tinta, Cor.Superficie)
+          Color: =If(ThisItem.Vinculo = varVinc.Vinculo, Cor.Superficie, Cor.Tinta)
+          BorderColor: =Cor.Linha
+          BorderThickness: =1
+          HoverFill: =If(ThisItem.Vinculo = varVinc.Vinculo, Cor.Tinta, Cor.Afundado)
+          HoverColor: =If(ThisItem.Vinculo = varVinc.Vinculo, Cor.Superficie, Cor.Tinta)
+          HoverBorderColor: =Cor.Linha
+          PressedFill: =Cor.Afundado
+          PressedColor: =Cor.Tinta
+          PressedBorderColor: =Cor.Linha
+          RadiusTopLeft: =16
+          RadiusTopRight: =16
+          RadiusBottomLeft: =16
+          RadiusBottomRight: =16
+          Size: =10
+          FontWeight: =FontWeight.Semibold
+          Font: =Fonte
+- conFiStatus:
+    Control: GroupContainer
+    Variant: ManualLayout
+    Properties:
+      X: =24
+      Y: =282
+      Width: =Parent.Width - 48
+      Height: =180
+      Fill: =Cor.Superficie
+      BorderColor: =Cor.Linha
+      BorderThickness: =1
+      RadiusTopLeft: =6
+      RadiusTopRight: =6
+      RadiusBottomLeft: =6
+      RadiusBottomRight: =6
+      DropShadow: =DropShadow.None
+    Children:
+    - lblFiSeg:
+        Control: Label
+        Properties:
+          Text: =Upper(varVinc.Segmento.Nome)
+          X: =16
+          Y: =12
+          Width: =260
+          Height: =26
+          Size: =13
+          Color: =Cor.Tinta
+          Font: =Fonte
+          PaddingLeft: =0
+          PaddingRight: =0
+          PaddingTop: =0
+          PaddingBottom: =0
+          FontWeight: =FontWeight.Bold
+    - lblFiStatus:
+        Control: Label
+        Properties:
+          Text: =varVinc.StatusCalculado
+          X: =280
+          Y: =14
+          Width: =120
+          Height: =22
+          Size: =9
+          Color: =CorStatus(varVinc.StatusCalculado)
+          Font: =Fonte
+          PaddingLeft: =0
+          PaddingRight: =0
+          PaddingTop: =0
+          PaddingBottom: =0
+          FontWeight: =FontWeight.Semibold
+          Align: =Align.Center
+          Fill: =ColorFade(CorStatus(varVinc.StatusCalculado), 0.85)
+    - lblFiEspec:
+        Control: Label
+        Properties:
+          Text: ="Especializado"
+          X: =406
+          Y: =14
+          Width: =120
+          Height: =22
+          Size: =9
+          Color: =Cor.Espec
+          Font: =Fonte
+          PaddingLeft: =0
+          PaddingRight: =0
+          PaddingTop: =0
+          PaddingBottom: =0
+          FontWeight: =FontWeight.Semibold
+          Align: =Align.Center
+          Fill: =ColorFade(Cor.Espec, 0.85)
+          Visible: =varVinc.Especializado
+    - chkEspecializado:
+        Control: Classic/CheckBox
+        Properties:
+          Text: ="Especializado (manual)"
+          Default: =varVinc.Especializado
+          X: =Parent.Width * 0.62 - 16 - 230
+          Y: =10
+          Width: =230
+          Height: =32
+          Size: =10
+          Font: =Fonte
+          DisplayMode: =If(PodeRegistrar, DisplayMode.Edit, DisplayMode.View)
+          CheckboxBorderColor: =Cor.Suave
+          CheckmarkFill: =Cor.Superficie
+          CheckboxBackgroundFill: =Cor.Espec
+          OnCheck: '=If(!varVinc.Especializado, Set(varVinc, Patch(Vinculos, LookUp(Vinculos, Vinculo = varVinc.Vinculo), {Especializado: true})); Notify("Selo Especializado marcado.", NotificationType.Success))'
+          OnUncheck: '=If(varVinc.Especializado, Set(varVinc, Patch(Vinculos, LookUp(Vinculos, Vinculo = varVinc.Vinculo), {Especializado: false})); Notify("Selo Especializado removido.", NotificationType.Success))'
+    - lblFiMotivo:
+        Control: Label
+        Properties:
+          Text: '="Status calculado automaticamente: " & Motivo(Coalesce(varVinc.QtdServicos, 0), varVinc.IndiceGlobal) & "."'
+          X: =16
+          Y: =44
+          Width: =Parent.Width * 0.62 - 32
+          Height: =20
+          Size: =10
+          Color: =Cor.Suave
+          Font: =Fonte
+          PaddingLeft: =0
+          PaddingRight: =0
+          PaddingTop: =0
+          PaddingBottom: =0
+    - conScCap:
+        Control: GroupContainer
+        Variant: ManualLayout
+        Properties:
+          X: =16 + 0 * ((Parent.Width * 0.62 - 16 - 48) / 5 + 12)
+          Y: =74
+          Width: =(Parent.Width * 0.62 - 16 - 48) / 5
+          Height: =92
+          Fill: =Cor.Superficie
+          BorderColor: =Cor.Linha
+          BorderThickness: =1
+          RadiusTopLeft: =6
+          RadiusTopRight: =6
+          RadiusBottomLeft: =6
+          RadiusBottomRight: =6
+          DropShadow: =DropShadow.None
+        Children:
+        - lblScCapRot:
+            Control: Label
+            Properties:
+              Text: ="CAPACIDADE"
+              X: =10
+              Y: =8
+              Width: =Parent.Width - 20
+              Height: =14
+              Size: =8
+              Color: =Cor.Suave
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              FontWeight: =FontWeight.Semibold
+        - lblScCapVal:
+            Control: Label
+            Properties:
+              Text: =FmtNota(varVinc.NotaCapacidade)
+              X: =10
+              Y: =24
+              Width: =Parent.Width - 20
+              Height: =30
+              Size: =18
+              Color: =Cor.Tinta
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              FontWeight: =FontWeight.Bold
+        - recScCapTrilho:
+            Control: Rectangle
+            Properties:
+              X: =10
+              Y: =66
+              Width: =(Parent.Width - 20) - 34
+              Height: =8
+              Fill: =Cor.Afundado
+        - recScCapValor:
+            Control: Rectangle
+            Properties:
+              X: =10
+              Y: =66
+              Width: =((Parent.Width - 20) - 34) * Coalesce(varVinc.NotaCapacidade, 0) / 5
+              Height: =8
+              Fill: =CorNota(varVinc.NotaCapacidade)
+              Visible: =!IsBlank(varVinc.NotaCapacidade)
+        - recScCapNum:
+            Control: Label
+            Properties:
+              Text: =FmtNota1(varVinc.NotaCapacidade)
+              X: =10 + (Parent.Width - 20) - 30
+              Y: =66 - 6
+              Width: =30
+              Height: =20
+              Size: =10
+              Color: =Cor.Suave
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              Align: =Align.Right
+    - conScQ:
+        Control: GroupContainer
+        Variant: ManualLayout
+        Properties:
+          X: =16 + 1 * ((Parent.Width * 0.62 - 16 - 48) / 5 + 12)
+          Y: =74
+          Width: =(Parent.Width * 0.62 - 16 - 48) / 5
+          Height: =92
+          Fill: =Cor.Superficie
+          BorderColor: =Cor.Linha
+          BorderThickness: =1
+          RadiusTopLeft: =6
+          RadiusTopRight: =6
+          RadiusBottomLeft: =6
+          RadiusBottomRight: =6
+          DropShadow: =DropShadow.None
+        Children:
+        - lblScQRot:
+            Control: Label
+            Properties:
+              Text: ="QUALIDADE"
+              X: =10
+              Y: =8
+              Width: =Parent.Width - 20
+              Height: =14
+              Size: =8
+              Color: =Cor.Suave
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              FontWeight: =FontWeight.Semibold
+        - lblScQVal:
+            Control: Label
+            Properties:
+              Text: =FmtNota(varVinc.MediaQualidade)
+              X: =10
+              Y: =24
+              Width: =Parent.Width - 20
+              Height: =30
+              Size: =18
+              Color: =Cor.Tinta
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              FontWeight: =FontWeight.Bold
+        - recScQTrilho:
+            Control: Rectangle
+            Properties:
+              X: =10
+              Y: =66
+              Width: =(Parent.Width - 20) - 34
+              Height: =8
+              Fill: =Cor.Afundado
+        - recScQValor:
+            Control: Rectangle
+            Properties:
+              X: =10
+              Y: =66
+              Width: =((Parent.Width - 20) - 34) * Coalesce(varVinc.MediaQualidade, 0) / 5
+              Height: =8
+              Fill: =CorNota(varVinc.MediaQualidade)
+              Visible: =!IsBlank(varVinc.MediaQualidade)
+        - recScQNum:
+            Control: Label
+            Properties:
+              Text: =FmtNota1(varVinc.MediaQualidade)
+              X: =10 + (Parent.Width - 20) - 30
+              Y: =66 - 6
+              Width: =30
+              Height: =20
+              Size: =10
+              Color: =Cor.Suave
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              Align: =Align.Right
+    - conScP:
+        Control: GroupContainer
+        Variant: ManualLayout
+        Properties:
+          X: =16 + 2 * ((Parent.Width * 0.62 - 16 - 48) / 5 + 12)
+          Y: =74
+          Width: =(Parent.Width * 0.62 - 16 - 48) / 5
+          Height: =92
+          Fill: =Cor.Superficie
+          BorderColor: =Cor.Linha
+          BorderThickness: =1
+          RadiusTopLeft: =6
+          RadiusTopRight: =6
+          RadiusBottomLeft: =6
+          RadiusBottomRight: =6
+          DropShadow: =DropShadow.None
+        Children:
+        - lblScPRot:
+            Control: Label
+            Properties:
+              Text: ="PRAZO"
+              X: =10
+              Y: =8
+              Width: =Parent.Width - 20
+              Height: =14
+              Size: =8
+              Color: =Cor.Suave
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              FontWeight: =FontWeight.Semibold
+        - lblScPVal:
+            Control: Label
+            Properties:
+              Text: =FmtNota(varVinc.MediaPrazo)
+              X: =10
+              Y: =24
+              Width: =Parent.Width - 20
+              Height: =30
+              Size: =18
+              Color: =Cor.Tinta
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              FontWeight: =FontWeight.Bold
+        - recScPTrilho:
+            Control: Rectangle
+            Properties:
+              X: =10
+              Y: =66
+              Width: =(Parent.Width - 20) - 34
+              Height: =8
+              Fill: =Cor.Afundado
+        - recScPValor:
+            Control: Rectangle
+            Properties:
+              X: =10
+              Y: =66
+              Width: =((Parent.Width - 20) - 34) * Coalesce(varVinc.MediaPrazo, 0) / 5
+              Height: =8
+              Fill: =CorNota(varVinc.MediaPrazo)
+              Visible: =!IsBlank(varVinc.MediaPrazo)
+        - recScPNum:
+            Control: Label
+            Properties:
+              Text: =FmtNota1(varVinc.MediaPrazo)
+              X: =10 + (Parent.Width - 20) - 30
+              Y: =66 - 6
+              Width: =30
+              Height: =20
+              Size: =10
+              Color: =Cor.Suave
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              Align: =Align.Right
+    - conScC:
+        Control: GroupContainer
+        Variant: ManualLayout
+        Properties:
+          X: =16 + 3 * ((Parent.Width * 0.62 - 16 - 48) / 5 + 12)
+          Y: =74
+          Width: =(Parent.Width * 0.62 - 16 - 48) / 5
+          Height: =92
+          Fill: =Cor.Superficie
+          BorderColor: =Cor.Linha
+          BorderThickness: =1
+          RadiusTopLeft: =6
+          RadiusTopRight: =6
+          RadiusBottomLeft: =6
+          RadiusBottomRight: =6
+          DropShadow: =DropShadow.None
+        Children:
+        - lblScCRot:
+            Control: Label
+            Properties:
+              Text: ="CUSTO"
+              X: =10
+              Y: =8
+              Width: =Parent.Width - 20
+              Height: =14
+              Size: =8
+              Color: =Cor.Suave
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              FontWeight: =FontWeight.Semibold
+        - lblScCVal:
+            Control: Label
+            Properties:
+              Text: =FmtNota(varVinc.MediaCusto)
+              X: =10
+              Y: =24
+              Width: =Parent.Width - 20
+              Height: =30
+              Size: =18
+              Color: =Cor.Tinta
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              FontWeight: =FontWeight.Bold
+        - recScCTrilho:
+            Control: Rectangle
+            Properties:
+              X: =10
+              Y: =66
+              Width: =(Parent.Width - 20) - 34
+              Height: =8
+              Fill: =Cor.Afundado
+        - recScCValor:
+            Control: Rectangle
+            Properties:
+              X: =10
+              Y: =66
+              Width: =((Parent.Width - 20) - 34) * Coalesce(varVinc.MediaCusto, 0) / 5
+              Height: =8
+              Fill: =CorNota(varVinc.MediaCusto)
+              Visible: =!IsBlank(varVinc.MediaCusto)
+        - recScCNum:
+            Control: Label
+            Properties:
+              Text: =FmtNota1(varVinc.MediaCusto)
+              X: =10 + (Parent.Width - 20) - 30
+              Y: =66 - 6
+              Width: =30
+              Height: =20
+              Size: =10
+              Color: =Cor.Suave
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              Align: =Align.Right
+    - conScG:
+        Control: GroupContainer
+        Variant: ManualLayout
+        Properties:
+          X: =16 + 4 * ((Parent.Width * 0.62 - 16 - 48) / 5 + 12)
+          Y: =74
+          Width: =(Parent.Width * 0.62 - 16 - 48) / 5
+          Height: =92
+          Fill: =Cor.Superficie
+          BorderColor: =Cor.Destaque
+          BorderThickness: =1
+          RadiusTopLeft: =6
+          RadiusTopRight: =6
+          RadiusBottomLeft: =6
+          RadiusBottomRight: =6
+          DropShadow: =DropShadow.None
+        Children:
+        - lblScGRot:
+            Control: Label
+            Properties:
+              Text: ="ÍNDICE GLOBAL"
+              X: =10
+              Y: =8
+              Width: =Parent.Width - 20
+              Height: =14
+              Size: =8
+              Color: =Cor.Suave
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              FontWeight: =FontWeight.Semibold
+        - lblScGVal:
+            Control: Label
+            Properties:
+              Text: =FmtNota(varVinc.IndiceGlobal)
+              X: =10
+              Y: =24
+              Width: =Parent.Width - 20
+              Height: =30
+              Size: =18
+              Color: =Cor.Tinta
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              FontWeight: =FontWeight.Bold
+        - lblScGVazias:
+            Control: Label
+            Properties:
+              Text: ="★★★★★"
+              X: =10
+              Y: =60
+              Width: =90
+              Height: =22
+              Size: =12
+              Color: =Cor.Linha
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              Wrap: =false
+              Visible: =!IsBlank(varVinc.IndiceGlobal)
+        - lblScGCheias:
+            Control: Label
+            Properties:
+              Text: ="★★★★★"
+              X: =10
+              Y: =60
+              Width: =Max(1, 90 * Coalesce(varVinc.IndiceGlobal, 0) / 5)
+              Height: =22
+              Size: =12
+              Color: =Cor.Estrela
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              Wrap: =false
+              Overflow: =Overflow.Hidden
+              Visible: =!IsBlank(varVinc.IndiceGlobal)
+              Tooltip: =FmtNota(varVinc.IndiceGlobal) & " de 5"
+    - recFiSep:
+        Control: Rectangle
+        Properties:
+          X: =Parent.Width * 0.62
+          Y: =12
+          Width: =1
+          Height: =156
+          Fill: =Cor.Linha
+    - lblFiTLRot:
+        Control: Label
+        Properties:
+          Text: ="MUDANÇAS DE STATUS"
+          X: =Parent.Width * 0.62 + 16
+          Y: =12
+          Width: =Parent.Width * 0.38 - 32
+          Height: =16
+          Size: =8
+          Color: =Cor.Suave
+          Font: =Fonte
+          PaddingLeft: =0
+          PaddingRight: =0
+          PaddingTop: =0
+          PaddingBottom: =0
+          FontWeight: =FontWeight.Semibold
+    - lblFiTL:
+        Control: Label
+        Properties:
+          Text: |-
+            =With({mud: Filter(colTL As t, t.st <> If(t.i = 1, "Em avaliação", Index(colTL, t.i - 1).st))},
+                If(CountRows(mud) = 0, "Nenhuma mudança: o fornecedor está em avaliação desde o cadastro.",
+                    Concat(Sort(mud, i, SortOrder.Descending),
+                        Text(data, "dd/mm/yyyy") & "  ·  " & st & "  (ao chegar a " & i & " serviços, global " & FmtNota(g) & ")",
+                        Char(10))))
+          X: =Parent.Width * 0.62 + 16
+          Y: =32
+          Width: =Parent.Width * 0.38 - 32
+          Height: =136
+          Size: =10
+          Color: =Cor.Tinta
+          Font: =Fonte
+          PaddingLeft: =0
+          PaddingRight: =0
+          PaddingTop: =0
+          PaddingBottom: =0
+          Wrap: =true
+          VerticalAlign: =VerticalAlign.Top
+- conFiCap:
+    Control: GroupContainer
+    Variant: ManualLayout
+    Properties:
+      X: =24
+      Y: =474
+      Width: =(Parent.Width - 48 - 16) * 0.42
+      Height: =Parent.Height - 474 - 24
+      Fill: =Cor.Superficie
+      BorderColor: =Cor.Linha
+      BorderThickness: =1
+      RadiusTopLeft: =6
+      RadiusTopRight: =6
+      RadiusBottomLeft: =6
+      RadiusBottomRight: =6
+      DropShadow: =DropShadow.None
+    Children:
+    - lblCapTit:
+        Control: Label
+        Properties:
+          Text: ="CAPACIDADE TÉCNICA"
+          X: =16
+          Y: =12
+          Width: =260
+          Height: =22
+          Size: =11
+          Color: =Cor.Tinta
+          Font: =Fonte
+          PaddingLeft: =0
+          PaddingRight: =0
+          PaddingTop: =0
+          PaddingBottom: =0
+          FontWeight: =FontWeight.Bold
+    - lblCapTot:
+        Control: Label
+        Properties:
+          Text: =FmtNota1(varVinc.NotaCapacidade) & " / 5"
+          X: =Parent.Width - 16 - 100
+          Y: =12
+          Width: =100
+          Height: =22
+          Size: =10
+          Color: =Cor.Suave
+          Font: =Fonte
+          PaddingLeft: =0
+          PaddingRight: =0
+          PaddingTop: =0
+          PaddingBottom: =0
+          Align: =Align.Right
+    - galCapacidades:
+        Control: Gallery
+        Variant: BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0
+        Properties:
+          Items: =Sort(Filter(Capacidades, Segmento.Segmento = varVinc.Segmento.Segmento && Ativa), Ordem)
+          X: =16
+          Y: =44
+          Width: =Parent.Width - 32
+          Height: =Parent.Height - 44 - 36
+          TemplateSize: =48
+          TemplatePadding: =0
+          WrapCount: =1
+          ShowScrollbar: =true
+          BorderThickness: =0
+        Children:
+        - lblCapNome:
+            Control: Label
+            Properties:
+              Text: =ThisItem.Nome
+              X: =0
+              Y: =4
+              Width: =Parent.TemplateWidth - 270
+              Height: =22
+              Size: =11
+              Color: =Cor.Tinta
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+        - lblCapPeso:
+            Control: Label
+            Properties:
+              Text: ="peso " & Text(ThisItem.Peso, "0.0", "pt-BR")
+              X: =0
+              Y: =26
+              Width: =120
+              Height: =16
+              Size: =8
+              Color: =Cor.Suave
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+        - recCapLinha:
+            Control: Rectangle
+            Properties:
+              X: =0
+              Y: =47
+              Width: =Parent.TemplateWidth
+              Height: =1
+              Fill: =Cor.Linha
+        - btnCapAtende:
+            Control: Classic/Button
+            Properties:
+              Text: ="Atende"
+              X: =Parent.TemplateWidth - 264 + 0 * 88
+              Y: =8
+              Width: =84
+              Height: =30
+              OnSelect: |-
+                =With({ex: LookUp(colAval, Capacidade.Capacidade = ThisItem.Capacidade)},
+                    If(IsBlank(ex),
+                        Patch(AvaliacoesCapacidade, Defaults(AvaliacoesCapacidade), {
+                            Nome: varForn.Empresa & " — " & ThisItem.Nome,
+                            Vinculo: varVinc,
+                            Capacidade: ThisItem,
+                            Atendimento: "atende"
+                        }),
+                        Patch(AvaliacoesCapacidade, LookUp(AvaliacoesCapacidade, AvaliacaoCapacidade = ex.AvaliacaoCapacidade), {Atendimento: "atende"})
+                    )
+                );
+                ClearCollect(colAval, Filter(AvaliacoesCapacidade, Vinculo.Vinculo = varVinc.Vinculo));
+                Select(btnRecalcCap)
+              Fill: =If(LookUp(colAval, Capacidade.Capacidade = ThisItem.Capacidade).Atendimento = "atende", ColorFade(Cor.Ok, 0.82), Cor.Superficie)
+              Color: =If(LookUp(colAval, Capacidade.Capacidade = ThisItem.Capacidade).Atendimento = "atende", Cor.Ok, Cor.Suave)
+              BorderColor: =Cor.Linha
+              BorderThickness: =1
+              HoverFill: =If(LookUp(colAval, Capacidade.Capacidade = ThisItem.Capacidade).Atendimento = "atende", ColorFade(Cor.Ok, 0.75), Cor.Afundado)
+              HoverColor: =If(LookUp(colAval, Capacidade.Capacidade = ThisItem.Capacidade).Atendimento = "atende", Cor.Ok, Cor.Tinta)
+              HoverBorderColor: =Cor.Linha
+              PressedFill: =Cor.Afundado
+              PressedColor: =Cor.Tinta
+              PressedBorderColor: =Cor.Linha
+              RadiusTopLeft: =6
+              RadiusTopRight: =6
+              RadiusBottomLeft: =6
+              RadiusBottomRight: =6
+              Size: =9
+              FontWeight: =If(LookUp(colAval, Capacidade.Capacidade = ThisItem.Capacidade).Atendimento = "atende", FontWeight.Semibold, FontWeight.Normal)
+              Font: =Fonte
+              DisplayMode: =If(PodeRegistrar, DisplayMode.Edit, DisplayMode.View)
+        - btnCapParcial:
+            Control: Classic/Button
+            Properties:
+              Text: ="Parcial"
+              X: =Parent.TemplateWidth - 264 + 1 * 88
+              Y: =8
+              Width: =84
+              Height: =30
+              OnSelect: |-
+                =With({ex: LookUp(colAval, Capacidade.Capacidade = ThisItem.Capacidade)},
+                    If(IsBlank(ex),
+                        Patch(AvaliacoesCapacidade, Defaults(AvaliacoesCapacidade), {
+                            Nome: varForn.Empresa & " — " & ThisItem.Nome,
+                            Vinculo: varVinc,
+                            Capacidade: ThisItem,
+                            Atendimento: "parcial"
+                        }),
+                        Patch(AvaliacoesCapacidade, LookUp(AvaliacoesCapacidade, AvaliacaoCapacidade = ex.AvaliacaoCapacidade), {Atendimento: "parcial"})
+                    )
+                );
+                ClearCollect(colAval, Filter(AvaliacoesCapacidade, Vinculo.Vinculo = varVinc.Vinculo));
+                Select(btnRecalcCap)
+              Fill: =If(LookUp(colAval, Capacidade.Capacidade = ThisItem.Capacidade).Atendimento = "parcial", ColorFade(Cor.Alerta, 0.82), Cor.Superficie)
+              Color: =If(LookUp(colAval, Capacidade.Capacidade = ThisItem.Capacidade).Atendimento = "parcial", Cor.Alerta, Cor.Suave)
+              BorderColor: =Cor.Linha
+              BorderThickness: =1
+              HoverFill: =If(LookUp(colAval, Capacidade.Capacidade = ThisItem.Capacidade).Atendimento = "parcial", ColorFade(Cor.Alerta, 0.75), Cor.Afundado)
+              HoverColor: =If(LookUp(colAval, Capacidade.Capacidade = ThisItem.Capacidade).Atendimento = "parcial", Cor.Alerta, Cor.Tinta)
+              HoverBorderColor: =Cor.Linha
+              PressedFill: =Cor.Afundado
+              PressedColor: =Cor.Tinta
+              PressedBorderColor: =Cor.Linha
+              RadiusTopLeft: =6
+              RadiusTopRight: =6
+              RadiusBottomLeft: =6
+              RadiusBottomRight: =6
+              Size: =9
+              FontWeight: =If(LookUp(colAval, Capacidade.Capacidade = ThisItem.Capacidade).Atendimento = "parcial", FontWeight.Semibold, FontWeight.Normal)
+              Font: =Fonte
+              DisplayMode: =If(PodeRegistrar, DisplayMode.Edit, DisplayMode.View)
+        - btnCapNaoatende:
+            Control: Classic/Button
+            Properties:
+              Text: ="Não atende"
+              X: =Parent.TemplateWidth - 264 + 2 * 88
+              Y: =8
+              Width: =84
+              Height: =30
+              OnSelect: |-
+                =With({ex: LookUp(colAval, Capacidade.Capacidade = ThisItem.Capacidade)},
+                    If(IsBlank(ex),
+                        Patch(AvaliacoesCapacidade, Defaults(AvaliacoesCapacidade), {
+                            Nome: varForn.Empresa & " — " & ThisItem.Nome,
+                            Vinculo: varVinc,
+                            Capacidade: ThisItem,
+                            Atendimento: "nao"
+                        }),
+                        Patch(AvaliacoesCapacidade, LookUp(AvaliacoesCapacidade, AvaliacaoCapacidade = ex.AvaliacaoCapacidade), {Atendimento: "nao"})
+                    )
+                );
+                ClearCollect(colAval, Filter(AvaliacoesCapacidade, Vinculo.Vinculo = varVinc.Vinculo));
+                Select(btnRecalcCap)
+              Fill: =If(LookUp(colAval, Capacidade.Capacidade = ThisItem.Capacidade).Atendimento = "nao", ColorFade(Cor.Tinta, 0.82), Cor.Superficie)
+              Color: =If(LookUp(colAval, Capacidade.Capacidade = ThisItem.Capacidade).Atendimento = "nao", Cor.Tinta, Cor.Suave)
+              BorderColor: =Cor.Linha
+              BorderThickness: =1
+              HoverFill: =If(LookUp(colAval, Capacidade.Capacidade = ThisItem.Capacidade).Atendimento = "nao", ColorFade(Cor.Tinta, 0.75), Cor.Afundado)
+              HoverColor: =If(LookUp(colAval, Capacidade.Capacidade = ThisItem.Capacidade).Atendimento = "nao", Cor.Tinta, Cor.Tinta)
+              HoverBorderColor: =Cor.Linha
+              PressedFill: =Cor.Afundado
+              PressedColor: =Cor.Tinta
+              PressedBorderColor: =Cor.Linha
+              RadiusTopLeft: =6
+              RadiusTopRight: =6
+              RadiusBottomLeft: =6
+              RadiusBottomRight: =6
+              Size: =9
+              FontWeight: =If(LookUp(colAval, Capacidade.Capacidade = ThisItem.Capacidade).Atendimento = "nao", FontWeight.Semibold, FontWeight.Normal)
+              Font: =Fonte
+              DisplayMode: =If(PodeRegistrar, DisplayMode.Edit, DisplayMode.View)
+    - lblCapLegenda:
+        Control: Label
+        Properties:
+          Text: ="Atende = peso cheio · Parcial = metade do peso · Não atende = 0"
+          X: =16
+          Y: =Parent.Height - 28
+          Width: =Parent.Width - 32
+          Height: =18
+          Size: =8
+          Color: =Cor.Suave
+          Font: =Fonte
+          PaddingLeft: =0
+          PaddingRight: =0
+          PaddingTop: =0
+          PaddingBottom: =0
+- conFiHist:
+    Control: GroupContainer
+    Variant: ManualLayout
+    Properties:
+      X: =24 + (Parent.Width - 48 - 16) * 0.42 + 16
+      Y: =474
+      Width: =(Parent.Width - 48 - 16) * 0.58
+      Height: =Parent.Height - 474 - 24
+      Fill: =Cor.Superficie
+      BorderColor: =Cor.Linha
+      BorderThickness: =1
+      RadiusTopLeft: =6
+      RadiusTopRight: =6
+      RadiusBottomLeft: =6
+      RadiusBottomRight: =6
+      DropShadow: =DropShadow.None
+    Children:
+    - lblHiTit:
+        Control: Label
+        Properties:
+          Text: ="HISTÓRICO DE SERVIÇOS"
+          X: =16
+          Y: =12
+          Width: =300
+          Height: =22
+          Size: =11
+          Color: =Cor.Tinta
+          Font: =Fonte
+          PaddingLeft: =0
+          PaddingRight: =0
+          PaddingTop: =0
+          PaddingBottom: =0
+          FontWeight: =FontWeight.Bold
+    - btnRegistrar:
+        Control: Classic/Button
+        Properties:
+          Text: ="Registrar serviço"
+          X: =Parent.Width - 16 - 170
+          Y: =8
+          Width: =170
+          Height: =34
+          OnSelect: '=Reset(txtSvProjeto); Reset(dpSvOrc); Reset(txtSvProjetista); Reset(txtSvValor); Reset(dpSvPrev); Reset(dpSvEnt); Reset(cbSvQ); Reset(cbSvP); Reset(cbSvC); Reset(txtSvRelato); UpdateContext({locPainelServ: true})'
+          Fill: =Cor.Destaque
+          Color: =Cor.Superficie
+          BorderColor: =Cor.Destaque
+          BorderThickness: =1
+          HoverFill: =ColorFade(Cor.Destaque, -0.12)
+          HoverColor: =Cor.Superficie
+          HoverBorderColor: =Cor.Destaque
+          PressedFill: =ColorFade(Cor.Destaque, -0.12)
+          PressedColor: =Cor.Superficie
+          PressedBorderColor: =Cor.Destaque
+          RadiusTopLeft: =6
+          RadiusTopRight: =6
+          RadiusBottomLeft: =6
+          RadiusBottomRight: =6
+          Size: =11
+          FontWeight: =FontWeight.Semibold
+          Font: =Fonte
+          Visible: =PodeRegistrar
+    - lblHiVazio:
+        Control: Label
+        Properties:
+          Text: ="Nenhum serviço registrado. Ao concluir um serviço, registre o projeto e escolha a situação de qualidade, prazo e custo; as médias e o status se atualizam sozinhos."
+          X: =16
+          Y: =52
+          Width: =Parent.Width - 32
+          Height: =44
+          Size: =10
+          Color: =Cor.Suave
+          Font: =Fonte
+          PaddingLeft: =0
+          PaddingRight: =0
+          PaddingTop: =0
+          PaddingBottom: =0
+          Wrap: =true
+          Visible: =CountRows(colHist) = 0
+    - galHistorico:
+        Control: Gallery
+        Variant: BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0
+        Properties:
+          Items: =Sort(colHist, DataOrcamento, SortOrder.Descending)
+          X: =16
+          Y: =48
+          Width: =Parent.Width - 32
+          Height: =Parent.Height - 56
+          TemplateSize: =68
+          TemplatePadding: =0
+          WrapCount: =1
+          ShowScrollbar: =true
+          BorderThickness: =0
+        Children:
+        - lblHiData:
+            Control: Label
+            Properties:
+              Text: =Text(ThisItem.DataOrcamento, "dd/mm/yyyy")
+              X: =0
+              Y: =6
+              Width: =Parent.TemplateWidth * 0.14
+              Height: =22
+              Size: =10
+              Color: =Cor.Tinta
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+        - lblHiProjeto:
+            Control: Label
+            Properties:
+              Text: =ThisItem.Projeto
+              X: =Parent.TemplateWidth * 0.14
+              Y: =6
+              Width: =Parent.TemplateWidth * 0.25
+              Height: =22
+              Size: =11
+              Color: =Cor.Tinta
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              FontWeight: =FontWeight.Semibold
+        - lblHiProjetista:
+            Control: Label
+            Properties:
+              Text: =ThisItem.Projetista
+              X: =Parent.TemplateWidth * 0.14
+              Y: =28
+              Width: =Parent.TemplateWidth * 0.25
+              Height: =18
+              Size: =9
+              Color: =Cor.Suave
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+        - lblHiQ:
+            Control: Label
+            Properties:
+              Text: =ThisItem.NotaQualidade
+              X: =Parent.TemplateWidth * 0.40
+              Y: =6
+              Width: =30
+              Height: =22
+              Size: =12
+              Color: =Cor.Tinta
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              FontWeight: =FontWeight.Bold
+        - lblHiQDesc:
+            Control: Label
+            Properties:
+              Text: =LookUp(Criterios, Dimensao = "Qualidade" && Nota = ThisItem.NotaQualidade && Segmento.Segmento = varVinc.Segmento.Segmento).Descricao
+              X: =Parent.TemplateWidth * 0.40
+              Y: =28
+              Width: =Parent.TemplateWidth * 0.17
+              Height: =36
+              Size: =8
+              Color: =Cor.Suave
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              Wrap: =true
+              VerticalAlign: =VerticalAlign.Top
+        - lblHiP:
+            Control: Label
+            Properties:
+              Text: =ThisItem.NotaPrazo
+              X: =Parent.TemplateWidth * 0.58
+              Y: =6
+              Width: =30
+              Height: =22
+              Size: =12
+              Color: =Cor.Tinta
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              FontWeight: =FontWeight.Bold
+        - lblHiPDesc:
+            Control: Label
+            Properties:
+              Text: =LookUp(Criterios, Dimensao = "Prazo" && Nota = ThisItem.NotaPrazo && IsBlank(Segmento)).Descricao
+              X: =Parent.TemplateWidth * 0.58
+              Y: =28
+              Width: =Parent.TemplateWidth * 0.17
+              Height: =36
+              Size: =8
+              Color: =Cor.Suave
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              Wrap: =true
+              VerticalAlign: =VerticalAlign.Top
+        - lblHiC:
+            Control: Label
+            Properties:
+              Text: =ThisItem.NotaCusto
+              X: =Parent.TemplateWidth * 0.76
+              Y: =6
+              Width: =30
+              Height: =22
+              Size: =12
+              Color: =Cor.Tinta
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              FontWeight: =FontWeight.Bold
+        - lblHiCDesc:
+            Control: Label
+            Properties:
+              Text: =LookUp(Criterios, Dimensao = "Custo" && Nota = ThisItem.NotaCusto && IsBlank(Segmento)).Descricao
+              X: =Parent.TemplateWidth * 0.76
+              Y: =28
+              Width: =Parent.TemplateWidth * 0.17
+              Height: =36
+              Size: =8
+              Color: =Cor.Suave
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              Wrap: =true
+              VerticalAlign: =VerticalAlign.Top
+        - btnHiExcluir:
+            Control: Classic/Button
+            Properties:
+              Text: =If(locConfirmaServ = ThisItem.Servico, "Confirmar", "Excluir")
+              X: =Parent.TemplateWidth - 84
+              Y: =10
+              Width: =80
+              Height: =28
+              OnSelect: |-
+                =If(locConfirmaServ = ThisItem.Servico,
+                    Remove(Servicos, LookUp(Servicos, Servico = ThisItem.Servico)); UpdateContext({locConfirmaServ: Blank()}); Select(btnRecalcServ);
+                    Notify("Serviço excluído.", NotificationType.Success),
+                    UpdateContext({locConfirmaServ: ThisItem.Servico})
+                )
+              Fill: =Cor.Superficie
+              Color: =Cor.Ruim
+              BorderColor: =Cor.Linha
+              BorderThickness: =1
+              HoverFill: =Cor.Afundado
+              HoverColor: =Cor.Ruim
+              HoverBorderColor: =Cor.Linha
+              PressedFill: =Cor.Afundado
+              PressedColor: =Cor.Ruim
+              PressedBorderColor: =Cor.Linha
+              RadiusTopLeft: =6
+              RadiusTopRight: =6
+              RadiusBottomLeft: =6
+              RadiusBottomRight: =6
+              Size: =9
+              FontWeight: =FontWeight.Semibold
+              Font: =Fonte
+              Visible: =PodeRegistrar
+        - recHiLinha:
+            Control: Rectangle
+            Properties:
+              X: =0
+              Y: =67
+              Width: =Parent.TemplateWidth
+              Height: =1
+              Fill: =Cor.Linha
+- conPainelServ:
+    Control: GroupContainer
+    Variant: ManualLayout
+    Properties:
+      X: =0
+      Y: =0
+      Width: =Parent.Width
+      Height: =Parent.Height
+      Visible: =locPainelServ
+      Fill: =RGBA(10, 12, 18, 0.45)
+      DropShadow: =DropShadow.None
+    Children:
+    - conPainelServCard:
+        Control: GroupContainer
+        Variant: ManualLayout
+        Properties:
+          X: =(Parent.Width - Min(720, Parent.Width - 32)) / 2
+          Y: =Max(16, (Parent.Height - 620) / 2)
+          Width: =Min(720, Parent.Width - 32)
+          Height: =620
+          Fill: =Cor.Superficie
+          BorderColor: =Cor.Linha
+          BorderThickness: =1
+          RadiusTopLeft: =10
+          RadiusTopRight: =10
+          RadiusBottomLeft: =10
+          RadiusBottomRight: =10
+          DropShadow: =DropShadow.Bold
+        Children:
+        - lblSvTit:
+            Control: Label
+            Properties:
+              Text: ="Registrar serviço"
+              X: =24
+              Y: =16
+              Width: =Parent.Width - 48
+              Height: =30
+              Size: =16
+              Color: =Cor.Tinta
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              FontWeight: =FontWeight.Bold
+        - lblSvSub:
+            Control: Label
+            Properties:
+              Text: =varForn.Empresa & " · " & varVinc.Segmento.Nome
+              X: =24
+              Y: =46
+              Width: =Parent.Width - 48
+              Height: =18
+              Size: =10
+              Color: =Cor.Suave
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+        - lblSv0:
+            Control: Label
+            Properties:
+              Text: ="Projeto *"
+              X: =24
+              Y: =72
+              Width: =(Parent.Width - 48 - 16) / 2
+              Height: =18
+              Size: =9
+              Color: =Cor.Suave
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              FontWeight: =FontWeight.Semibold
+        - txtSvProjeto:
+            Control: Classic/TextInput
+            Properties:
+              Default: =""
+              HintText: '="Ex.: CORAL-SOL"'
+              X: =24
+              Y: =92
+              Width: =(Parent.Width - 48 - 16) / 2
+              Height: =36
+              Size: =11
+              Font: =Fonte
+              BorderColor: =Cor.Linha
+              BorderThickness: =1
+              HoverBorderColor: =Cor.Suave
+              FocusedBorderColor: =Cor.Destaque
+              FocusedBorderThickness: =2
+              RadiusTopLeft: =6
+              RadiusTopRight: =6
+              RadiusBottomLeft: =6
+              RadiusBottomRight: =6
+              Color: =Cor.Tinta
+              Fill: =Cor.Superficie
+        - lblSv1:
+            Control: Label
+            Properties:
+              Text: ="Data do orçamento *"
+              X: =24 + (Parent.Width - 48 - 16) / 2 + 16
+              Y: =72
+              Width: =(Parent.Width - 48 - 16) / 2
+              Height: =18
+              Size: =9
+              Color: =Cor.Suave
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              FontWeight: =FontWeight.Semibold
+        - dpSvOrc:
+            Control: Classic/DatePicker
+            Properties:
+              DefaultDate: =Today()
+              Format: ="dd/mm/yyyy"
+              Language: ="pt-BR"
+              X: =24 + (Parent.Width - 48 - 16) / 2 + 16
+              Y: =92
+              Width: =(Parent.Width - 48 - 16) / 2
+              Height: =36
+              Font: =Fonte
+              Size: =11
+              BorderColor: =Cor.Linha
+              IconBackground: =Cor.Destaque
+        - lblSv2:
+            Control: Label
+            Properties:
+              Text: ="Projetista"
+              X: =24
+              Y: =136
+              Width: =(Parent.Width - 48 - 16) / 2
+              Height: =18
+              Size: =9
+              Color: =Cor.Suave
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              FontWeight: =FontWeight.Semibold
+        - txtSvProjetista:
+            Control: Classic/TextInput
+            Properties:
+              Default: =User().FullName
+              HintText: =""
+              X: =24
+              Y: =156
+              Width: =(Parent.Width - 48 - 16) / 2
+              Height: =36
+              Size: =11
+              Font: =Fonte
+              BorderColor: =Cor.Linha
+              BorderThickness: =1
+              HoverBorderColor: =Cor.Suave
+              FocusedBorderColor: =Cor.Destaque
+              FocusedBorderThickness: =2
+              RadiusTopLeft: =6
+              RadiusTopRight: =6
+              RadiusBottomLeft: =6
+              RadiusBottomRight: =6
+              Color: =Cor.Tinta
+              Fill: =Cor.Superficie
+        - lblSv3:
+            Control: Label
+            Properties:
+              Text: ="Valor orçado (R$)"
+              X: =24 + (Parent.Width - 48 - 16) / 2 + 16
+              Y: =136
+              Width: =(Parent.Width - 48 - 16) / 2
+              Height: =18
+              Size: =9
+              Color: =Cor.Suave
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              FontWeight: =FontWeight.Semibold
+        - txtSvValor:
+            Control: Classic/TextInput
+            Properties:
+              Default: =""
+              HintText: =""
+              X: =24 + (Parent.Width - 48 - 16) / 2 + 16
+              Y: =156
+              Width: =(Parent.Width - 48 - 16) / 2
+              Height: =36
+              Size: =11
+              Font: =Fonte
+              BorderColor: =Cor.Linha
+              BorderThickness: =1
+              HoverBorderColor: =Cor.Suave
+              FocusedBorderColor: =Cor.Destaque
+              FocusedBorderThickness: =2
+              RadiusTopLeft: =6
+              RadiusTopRight: =6
+              RadiusBottomLeft: =6
+              RadiusBottomRight: =6
+              Color: =Cor.Tinta
+              Fill: =Cor.Superficie
+              Format: =TextFormat.Number
+        - lblSv4:
+            Control: Label
+            Properties:
+              Text: ="Entrega prevista"
+              X: =24
+              Y: =200
+              Width: =(Parent.Width - 48 - 16) / 2
+              Height: =18
+              Size: =9
+              Color: =Cor.Suave
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              FontWeight: =FontWeight.Semibold
+        - dpSvPrev:
+            Control: Classic/DatePicker
+            Properties:
+              DefaultDate: =Blank()
+              Format: ="dd/mm/yyyy"
+              Language: ="pt-BR"
+              X: =24
+              Y: =220
+              Width: =(Parent.Width - 48 - 16) / 2
+              Height: =36
+              Font: =Fonte
+              Size: =11
+              BorderColor: =Cor.Linha
+              IconBackground: =Cor.Destaque
+        - lblSv5:
+            Control: Label
+            Properties:
+              Text: ="Entrega real"
+              X: =24 + (Parent.Width - 48 - 16) / 2 + 16
+              Y: =200
+              Width: =(Parent.Width - 48 - 16) / 2
+              Height: =18
+              Size: =9
+              Color: =Cor.Suave
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              FontWeight: =FontWeight.Semibold
+        - dpSvEnt:
+            Control: Classic/DatePicker
+            Properties:
+              DefaultDate: =Blank()
+              Format: ="dd/mm/yyyy"
+              Language: ="pt-BR"
+              X: =24 + (Parent.Width - 48 - 16) / 2 + 16
+              Y: =220
+              Width: =(Parent.Width - 48 - 16) / 2
+              Height: =36
+              Font: =Fonte
+              Size: =11
+              BorderColor: =Cor.Linha
+              IconBackground: =Cor.Destaque
+        - lblSv6:
+            Control: Label
+            Properties:
+              Text: ="Índice de qualidade *"
+              X: =24
+              Y: =264
+              Width: =Parent.Width - 48
+              Height: =18
+              Size: =9
+              Color: =Cor.Suave
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              FontWeight: =FontWeight.Semibold
+        - cbSvQ:
+            Control: Classic/ComboBox
+            Properties:
+              Items: =AddColumns(Sort(Filter(Criterios, Dimensao = "Qualidade" && Segmento.Segmento = varVinc.Segmento.Segmento), Nota, SortOrder.Descending), Rotulo, Nota & " – " & Descricao)
+              DisplayFields: =["Rotulo"]
+              SearchFields: =["Rotulo"]
+              SelectMultiple: =false
+              InputTextPlaceholder: ="Escolha a situação"
+              IsSearchable: =true
+              X: =24
+              Y: =284
+              Width: =Parent.Width - 48
+              Height: =36
+              Font: =Fonte
+              Size: =11
+              BorderColor: =Cor.Linha
+              BorderThickness: =1
+              ChevronBackground: =Cor.Superficie
+              ChevronFill: =Cor.Suave
+              SelectionFill: =Cor.Destaque
+              SelectionColor: =Cor.Superficie
+        - lblSv7:
+            Control: Label
+            Properties:
+              Text: ="Índice de prazo *"
+              X: =24
+              Y: =328
+              Width: =Parent.Width - 48
+              Height: =18
+              Size: =9
+              Color: =Cor.Suave
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              FontWeight: =FontWeight.Semibold
+        - cbSvP:
+            Control: Classic/ComboBox
+            Properties:
+              Items: =AddColumns(Sort(Filter(Criterios, Dimensao = "Prazo"), Nota, SortOrder.Descending), Rotulo, Nota & " – " & Descricao)
+              DisplayFields: =["Rotulo"]
+              SearchFields: =["Rotulo"]
+              SelectMultiple: =false
+              InputTextPlaceholder: ="Escolha a situação (sugerido pelas datas)"
+              IsSearchable: =true
+              X: =24
+              Y: =348
+              Width: =Parent.Width - 48
+              Height: =36
+              Font: =Fonte
+              Size: =11
+              BorderColor: =Cor.Linha
+              BorderThickness: =1
+              ChevronBackground: =Cor.Superficie
+              ChevronFill: =Cor.Suave
+              SelectionFill: =Cor.Destaque
+              SelectionColor: =Cor.Superficie
+              DefaultSelectedItems: |-
+                =If(IsBlank(dpSvPrev.SelectedDate) || IsBlank(dpSvEnt.SelectedDate), Blank(),
+                    With({d: DateDiff(dpSvPrev.SelectedDate, dpSvEnt.SelectedDate, TimeUnit.Days)},
+                        [LookUp(AddColumns(Sort(Filter(Criterios, Dimensao = "Prazo"), Nota, SortOrder.Descending), Rotulo, Nota & " – " & Descricao), Nota = If(d <= 0, 5, d = 1, 4, d <= 3, 3, d <= 7, 2, 1))]))
+        - lblSv8:
+            Control: Label
+            Properties:
+              Text: ="Índice de custo *"
+              X: =24
+              Y: =392
+              Width: =Parent.Width - 48
+              Height: =18
+              Size: =9
+              Color: =Cor.Suave
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              FontWeight: =FontWeight.Semibold
+        - cbSvC:
+            Control: Classic/ComboBox
+            Properties:
+              Items: =AddColumns(Sort(Filter(Criterios, Dimensao = "Custo"), Nota, SortOrder.Descending), Rotulo, Nota & " – " & Descricao)
+              DisplayFields: =["Rotulo"]
+              SearchFields: =["Rotulo"]
+              SelectMultiple: =false
+              InputTextPlaceholder: ="Escolha a situação"
+              IsSearchable: =true
+              X: =24
+              Y: =412
+              Width: =Parent.Width - 48
+              Height: =36
+              Font: =Fonte
+              Size: =11
+              BorderColor: =Cor.Linha
+              BorderThickness: =1
+              ChevronBackground: =Cor.Superficie
+              ChevronFill: =Cor.Suave
+              SelectionFill: =Cor.Destaque
+              SelectionColor: =Cor.Superficie
+        - lblSv9:
+            Control: Label
+            Properties:
+              Text: ="Relato"
+              X: =24
+              Y: =456
+              Width: =Parent.Width - 48
+              Height: =18
+              Size: =9
+              Color: =Cor.Suave
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              FontWeight: =FontWeight.Semibold
+        - txtSvRelato:
+            Control: Classic/TextInput
+            Properties:
+              Default: =""
+              HintText: ="O que aconteceu no serviço, ajustes necessários, contato com o fornecedor…"
+              X: =24
+              Y: =476
+              Width: =Parent.Width - 48
+              Height: =72
+              Size: =11
+              Font: =Fonte
+              BorderColor: =Cor.Linha
+              BorderThickness: =1
+              HoverBorderColor: =Cor.Suave
+              FocusedBorderColor: =Cor.Destaque
+              FocusedBorderThickness: =2
+              RadiusTopLeft: =6
+              RadiusTopRight: =6
+              RadiusBottomLeft: =6
+              RadiusBottomRight: =6
+              Color: =Cor.Tinta
+              Fill: =Cor.Superficie
+              Mode: =TextMode.MultiLine
+        - btnSvCancelar:
+            Control: Classic/Button
+            Properties:
+              Text: ="Cancelar"
+              X: =Parent.Width - 24 - 140 - 12 - 120
+              Y: =564
+              Width: =120
+              Height: =38
+              OnSelect: '=UpdateContext({locPainelServ: false})'
+              Fill: =Cor.Superficie
+              Color: =Cor.Tinta
+              BorderColor: =Cor.Linha
+              BorderThickness: =1
+              HoverFill: =Cor.Afundado
+              HoverColor: =Cor.Tinta
+              HoverBorderColor: =Cor.Linha
+              PressedFill: =Cor.Afundado
+              PressedColor: =Cor.Tinta
+              PressedBorderColor: =Cor.Linha
+              RadiusTopLeft: =6
+              RadiusTopRight: =6
+              RadiusBottomLeft: =6
+              RadiusBottomRight: =6
+              Size: =11
+              FontWeight: =FontWeight.Semibold
+              Font: =Fonte
+        - btnSvSalvar:
+            Control: Classic/Button
+            Properties:
+              Text: ="Registrar"
+              X: =Parent.Width - 24 - 140
+              Y: =564
+              Width: =140
+              Height: =38
+              OnSelect: |-
+                =Patch(Servicos, Defaults(Servicos), {
+                    Projeto: Trim(txtSvProjeto.Text),
+                    Vinculo: varVinc,
+                    DataOrcamento: dpSvOrc.SelectedDate,
+                    Projetista: txtSvProjetista.Text,
+                    Relato: txtSvRelato.Text,
+                    ValorOrcado: If(IsBlank(txtSvValor.Text), Blank(), Value(txtSvValor.Text)),
+                    DataPrevista: dpSvPrev.SelectedDate,
+                    DataEntrega: dpSvEnt.SelectedDate,
+                    NotaQualidade: cbSvQ.Selected.Nota,
+                    NotaPrazo: cbSvP.Selected.Nota,
+                    NotaCusto: cbSvC.Selected.Nota
+                });
+                UpdateContext({locPainelServ: false});
+                Select(btnRecalcServ);
+                Notify("Serviço registrado.", NotificationType.Success)
+              Fill: =Cor.Destaque
+              Color: =Cor.Superficie
+              BorderColor: =Cor.Destaque
+              BorderThickness: =1
+              HoverFill: =ColorFade(Cor.Destaque, -0.12)
+              HoverColor: =Cor.Superficie
+              HoverBorderColor: =Cor.Destaque
+              PressedFill: =ColorFade(Cor.Destaque, -0.12)
+              PressedColor: =Cor.Superficie
+              PressedBorderColor: =Cor.Destaque
+              RadiusTopLeft: =6
+              RadiusTopRight: =6
+              RadiusBottomLeft: =6
+              RadiusBottomRight: =6
+              Size: =11
+              FontWeight: =FontWeight.Semibold
+              Font: =Fonte
+              DisplayMode: =If(!IsBlank(Trim(txtSvProjeto.Text)) && !IsBlank(dpSvOrc.SelectedDate) && !IsBlank(cbSvQ.Selected) && !IsBlank(cbSvP.Selected) && !IsBlank(cbSvC.Selected), DisplayMode.Edit, DisplayMode.Disabled)

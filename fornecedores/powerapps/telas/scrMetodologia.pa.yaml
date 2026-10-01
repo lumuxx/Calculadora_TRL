@@ -1,0 +1,946 @@
+Screens:
+  scrMetodologia:
+    Properties:
+      Fill: =Cor.Fundo
+      OnVisible: '=If(IsBlank(locSeg), UpdateContext({locSeg: First(Sort(Segmentos, Ordem)), locConfirmaSeg: false}))'
+    Children:
+    - recTopoM:
+        Control: Rectangle
+        Properties:
+          X: =0
+          Y: =0
+          Width: =Parent.Width
+          Height: =72
+          Fill: =Cor.Superficie
+    - recTopoLinhaM:
+        Control: Rectangle
+        Properties:
+          X: =0
+          Y: =72
+          Width: =Parent.Width
+          Height: =1
+          Fill: =Cor.Linha
+    - imgLogoM:
+        Control: Image
+        Properties:
+          Image: =logoSenai
+          X: =24
+          Y: =14
+          Width: =204
+          Height: =44
+          ImagePosition: =ImagePosition.Fit
+    - recTopoSepM:
+        Control: Rectangle
+        Properties:
+          X: =244
+          Y: =18
+          Width: =1
+          Height: =36
+          Fill: =Cor.Linha
+    - lblTituloM:
+        Control: Label
+        Properties:
+          Text: ="Qualificação de Fornecedores"
+          X: =260
+          Y: =12
+          Width: =420
+          Height: =30
+          Size: =18
+          Color: =Cor.Tinta
+          Font: =Fonte
+          PaddingLeft: =0
+          PaddingRight: =0
+          PaddingTop: =0
+          PaddingBottom: =0
+          FontWeight: =FontWeight.Bold
+    - lblSubtituloM:
+        Control: Label
+        Properties:
+          Text: ="Dados compartilhados no Dataverse"
+          X: =260
+          Y: =42
+          Width: =420
+          Height: =18
+          Size: =10
+          Color: =Cor.Suave
+          Font: =Fonte
+          PaddingLeft: =0
+          PaddingRight: =0
+          PaddingTop: =0
+          PaddingBottom: =0
+    - btnAbaPainelM:
+        Control: Classic/Button
+        Properties:
+          Text: ="Painel"
+          X: =Parent.Width - 24 - 3 * 132
+          Y: =18
+          Width: =128
+          Height: =40
+          OnSelect: =Navigate(scrPainel, ScreenTransition.None)
+          Fill: =Color.Transparent
+          Color: =Cor.Suave
+          BorderColor: =Cor.Linha
+          BorderThickness: =0
+          HoverFill: =Cor.Afundado
+          HoverColor: =Cor.Tinta
+          HoverBorderColor: =Cor.Linha
+          PressedFill: =Cor.Afundado
+          PressedColor: =Cor.Tinta
+          PressedBorderColor: =Cor.Linha
+          RadiusTopLeft: =6
+          RadiusTopRight: =6
+          RadiusBottomLeft: =6
+          RadiusBottomRight: =6
+          Size: =11
+          FontWeight: =FontWeight.Normal
+          Font: =Fonte
+    - btnAbaFornecedoresM:
+        Control: Classic/Button
+        Properties:
+          Text: ="Fornecedores"
+          X: =Parent.Width - 24 - 2 * 132
+          Y: =18
+          Width: =128
+          Height: =40
+          OnSelect: =Navigate(scrFornecedores, ScreenTransition.None)
+          Fill: =Color.Transparent
+          Color: =Cor.Suave
+          BorderColor: =Cor.Linha
+          BorderThickness: =0
+          HoverFill: =Cor.Afundado
+          HoverColor: =Cor.Tinta
+          HoverBorderColor: =Cor.Linha
+          PressedFill: =Cor.Afundado
+          PressedColor: =Cor.Tinta
+          PressedBorderColor: =Cor.Linha
+          RadiusTopLeft: =6
+          RadiusTopRight: =6
+          RadiusBottomLeft: =6
+          RadiusBottomRight: =6
+          Size: =11
+          FontWeight: =FontWeight.Normal
+          Font: =Fonte
+    - btnAbaMetodologiaM:
+        Control: Classic/Button
+        Properties:
+          Text: ="Metodologia"
+          X: =Parent.Width - 24 - 1 * 132
+          Y: =18
+          Width: =128
+          Height: =40
+          OnSelect: =Navigate(scrMetodologia, ScreenTransition.None)
+          Fill: =Color.Transparent
+          Color: =Cor.Tinta
+          BorderColor: =Cor.Linha
+          BorderThickness: =0
+          HoverFill: =Cor.Afundado
+          HoverColor: =Cor.Tinta
+          HoverBorderColor: =Cor.Linha
+          PressedFill: =Cor.Afundado
+          PressedColor: =Cor.Tinta
+          PressedBorderColor: =Cor.Linha
+          RadiusTopLeft: =6
+          RadiusTopRight: =6
+          RadiusBottomLeft: =6
+          RadiusBottomRight: =6
+          Size: =11
+          FontWeight: =FontWeight.Semibold
+          Font: =Fonte
+    - recAbaAtivaM:
+        Control: Rectangle
+        Properties:
+          X: =Parent.Width - 24 - 1 * 132
+          Y: =69
+          Width: =128
+          Height: =3
+          Fill: =Cor.Destaque
+    - btnRecalcSeg:
+        Control: Classic/Button
+        Properties:
+          Text: ="recalc seg"
+          X: =0
+          Y: =0
+          Width: =10
+          Height: =10
+          OnSelect: |-
+            =ClearCollect(colVincSeg, Filter(Vinculos, Segmento.Segmento = locSeg.Segmento));
+            With({caps: Filter(Capacidades, Segmento.Segmento = locSeg.Segmento && Ativa)},
+                With({pesos: Sum(caps, Peso)},
+                    ForAll(colVincSeg As v,
+                        With({av: Filter(AvaliacoesCapacidade, Vinculo.Vinculo = v.Vinculo)},
+                            Patch(Vinculos, LookUp(Vinculos, Vinculo = v.Vinculo), {
+                                NotaCapacidade: If(pesos > 0 && CountRows(av) > 0,
+                                    Round(Sum(caps As k,
+                                        Switch(LookUp(av, Capacidade.Capacidade = k.Capacidade).Atendimento,
+                                            "atende", k.Peso, "parcial", k.Peso / 2, 0)) / pesos * 5, 2))
+                            })
+                        )
+                    )
+                )
+            )
+          Fill: =Cor.Superficie
+          Color: =Cor.Tinta
+          BorderColor: =Cor.Linha
+          BorderThickness: =1
+          HoverFill: =Cor.Afundado
+          HoverColor: =Cor.Tinta
+          HoverBorderColor: =Cor.Linha
+          PressedFill: =Cor.Afundado
+          PressedColor: =Cor.Tinta
+          PressedBorderColor: =Cor.Linha
+          RadiusTopLeft: =6
+          RadiusTopRight: =6
+          RadiusBottomLeft: =6
+          RadiusBottomRight: =6
+          Size: =11
+          FontWeight: =FontWeight.Semibold
+          Font: =Fonte
+          Visible: =false
+    - conMetSegs:
+        Control: GroupContainer
+        Variant: ManualLayout
+        Properties:
+          X: =24
+          Y: =92
+          Width: =280
+          Height: =Parent.Height - 92 - 24
+          Fill: =Cor.Superficie
+          BorderColor: =Cor.Linha
+          BorderThickness: =1
+          RadiusTopLeft: =6
+          RadiusTopRight: =6
+          RadiusBottomLeft: =6
+          RadiusBottomRight: =6
+          DropShadow: =DropShadow.None
+        Children:
+        - lblMetSegsTit:
+            Control: Label
+            Properties:
+              Text: ="SEGMENTOS"
+              X: =16
+              Y: =14
+              Width: =200
+              Height: =20
+              Size: =10
+              Color: =Cor.Tinta
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              FontWeight: =FontWeight.Bold
+        - galMetSegs:
+            Control: Gallery
+            Variant: BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0
+            Properties:
+              Items: =Sort(Segmentos, Ordem)
+              X: =12
+              Y: =44
+              Width: =Parent.Width - 24
+              Height: =Parent.Height - 44 - 110
+              TemplateSize: =44
+              TemplatePadding: =0
+              WrapCount: =1
+              ShowScrollbar: =false
+              BorderThickness: =0
+            Children:
+            - btnSegItem:
+                Control: Classic/Button
+                Properties:
+                  Text: =ThisItem.Nome
+                  X: =0
+                  Y: =0
+                  Width: =Parent.TemplateWidth
+                  Height: =40
+                  OnSelect: '=UpdateContext({locSeg: ThisItem, locConfirmaSeg: false})'
+                  Fill: =If(ThisItem.Segmento = locSeg.Segmento, Cor.Tinta, Cor.Superficie)
+                  Color: =If(ThisItem.Segmento = locSeg.Segmento, Cor.Superficie, Cor.Tinta)
+                  BorderColor: =Cor.Linha
+                  BorderThickness: =0
+                  HoverFill: =If(ThisItem.Segmento = locSeg.Segmento, Cor.Tinta, Cor.Afundado)
+                  HoverColor: =If(ThisItem.Segmento = locSeg.Segmento, Cor.Superficie, Cor.Tinta)
+                  HoverBorderColor: =Cor.Linha
+                  PressedFill: =Cor.Afundado
+                  PressedColor: =Cor.Tinta
+                  PressedBorderColor: =Cor.Linha
+                  RadiusTopLeft: =6
+                  RadiusTopRight: =6
+                  RadiusBottomLeft: =6
+                  RadiusBottomRight: =6
+                  Size: =11
+                  FontWeight: =FontWeight.Semibold
+                  Font: =Fonte
+                  Align: =Align.Left
+                  PaddingLeft: =12
+        - lblNovoSegRot:
+            Control: Label
+            Properties:
+              Text: ="Novo segmento"
+              X: =16
+              Y: =Parent.Height - 100
+              Width: =200
+              Height: =18
+              Size: =9
+              Color: =Cor.Suave
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              FontWeight: =FontWeight.Semibold
+              Visible: =PodeEditarMetodologia
+        - txtNovoSeg:
+            Control: Classic/TextInput
+            Properties:
+              Default: =""
+              HintText: '="Ex.: Corte a laser"'
+              X: =16
+              Y: =Parent.Height - 80
+              Width: =Parent.Width - 32
+              Height: =36
+              Size: =11
+              Font: =Fonte
+              BorderColor: =Cor.Linha
+              BorderThickness: =1
+              HoverBorderColor: =Cor.Suave
+              FocusedBorderColor: =Cor.Destaque
+              FocusedBorderThickness: =2
+              RadiusTopLeft: =6
+              RadiusTopRight: =6
+              RadiusBottomLeft: =6
+              RadiusBottomRight: =6
+              Color: =Cor.Tinta
+              Fill: =Cor.Superficie
+              Visible: =PodeEditarMetodologia
+        - btnNovoSeg:
+            Control: Classic/Button
+            Properties:
+              Text: ="Adicionar segmento"
+              X: =16
+              Y: =Parent.Height - 40
+              Width: =Parent.Width - 32
+              Height: =32
+              OnSelect: |-
+                =If(!IsBlank(Trim(txtNovoSeg.Text)),
+                    UpdateContext({locSeg: Patch(Segmentos, Defaults(Segmentos), {Nome: Trim(txtNovoSeg.Text), Ordem: CountRows(Segmentos) + 1})});
+                    Reset(txtNovoSeg)
+                )
+              Fill: =Cor.Superficie
+              Color: =Cor.Tinta
+              BorderColor: =Cor.Linha
+              BorderThickness: =1
+              HoverFill: =Cor.Afundado
+              HoverColor: =Cor.Tinta
+              HoverBorderColor: =Cor.Linha
+              PressedFill: =Cor.Afundado
+              PressedColor: =Cor.Tinta
+              PressedBorderColor: =Cor.Linha
+              RadiusTopLeft: =6
+              RadiusTopRight: =6
+              RadiusBottomLeft: =6
+              RadiusBottomRight: =6
+              Size: =11
+              FontWeight: =FontWeight.Semibold
+              Font: =Fonte
+              Visible: =PodeEditarMetodologia
+    - conMetDetalhe:
+        Control: GroupContainer
+        Variant: ManualLayout
+        Properties:
+          X: =24 + 280 + 16
+          Y: =92
+          Width: =Parent.Width - 24 - 280 - 16 - 24
+          Height: =Parent.Height - 92 - 24
+          Fill: =Cor.Superficie
+          BorderColor: =Cor.Linha
+          BorderThickness: =1
+          RadiusTopLeft: =6
+          RadiusTopRight: =6
+          RadiusBottomLeft: =6
+          RadiusBottomRight: =6
+          DropShadow: =DropShadow.None
+        Children:
+        - lblMetSeg:
+            Control: Label
+            Properties:
+              Text: =If(IsBlank(locSeg), "Escolha um segmento", Upper(locSeg.Nome))
+              X: =16
+              Y: =14
+              Width: =400
+              Height: =28
+              Size: =14
+              Color: =Cor.Tinta
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              FontWeight: =FontWeight.Bold
+        - lblMetPesos:
+            Control: Label
+            Properties:
+              Text: '="soma dos pesos: " & Text(Sum(Filter(Capacidades, Segmento.Segmento = locSeg.Segmento && Ativa), Peso), "0.0", "pt-BR")'
+              X: =Parent.Width - 16 - 150 - 12 - 220
+              Y: =18
+              Width: =220
+              Height: =20
+              Size: =10
+              Color: =Cor.Suave
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              Align: =Align.Right
+              Visible: =!IsBlank(locSeg)
+        - btnExcluirSeg:
+            Control: Classic/Button
+            Properties:
+              Text: ="Excluir segmento"
+              X: =Parent.Width - 16 - 150
+              Y: =12
+              Width: =150
+              Height: =32
+              OnSelect: '=UpdateContext({locConfirmaSeg: true})'
+              Fill: =Cor.Superficie
+              Color: =Cor.Ruim
+              BorderColor: =Cor.Linha
+              BorderThickness: =1
+              HoverFill: =Cor.Afundado
+              HoverColor: =Cor.Ruim
+              HoverBorderColor: =Cor.Linha
+              PressedFill: =Cor.Afundado
+              PressedColor: =Cor.Ruim
+              PressedBorderColor: =Cor.Linha
+              RadiusTopLeft: =6
+              RadiusTopRight: =6
+              RadiusBottomLeft: =6
+              RadiusBottomRight: =6
+              Size: =11
+              FontWeight: =FontWeight.Semibold
+              Font: =Fonte
+              Visible: =PodeEditarMetodologia && !IsBlank(locSeg) && !locConfirmaSeg
+        - conConfirmaSeg:
+            Control: GroupContainer
+            Variant: ManualLayout
+            Properties:
+              X: =16
+              Y: =52
+              Width: =Parent.Width - 32
+              Height: =96
+              Visible: =locConfirmaSeg
+              Fill: =ColorFade(Cor.Ruim, 0.9)
+              BorderColor: =ColorFade(Cor.Ruim, 0.5)
+              BorderThickness: =1
+              RadiusTopLeft: =6
+              RadiusTopRight: =6
+              RadiusBottomLeft: =6
+              RadiusBottomRight: =6
+              DropShadow: =DropShadow.None
+            Children:
+            - lblConfirmaSeg:
+                Control: Label
+                Properties:
+                  Text: |-
+                    =With({vs: Filter(Vinculos, Segmento.Segmento = locSeg.Segmento)},
+                        "Excluir o segmento " & locSeg.Nome & "? Isto apaga também " &
+                        CountRows(Filter(Capacidades, Segmento.Segmento = locSeg.Segmento)) & " capacidades, " &
+                        CountRows(Filter(Criterios, Segmento.Segmento = locSeg.Segmento)) & " critérios de qualidade, a ligação de " &
+                        CountRows(vs) & " fornecedores com este segmento e os serviços registrados nele. Os fornecedores continuam cadastrados. Não dá para desfazer."
+                    )
+                  X: =14
+                  Y: =8
+                  Width: =Parent.Width - 28
+                  Height: =44
+                  Size: =10
+                  Color: =Cor.Tinta
+                  Font: =Fonte
+                  PaddingLeft: =0
+                  PaddingRight: =0
+                  PaddingTop: =0
+                  PaddingBottom: =0
+                  Wrap: =true
+                  VerticalAlign: =VerticalAlign.Top
+            - btnConfirmaSeg:
+                Control: Classic/Button
+                Properties:
+                  Text: ="Excluir " & locSeg.Nome
+                  X: =14
+                  Y: =54
+                  Width: =200
+                  Height: =32
+                  OnSelect: |-
+                    =ForAll(Filter(Vinculos, Segmento.Segmento = locSeg.Segmento) As v,
+                        RemoveIf(Servicos, Vinculo.Vinculo = v.Vinculo);
+                        RemoveIf(AvaliacoesCapacidade, Vinculo.Vinculo = v.Vinculo)
+                    );
+                    RemoveIf(Vinculos, Segmento.Segmento = locSeg.Segmento);
+                    RemoveIf(Capacidades, Segmento.Segmento = locSeg.Segmento);
+                    RemoveIf(Criterios, Segmento.Segmento = locSeg.Segmento);
+                    Remove(Segmentos, locSeg);
+                    If(varSegFiltro.Segmento = locSeg.Segmento, Set(varSegFiltro, Blank()));
+                    UpdateContext({locSeg: First(Sort(Segmentos, Ordem)), locConfirmaSeg: false});
+                    Notify("Segmento excluído.", NotificationType.Success)
+                  Fill: =Cor.Superficie
+                  Color: =Cor.Ruim
+                  BorderColor: =Cor.Linha
+                  BorderThickness: =1
+                  HoverFill: =Cor.Afundado
+                  HoverColor: =Cor.Ruim
+                  HoverBorderColor: =Cor.Linha
+                  PressedFill: =Cor.Afundado
+                  PressedColor: =Cor.Ruim
+                  PressedBorderColor: =Cor.Linha
+                  RadiusTopLeft: =6
+                  RadiusTopRight: =6
+                  RadiusBottomLeft: =6
+                  RadiusBottomRight: =6
+                  Size: =11
+                  FontWeight: =FontWeight.Semibold
+                  Font: =Fonte
+            - btnCancelaSeg:
+                Control: Classic/Button
+                Properties:
+                  Text: ="Cancelar"
+                  X: =226
+                  Y: =54
+                  Width: =110
+                  Height: =32
+                  OnSelect: '=UpdateContext({locConfirmaSeg: false})'
+                  Fill: =Cor.Superficie
+                  Color: =Cor.Tinta
+                  BorderColor: =Cor.Linha
+                  BorderThickness: =1
+                  HoverFill: =Cor.Afundado
+                  HoverColor: =Cor.Tinta
+                  HoverBorderColor: =Cor.Linha
+                  PressedFill: =Cor.Afundado
+                  PressedColor: =Cor.Tinta
+                  PressedBorderColor: =Cor.Linha
+                  RadiusTopLeft: =6
+                  RadiusTopRight: =6
+                  RadiusBottomLeft: =6
+                  RadiusBottomRight: =6
+                  Size: =11
+                  FontWeight: =FontWeight.Semibold
+                  Font: =Fonte
+        - lblMetCapTit:
+            Control: Label
+            Properties:
+              Text: ="CAPACIDADES EXIGIDAS"
+              X: =16
+              Y: =If(locConfirmaSeg, 160, 56)
+              Width: =(Parent.Width - 48) / 2
+              Height: =18
+              Size: =9
+              Color: =Cor.Suave
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              FontWeight: =FontWeight.Semibold
+        - galMetCaps:
+            Control: Gallery
+            Variant: BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0
+            Properties:
+              Items: =Sort(Filter(Capacidades, Segmento.Segmento = locSeg.Segmento && Ativa), Ordem)
+              X: =16
+              Y: =If(locConfirmaSeg, 180, 78)
+              Width: =(Parent.Width - 48) / 2
+              Height: =294
+              TemplateSize: =42
+              TemplatePadding: =0
+              WrapCount: =1
+              ShowScrollbar: =true
+              BorderThickness: =0
+            Children:
+            - txtCapNome:
+                Control: Classic/TextInput
+                Properties:
+                  Default: =ThisItem.Nome
+                  HintText: =""
+                  X: =0
+                  Y: =4
+                  Width: =Parent.TemplateWidth - 220
+                  Height: =34
+                  Size: =11
+                  Font: =Fonte
+                  BorderColor: =Cor.Linha
+                  BorderThickness: =1
+                  HoverBorderColor: =Cor.Suave
+                  FocusedBorderColor: =Cor.Destaque
+                  FocusedBorderThickness: =2
+                  RadiusTopLeft: =6
+                  RadiusTopRight: =6
+                  RadiusBottomLeft: =6
+                  RadiusBottomRight: =6
+                  Color: =Cor.Tinta
+                  Fill: =Cor.Superficie
+                  DisplayMode: =If(PodeEditarMetodologia, DisplayMode.Edit, DisplayMode.View)
+                  OnChange: '=If(!IsBlank(Trim(Self.Text)), Patch(Capacidades, ThisItem, {Nome: Trim(Self.Text)}))'
+            - drpCapPeso:
+                Control: Classic/DropDown
+                Properties:
+                  Items: =[0.5, 1, 1.5, 2]
+                  Default: =ThisItem.Peso
+                  X: =Parent.TemplateWidth - 208
+                  Y: =4
+                  Width: =96
+                  Height: =34
+                  Font: =Fonte
+                  Size: =11
+                  BorderColor: =Cor.Linha
+                  BorderThickness: =1
+                  ChevronBackground: =Cor.Superficie
+                  ChevronFill: =Cor.Suave
+                  SelectionFill: =Cor.Destaque
+                  SelectionColor: =Cor.Superficie
+                  DisplayMode: =If(PodeEditarMetodologia, DisplayMode.Edit, DisplayMode.View)
+                  OnChange: '=Patch(Capacidades, ThisItem, {Peso: Self.Selected.Value}); Select(btnRecalcSeg)'
+            - btnCapRemover:
+                Control: Classic/Button
+                Properties:
+                  Text: ="Remover"
+                  X: =Parent.TemplateWidth - 100
+                  Y: =6
+                  Width: =96
+                  Height: =30
+                  OnSelect: '=Patch(Capacidades, ThisItem, {Ativa: false}); Select(btnRecalcSeg)'
+                  Fill: =Cor.Superficie
+                  Color: =Cor.Tinta
+                  BorderColor: =Cor.Linha
+                  BorderThickness: =1
+                  HoverFill: =Cor.Afundado
+                  HoverColor: =Cor.Tinta
+                  HoverBorderColor: =Cor.Linha
+                  PressedFill: =Cor.Afundado
+                  PressedColor: =Cor.Tinta
+                  PressedBorderColor: =Cor.Linha
+                  RadiusTopLeft: =6
+                  RadiusTopRight: =6
+                  RadiusBottomLeft: =6
+                  RadiusBottomRight: =6
+                  Size: =9
+                  FontWeight: =FontWeight.Semibold
+                  Font: =Fonte
+                  Visible: =PodeEditarMetodologia
+        - txtNovaCap:
+            Control: Classic/TextInput
+            Properties:
+              Default: =""
+              HintText: ="Nova capacidade"
+              X: =16
+              Y: =If(locConfirmaSeg, 180, 78) + 7 * 42 + 8
+              Width: =(Parent.Width - 48) / 2 - 120
+              Height: =36
+              Size: =11
+              Font: =Fonte
+              BorderColor: =Cor.Linha
+              BorderThickness: =1
+              HoverBorderColor: =Cor.Suave
+              FocusedBorderColor: =Cor.Destaque
+              FocusedBorderThickness: =2
+              RadiusTopLeft: =6
+              RadiusTopRight: =6
+              RadiusBottomLeft: =6
+              RadiusBottomRight: =6
+              Color: =Cor.Tinta
+              Fill: =Cor.Superficie
+              Visible: =PodeEditarMetodologia && !IsBlank(locSeg)
+        - btnNovaCap:
+            Control: Classic/Button
+            Properties:
+              Text: ="Adicionar"
+              X: =16 + (Parent.Width - 48) / 2 - 110
+              Y: =If(locConfirmaSeg, 180, 78) + 7 * 42 + 8
+              Width: =110
+              Height: =36
+              OnSelect: |-
+                =If(!IsBlank(Trim(txtNovaCap.Text)),
+                    Patch(Capacidades, Defaults(Capacidades), {
+                        Nome: Trim(txtNovaCap.Text), Segmento: locSeg, Peso: 1, Ativa: true,
+                        Ordem: Max(Filter(Capacidades, Segmento.Segmento = locSeg.Segmento), Ordem) + 1
+                    });
+                    Reset(txtNovaCap);
+                    Select(btnRecalcSeg)
+                )
+              Fill: =Cor.Superficie
+              Color: =Cor.Tinta
+              BorderColor: =Cor.Linha
+              BorderThickness: =1
+              HoverFill: =Cor.Afundado
+              HoverColor: =Cor.Tinta
+              HoverBorderColor: =Cor.Linha
+              PressedFill: =Cor.Afundado
+              PressedColor: =Cor.Tinta
+              PressedBorderColor: =Cor.Linha
+              RadiusTopLeft: =6
+              RadiusTopRight: =6
+              RadiusBottomLeft: =6
+              RadiusBottomRight: =6
+              Size: =11
+              FontWeight: =FontWeight.Semibold
+              Font: =Fonte
+              Visible: =PodeEditarMetodologia && !IsBlank(locSeg)
+        - lblMetQTit:
+            Control: Label
+            Properties:
+              Text: ="ÍNDICE DE QUALIDADE (deste segmento)"
+              X: =32 + (Parent.Width - 48) / 2
+              Y: =If(locConfirmaSeg, 160, 56)
+              Width: =(Parent.Width - 48) / 2
+              Height: =18
+              Size: =9
+              Color: =Cor.Suave
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              FontWeight: =FontWeight.Semibold
+        - galCritQ:
+            Control: Gallery
+            Variant: BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0
+            Properties:
+              Items: =Sort(Sequence(6, 0), Value, SortOrder.Descending)
+              X: =32 + (Parent.Width - 48) / 2
+              Y: =If(locConfirmaSeg, 180, 78)
+              Width: =(Parent.Width - 48) / 2
+              Height: =240
+              TemplateSize: =40
+              TemplatePadding: =0
+              WrapCount: =1
+              ShowScrollbar: =false
+              BorderThickness: =0
+            Children:
+            - lblCritQNota:
+                Control: Label
+                Properties:
+                  Text: =ThisItem.Value
+                  X: =0
+                  Y: =0
+                  Width: =40
+                  Height: =40
+                  Size: =12
+                  Color: =Cor.Tinta
+                  Font: =Fonte
+                  PaddingLeft: =0
+                  PaddingRight: =0
+                  PaddingTop: =0
+                  PaddingBottom: =0
+                  FontWeight: =FontWeight.Bold
+                  Align: =Align.Center
+            - txtCritQDesc:
+                Control: Classic/TextInput
+                Properties:
+                  Default: =LookUp(Criterios, Dimensao = "Qualidade" && Nota = ThisItem.Value && Segmento.Segmento = locSeg.Segmento).Descricao
+                  HintText: ="Descreva a situação que vale esta nota"
+                  X: =48
+                  Y: =4
+                  Width: =Parent.TemplateWidth - 52
+                  Height: =32
+                  Size: =11
+                  Font: =Fonte
+                  BorderColor: =Cor.Linha
+                  BorderThickness: =1
+                  HoverBorderColor: =Cor.Suave
+                  FocusedBorderColor: =Cor.Destaque
+                  FocusedBorderThickness: =2
+                  RadiusTopLeft: =6
+                  RadiusTopRight: =6
+                  RadiusBottomLeft: =6
+                  RadiusBottomRight: =6
+                  Color: =Cor.Tinta
+                  Fill: =Cor.Superficie
+                  DisplayMode: =If(PodeEditarMetodologia, DisplayMode.Edit, DisplayMode.View)
+                  OnChange: |-
+                    =With({ex: LookUp(Criterios, Dimensao = "Qualidade" && Nota = ThisItem.Value && Segmento.Segmento = locSeg.Segmento)},
+                        If(IsBlank(ex),
+                            If(!IsBlank(Trim(Self.Text)),
+                                Patch(Criterios, Defaults(Criterios), {Descricao: Trim(Self.Text), Dimensao: "Qualidade", Nota: ThisItem.Value, Segmento: locSeg})),
+                            Patch(Criterios, ex, {Descricao: Trim(Self.Text)})
+                        )
+                    )
+        - recMetSep:
+            Control: Rectangle
+            Properties:
+              X: =16
+              Y: =If(locConfirmaSeg, 180, 78) + 7 * 42 + 60
+              Width: =Parent.Width - 32
+              Height: =1
+              Fill: =Cor.Linha
+        - lblMetPTit:
+            Control: Label
+            Properties:
+              Text: ="ÍNDICE DE PRAZO (todos os segmentos)"
+              X: =16
+              Y: =If(locConfirmaSeg, 180, 78) + 7 * 42 + 76
+              Width: =(Parent.Width - 48) / 2
+              Height: =18
+              Size: =9
+              Color: =Cor.Suave
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              FontWeight: =FontWeight.Semibold
+        - galCritP:
+            Control: Gallery
+            Variant: BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0
+            Properties:
+              Items: =Sort(Sequence(6, 0), Value, SortOrder.Descending)
+              X: =16
+              Y: =If(locConfirmaSeg, 180, 78) + 7 * 42 + 98
+              Width: =(Parent.Width - 48) / 2
+              Height: =240
+              TemplateSize: =40
+              TemplatePadding: =0
+              WrapCount: =1
+              ShowScrollbar: =false
+              BorderThickness: =0
+            Children:
+            - lblCritPNota:
+                Control: Label
+                Properties:
+                  Text: =ThisItem.Value
+                  X: =0
+                  Y: =0
+                  Width: =40
+                  Height: =40
+                  Size: =12
+                  Color: =Cor.Tinta
+                  Font: =Fonte
+                  PaddingLeft: =0
+                  PaddingRight: =0
+                  PaddingTop: =0
+                  PaddingBottom: =0
+                  FontWeight: =FontWeight.Bold
+                  Align: =Align.Center
+            - txtCritPDesc:
+                Control: Classic/TextInput
+                Properties:
+                  Default: =LookUp(Criterios, Dimensao = "Prazo" && Nota = ThisItem.Value && IsBlank(Segmento)).Descricao
+                  HintText: ="Descreva a situação que vale esta nota"
+                  X: =48
+                  Y: =4
+                  Width: =Parent.TemplateWidth - 52
+                  Height: =32
+                  Size: =11
+                  Font: =Fonte
+                  BorderColor: =Cor.Linha
+                  BorderThickness: =1
+                  HoverBorderColor: =Cor.Suave
+                  FocusedBorderColor: =Cor.Destaque
+                  FocusedBorderThickness: =2
+                  RadiusTopLeft: =6
+                  RadiusTopRight: =6
+                  RadiusBottomLeft: =6
+                  RadiusBottomRight: =6
+                  Color: =Cor.Tinta
+                  Fill: =Cor.Superficie
+                  DisplayMode: =If(PodeEditarMetodologia, DisplayMode.Edit, DisplayMode.View)
+                  OnChange: |-
+                    =With({ex: LookUp(Criterios, Dimensao = "Prazo" && Nota = ThisItem.Value && IsBlank(Segmento))},
+                        If(IsBlank(ex),
+                            If(!IsBlank(Trim(Self.Text)),
+                                Patch(Criterios, Defaults(Criterios), {Descricao: Trim(Self.Text), Dimensao: "Prazo", Nota: ThisItem.Value})),
+                            Patch(Criterios, ex, {Descricao: Trim(Self.Text)})
+                        )
+                    )
+        - lblMetCTit:
+            Control: Label
+            Properties:
+              Text: ="ÍNDICE DE CUSTO (todos os segmentos)"
+              X: =32 + (Parent.Width - 48) / 2
+              Y: =If(locConfirmaSeg, 180, 78) + 7 * 42 + 76
+              Width: =(Parent.Width - 48) / 2
+              Height: =18
+              Size: =9
+              Color: =Cor.Suave
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              FontWeight: =FontWeight.Semibold
+        - galCritC:
+            Control: Gallery
+            Variant: BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0
+            Properties:
+              Items: =Sort(Sequence(6, 0), Value, SortOrder.Descending)
+              X: =32 + (Parent.Width - 48) / 2
+              Y: =If(locConfirmaSeg, 180, 78) + 7 * 42 + 98
+              Width: =(Parent.Width - 48) / 2
+              Height: =240
+              TemplateSize: =40
+              TemplatePadding: =0
+              WrapCount: =1
+              ShowScrollbar: =false
+              BorderThickness: =0
+            Children:
+            - lblCritCNota:
+                Control: Label
+                Properties:
+                  Text: =ThisItem.Value
+                  X: =0
+                  Y: =0
+                  Width: =40
+                  Height: =40
+                  Size: =12
+                  Color: =Cor.Tinta
+                  Font: =Fonte
+                  PaddingLeft: =0
+                  PaddingRight: =0
+                  PaddingTop: =0
+                  PaddingBottom: =0
+                  FontWeight: =FontWeight.Bold
+                  Align: =Align.Center
+            - txtCritCDesc:
+                Control: Classic/TextInput
+                Properties:
+                  Default: =LookUp(Criterios, Dimensao = "Custo" && Nota = ThisItem.Value && IsBlank(Segmento)).Descricao
+                  HintText: ="Descreva a situação que vale esta nota"
+                  X: =48
+                  Y: =4
+                  Width: =Parent.TemplateWidth - 52
+                  Height: =32
+                  Size: =11
+                  Font: =Fonte
+                  BorderColor: =Cor.Linha
+                  BorderThickness: =1
+                  HoverBorderColor: =Cor.Suave
+                  FocusedBorderColor: =Cor.Destaque
+                  FocusedBorderThickness: =2
+                  RadiusTopLeft: =6
+                  RadiusTopRight: =6
+                  RadiusBottomLeft: =6
+                  RadiusBottomRight: =6
+                  Color: =Cor.Tinta
+                  Fill: =Cor.Superficie
+                  DisplayMode: =If(PodeEditarMetodologia, DisplayMode.Edit, DisplayMode.View)
+                  OnChange: |-
+                    =With({ex: LookUp(Criterios, Dimensao = "Custo" && Nota = ThisItem.Value && IsBlank(Segmento))},
+                        If(IsBlank(ex),
+                            If(!IsBlank(Trim(Self.Text)),
+                                Patch(Criterios, Defaults(Criterios), {Descricao: Trim(Self.Text), Dimensao: "Custo", Nota: ThisItem.Value})),
+                            Patch(Criterios, ex, {Descricao: Trim(Self.Text)})
+                        )
+                    )
+        - lblMetRegra:
+            Control: Label
+            Properties:
+              Text: '="Status (automático): menos de 2 serviços → Em avaliação · índice global abaixo de 2 → Bloqueado · 5 ou mais serviços e global acima de 2 → Homologado · demais casos → Em avaliação. Especializado é um selo manual na ficha do fornecedor."'
+              X: =16
+              Y: =If(locConfirmaSeg, 180, 78) + 7 * 42 + 98 + 6 * 40 + 12
+              Width: =Parent.Width - 32
+              Height: =40
+              Size: =9
+              Color: =Cor.Alerta
+              Font: =Fonte
+              PaddingLeft: =0
+              PaddingRight: =0
+              PaddingTop: =0
+              PaddingBottom: =0
+              Wrap: =true

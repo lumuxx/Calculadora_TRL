@@ -1,0 +1,599 @@
+- recTopoC:
+    Control: Rectangle
+    Properties:
+      X: =0
+      Y: =0
+      Width: =Parent.Width
+      Height: =72
+      Fill: =Cor.Superficie
+- recTopoLinhaC:
+    Control: Rectangle
+    Properties:
+      X: =0
+      Y: =72
+      Width: =Parent.Width
+      Height: =1
+      Fill: =Cor.Linha
+- imgLogoC:
+    Control: Image
+    Properties:
+      Image: =logoSenai
+      X: =24
+      Y: =14
+      Width: =204
+      Height: =44
+      ImagePosition: =ImagePosition.Fit
+- recTopoSepC:
+    Control: Rectangle
+    Properties:
+      X: =244
+      Y: =18
+      Width: =1
+      Height: =36
+      Fill: =Cor.Linha
+- lblTituloC:
+    Control: Label
+    Properties:
+      Text: ="Qualificação de Fornecedores"
+      X: =260
+      Y: =12
+      Width: =420
+      Height: =30
+      Size: =18
+      Color: =Cor.Tinta
+      Font: =Fonte
+      PaddingLeft: =0
+      PaddingRight: =0
+      PaddingTop: =0
+      PaddingBottom: =0
+      FontWeight: =FontWeight.Bold
+- lblSubtituloC:
+    Control: Label
+    Properties:
+      Text: ="Dados compartilhados no Dataverse"
+      X: =260
+      Y: =42
+      Width: =420
+      Height: =18
+      Size: =10
+      Color: =Cor.Suave
+      Font: =Fonte
+      PaddingLeft: =0
+      PaddingRight: =0
+      PaddingTop: =0
+      PaddingBottom: =0
+- btnAbaPainelC:
+    Control: Classic/Button
+    Properties:
+      Text: ="Painel"
+      X: =Parent.Width - 24 - 3 * 132
+      Y: =18
+      Width: =128
+      Height: =40
+      OnSelect: =Navigate(scrPainel, ScreenTransition.None)
+      Fill: =Color.Transparent
+      Color: =Cor.Suave
+      BorderColor: =Cor.Linha
+      BorderThickness: =0
+      HoverFill: =Cor.Afundado
+      HoverColor: =Cor.Tinta
+      HoverBorderColor: =Cor.Linha
+      PressedFill: =Cor.Afundado
+      PressedColor: =Cor.Tinta
+      PressedBorderColor: =Cor.Linha
+      RadiusTopLeft: =6
+      RadiusTopRight: =6
+      RadiusBottomLeft: =6
+      RadiusBottomRight: =6
+      Size: =11
+      FontWeight: =FontWeight.Normal
+      Font: =Fonte
+- btnAbaFornecedoresC:
+    Control: Classic/Button
+    Properties:
+      Text: ="Fornecedores"
+      X: =Parent.Width - 24 - 2 * 132
+      Y: =18
+      Width: =128
+      Height: =40
+      OnSelect: =Navigate(scrFornecedores, ScreenTransition.None)
+      Fill: =Color.Transparent
+      Color: =Cor.Tinta
+      BorderColor: =Cor.Linha
+      BorderThickness: =0
+      HoverFill: =Cor.Afundado
+      HoverColor: =Cor.Tinta
+      HoverBorderColor: =Cor.Linha
+      PressedFill: =Cor.Afundado
+      PressedColor: =Cor.Tinta
+      PressedBorderColor: =Cor.Linha
+      RadiusTopLeft: =6
+      RadiusTopRight: =6
+      RadiusBottomLeft: =6
+      RadiusBottomRight: =6
+      Size: =11
+      FontWeight: =FontWeight.Semibold
+      Font: =Fonte
+- recAbaAtivaC:
+    Control: Rectangle
+    Properties:
+      X: =Parent.Width - 24 - 2 * 132
+      Y: =69
+      Width: =128
+      Height: =3
+      Fill: =Cor.Destaque
+- btnAbaMetodologiaC:
+    Control: Classic/Button
+    Properties:
+      Text: ="Metodologia"
+      X: =Parent.Width - 24 - 1 * 132
+      Y: =18
+      Width: =128
+      Height: =40
+      OnSelect: =Navigate(scrMetodologia, ScreenTransition.None)
+      Fill: =Color.Transparent
+      Color: =Cor.Suave
+      BorderColor: =Cor.Linha
+      BorderThickness: =0
+      HoverFill: =Cor.Afundado
+      HoverColor: =Cor.Tinta
+      HoverBorderColor: =Cor.Linha
+      PressedFill: =Cor.Afundado
+      PressedColor: =Cor.Tinta
+      PressedBorderColor: =Cor.Linha
+      RadiusTopLeft: =6
+      RadiusTopRight: =6
+      RadiusBottomLeft: =6
+      RadiusBottomRight: =6
+      Size: =11
+      FontWeight: =FontWeight.Normal
+      Font: =Fonte
+- conForm:
+    Control: GroupContainer
+    Variant: ManualLayout
+    Properties:
+      X: =24
+      Y: =92
+      Width: =Min(960, Parent.Width - 48)
+      Height: =540
+      Fill: =Cor.Superficie
+      BorderColor: =Cor.Linha
+      BorderThickness: =1
+      RadiusTopLeft: =6
+      RadiusTopRight: =6
+      RadiusBottomLeft: =6
+      RadiusBottomRight: =6
+      DropShadow: =DropShadow.None
+    Children:
+    - lblFormTitulo:
+        Control: Label
+        Properties:
+          Text: =If(IsBlank(varForn), "Novo fornecedor", "Editar " & varForn.Empresa)
+          X: =24
+          Y: =18
+          Width: =600
+          Height: =30
+          Size: =16
+          Color: =Cor.Tinta
+          Font: =Fonte
+          PaddingLeft: =0
+          PaddingRight: =0
+          PaddingTop: =0
+          PaddingBottom: =0
+          FontWeight: =FontWeight.Bold
+    - lblFormEmpresa:
+        Control: Label
+        Properties:
+          Text: ="Empresa *"
+          X: =24
+          Y: =64
+          Width: =(Parent.Width - 48 - 16) / 2
+          Height: =18
+          Size: =9
+          Color: =Cor.Suave
+          Font: =Fonte
+          PaddingLeft: =0
+          PaddingRight: =0
+          PaddingTop: =0
+          PaddingBottom: =0
+          FontWeight: =FontWeight.Semibold
+    - txtFormEmpresa:
+        Control: Classic/TextInput
+        Properties:
+          Default: =varForn.Empresa
+          HintText: =""
+          X: =24
+          Y: =64 + 20
+          Width: =(Parent.Width - 48 - 16) / 2
+          Height: =36
+          Size: =11
+          Font: =Fonte
+          BorderColor: =Cor.Linha
+          BorderThickness: =1
+          HoverBorderColor: =Cor.Suave
+          FocusedBorderColor: =Cor.Destaque
+          FocusedBorderThickness: =2
+          RadiusTopLeft: =6
+          RadiusTopRight: =6
+          RadiusBottomLeft: =6
+          RadiusBottomRight: =6
+          Color: =Cor.Tinta
+          Fill: =Cor.Superficie
+    - lblFormCnpj:
+        Control: Label
+        Properties:
+          Text: ="CNPJ"
+          X: =24 + (Parent.Width - 48 - 16) / 2 + 16
+          Y: =64
+          Width: =(Parent.Width - 48 - 16) / 2
+          Height: =18
+          Size: =9
+          Color: =Cor.Suave
+          Font: =Fonte
+          PaddingLeft: =0
+          PaddingRight: =0
+          PaddingTop: =0
+          PaddingBottom: =0
+          FontWeight: =FontWeight.Semibold
+    - txtFormCnpj:
+        Control: Classic/TextInput
+        Properties:
+          Default: =varForn.CNPJ
+          HintText: =""
+          X: =24 + (Parent.Width - 48 - 16) / 2 + 16
+          Y: =64 + 20
+          Width: =(Parent.Width - 48 - 16) / 2
+          Height: =36
+          Size: =11
+          Font: =Fonte
+          BorderColor: =Cor.Linha
+          BorderThickness: =1
+          HoverBorderColor: =Cor.Suave
+          FocusedBorderColor: =Cor.Destaque
+          FocusedBorderThickness: =2
+          RadiusTopLeft: =6
+          RadiusTopRight: =6
+          RadiusBottomLeft: =6
+          RadiusBottomRight: =6
+          Color: =Cor.Tinta
+          Fill: =Cor.Superficie
+    - lblFormResp:
+        Control: Label
+        Properties:
+          Text: ="Responsável no fornecedor"
+          X: =24
+          Y: =132
+          Width: =(Parent.Width - 48 - 16) / 2
+          Height: =18
+          Size: =9
+          Color: =Cor.Suave
+          Font: =Fonte
+          PaddingLeft: =0
+          PaddingRight: =0
+          PaddingTop: =0
+          PaddingBottom: =0
+          FontWeight: =FontWeight.Semibold
+    - txtFormResp:
+        Control: Classic/TextInput
+        Properties:
+          Default: =varForn.Responsavel
+          HintText: =""
+          X: =24
+          Y: =132 + 20
+          Width: =(Parent.Width - 48 - 16) / 2
+          Height: =36
+          Size: =11
+          Font: =Fonte
+          BorderColor: =Cor.Linha
+          BorderThickness: =1
+          HoverBorderColor: =Cor.Suave
+          FocusedBorderColor: =Cor.Destaque
+          FocusedBorderThickness: =2
+          RadiusTopLeft: =6
+          RadiusTopRight: =6
+          RadiusBottomLeft: =6
+          RadiusBottomRight: =6
+          Color: =Cor.Tinta
+          Fill: =Cor.Superficie
+    - lblFormTel:
+        Control: Label
+        Properties:
+          Text: ="Telefone"
+          X: =24 + (Parent.Width - 48 - 16) / 2 + 16
+          Y: =132
+          Width: =(Parent.Width - 48 - 16) / 2
+          Height: =18
+          Size: =9
+          Color: =Cor.Suave
+          Font: =Fonte
+          PaddingLeft: =0
+          PaddingRight: =0
+          PaddingTop: =0
+          PaddingBottom: =0
+          FontWeight: =FontWeight.Semibold
+    - txtFormTel:
+        Control: Classic/TextInput
+        Properties:
+          Default: =varForn.Telefone
+          HintText: =""
+          X: =24 + (Parent.Width - 48 - 16) / 2 + 16
+          Y: =132 + 20
+          Width: =(Parent.Width - 48 - 16) / 2
+          Height: =36
+          Size: =11
+          Font: =Fonte
+          BorderColor: =Cor.Linha
+          BorderThickness: =1
+          HoverBorderColor: =Cor.Suave
+          FocusedBorderColor: =Cor.Destaque
+          FocusedBorderThickness: =2
+          RadiusTopLeft: =6
+          RadiusTopRight: =6
+          RadiusBottomLeft: =6
+          RadiusBottomRight: =6
+          Color: =Cor.Tinta
+          Fill: =Cor.Superficie
+    - lblFormEmail:
+        Control: Label
+        Properties:
+          Text: ="E-mail"
+          X: =24
+          Y: =200
+          Width: =(Parent.Width - 48 - 16) / 2
+          Height: =18
+          Size: =9
+          Color: =Cor.Suave
+          Font: =Fonte
+          PaddingLeft: =0
+          PaddingRight: =0
+          PaddingTop: =0
+          PaddingBottom: =0
+          FontWeight: =FontWeight.Semibold
+    - txtFormEmail:
+        Control: Classic/TextInput
+        Properties:
+          Default: =varForn.Email
+          HintText: =""
+          X: =24
+          Y: =200 + 20
+          Width: =(Parent.Width - 48 - 16) / 2
+          Height: =36
+          Size: =11
+          Font: =Fonte
+          BorderColor: =Cor.Linha
+          BorderThickness: =1
+          HoverBorderColor: =Cor.Suave
+          FocusedBorderColor: =Cor.Destaque
+          FocusedBorderThickness: =2
+          RadiusTopLeft: =6
+          RadiusTopRight: =6
+          RadiusBottomLeft: =6
+          RadiusBottomRight: =6
+          Color: =Cor.Tinta
+          Fill: =Cor.Superficie
+    - lblFormEnd:
+        Control: Label
+        Properties:
+          Text: ="Endereço"
+          X: =24 + (Parent.Width - 48 - 16) / 2 + 16
+          Y: =200
+          Width: =(Parent.Width - 48 - 16) / 2
+          Height: =18
+          Size: =9
+          Color: =Cor.Suave
+          Font: =Fonte
+          PaddingLeft: =0
+          PaddingRight: =0
+          PaddingTop: =0
+          PaddingBottom: =0
+          FontWeight: =FontWeight.Semibold
+    - txtFormEnd:
+        Control: Classic/TextInput
+        Properties:
+          Default: =varForn.Endereco
+          HintText: =""
+          X: =24 + (Parent.Width - 48 - 16) / 2 + 16
+          Y: =200 + 20
+          Width: =(Parent.Width - 48 - 16) / 2
+          Height: =36
+          Size: =11
+          Font: =Fonte
+          BorderColor: =Cor.Linha
+          BorderThickness: =1
+          HoverBorderColor: =Cor.Suave
+          FocusedBorderColor: =Cor.Destaque
+          FocusedBorderThickness: =2
+          RadiusTopLeft: =6
+          RadiusTopRight: =6
+          RadiusBottomLeft: =6
+          RadiusBottomRight: =6
+          Color: =Cor.Tinta
+          Fill: =Cor.Superficie
+    - lblFormSegs:
+        Control: Label
+        Properties:
+          Text: ="Segmentos em que atua"
+          X: =24
+          Y: =268
+          Width: =(Parent.Width - 48 - 16) / 2
+          Height: =18
+          Size: =9
+          Color: =Cor.Suave
+          Font: =Fonte
+          PaddingLeft: =0
+          PaddingRight: =0
+          PaddingTop: =0
+          PaddingBottom: =0
+          FontWeight: =FontWeight.Semibold
+    - cbFormSegs:
+        Control: Classic/ComboBox
+        Properties:
+          Items: =Sort(Segmentos, Ordem)
+          DisplayFields: =["Nome"]
+          SearchFields: =["Nome"]
+          SelectMultiple: =true
+          InputTextPlaceholder: ="Escolha os segmentos"
+          IsSearchable: =true
+          X: =24
+          Y: =288
+          Width: =(Parent.Width - 48 - 16) / 2
+          Height: =36
+          Font: =Fonte
+          Size: =11
+          BorderColor: =Cor.Linha
+          BorderThickness: =1
+          ChevronBackground: =Cor.Superficie
+          ChevronFill: =Cor.Suave
+          SelectionFill: =Cor.Destaque
+          SelectionColor: =Cor.Superficie
+          DefaultSelectedItems: =Filter(Segmentos As s, !IsBlank(LookUp(Vinculos, Fornecedor.Fornecedor = varForn.Fornecedor && Segmento.Segmento = s.Segmento)))
+    - chkFormAtivo:
+        Control: Classic/CheckBox
+        Properties:
+          Text: ="Fornecedor ativo"
+          Default: =Coalesce(varForn.Ativo, true)
+          X: =24 + (Parent.Width - 48 - 16) / 2 + 16
+          Y: =288
+          Width: =240
+          Height: =36
+          Size: =11
+          Font: =Fonte
+          CheckboxBorderColor: =Cor.Suave
+          CheckmarkFill: =Cor.Superficie
+          CheckboxBackgroundFill: =Cor.Destaque
+    - lblFormObs:
+        Control: Label
+        Properties:
+          Text: ="Observações"
+          X: =24
+          Y: =336
+          Width: =Parent.Width - 48
+          Height: =18
+          Size: =9
+          Color: =Cor.Suave
+          Font: =Fonte
+          PaddingLeft: =0
+          PaddingRight: =0
+          PaddingTop: =0
+          PaddingBottom: =0
+          FontWeight: =FontWeight.Semibold
+    - txtFormObs:
+        Control: Classic/TextInput
+        Properties:
+          Default: =varForn.Observacoes
+          HintText: =""
+          X: =24
+          Y: =356
+          Width: =Parent.Width - 48
+          Height: =80
+          Size: =11
+          Font: =Fonte
+          BorderColor: =Cor.Linha
+          BorderThickness: =1
+          HoverBorderColor: =Cor.Suave
+          FocusedBorderColor: =Cor.Destaque
+          FocusedBorderThickness: =2
+          RadiusTopLeft: =6
+          RadiusTopRight: =6
+          RadiusBottomLeft: =6
+          RadiusBottomRight: =6
+          Color: =Cor.Tinta
+          Fill: =Cor.Superficie
+          Mode: =TextMode.MultiLine
+    - lblFormNota:
+        Control: Label
+        Properties:
+          Text: ="Desmarcar um segmento não apaga o histórico. Para tirar o fornecedor de uso, desmarque 'Fornecedor ativo'."
+          X: =24
+          Y: =444
+          Width: =Parent.Width - 48
+          Height: =20
+          Size: =9
+          Color: =Cor.Suave
+          Font: =Fonte
+          PaddingLeft: =0
+          PaddingRight: =0
+          PaddingTop: =0
+          PaddingBottom: =0
+    - btnFormCancelar:
+        Control: Classic/Button
+        Properties:
+          Text: ="Cancelar"
+          X: =Parent.Width - 24 - 140 - 12 - 120
+          Y: =476
+          Width: =120
+          Height: =38
+          OnSelect: =Back()
+          Fill: =Cor.Superficie
+          Color: =Cor.Tinta
+          BorderColor: =Cor.Linha
+          BorderThickness: =1
+          HoverFill: =Cor.Afundado
+          HoverColor: =Cor.Tinta
+          HoverBorderColor: =Cor.Linha
+          PressedFill: =Cor.Afundado
+          PressedColor: =Cor.Tinta
+          PressedBorderColor: =Cor.Linha
+          RadiusTopLeft: =6
+          RadiusTopRight: =6
+          RadiusBottomLeft: =6
+          RadiusBottomRight: =6
+          Size: =11
+          FontWeight: =FontWeight.Semibold
+          Font: =Fonte
+    - btnFormSalvar:
+        Control: Classic/Button
+        Properties:
+          Text: =If(IsBlank(varForn), "Cadastrar", "Salvar")
+          X: =Parent.Width - 24 - 140
+          Y: =476
+          Width: =140
+          Height: =38
+          OnSelect: |-
+            =If(IsBlank(Trim(txtFormEmpresa.Text)),
+                Notify("Informe o nome da empresa.", NotificationType.Error),
+                Set(varForn,
+                    Patch(Fornecedores, If(IsBlank(varForn), Defaults(Fornecedores), varForn), {
+                        Empresa: Trim(txtFormEmpresa.Text),
+                        CNPJ: txtFormCnpj.Text,
+                        Responsavel: txtFormResp.Text,
+                        Telefone: txtFormTel.Text,
+                        Email: txtFormEmail.Text,
+                        Endereco: txtFormEnd.Text,
+                        Observacoes: txtFormObs.Text,
+                        Ativo: chkFormAtivo.Value
+                    })
+                );
+                ForAll(cbFormSegs.SelectedItems As s,
+                    If(IsBlank(LookUp(Vinculos, Fornecedor.Fornecedor = varForn.Fornecedor && Segmento.Segmento = s.Segmento)),
+                        Patch(Vinculos, Defaults(Vinculos), {
+                            Nome: varForn.Empresa & " — " & s.Nome,
+                            Fornecedor: varForn,
+                            Segmento: s,
+                            StatusCalculado: "Em avaliação",
+                            Especializado: false,
+                            QtdServicos: 0
+                        })
+                    )
+                );
+                Set(varVinc, First(Filter(Vinculos, Fornecedor.Fornecedor = varForn.Fornecedor)));
+                Notify("Fornecedor salvo.", NotificationType.Success);
+                Navigate(scrFicha, ScreenTransition.None)
+            )
+          Fill: =Cor.Destaque
+          Color: =Cor.Superficie
+          BorderColor: =Cor.Destaque
+          BorderThickness: =1
+          HoverFill: =ColorFade(Cor.Destaque, -0.12)
+          HoverColor: =Cor.Superficie
+          HoverBorderColor: =Cor.Destaque
+          PressedFill: =ColorFade(Cor.Destaque, -0.12)
+          PressedColor: =Cor.Superficie
+          PressedBorderColor: =Cor.Destaque
+          RadiusTopLeft: =6
+          RadiusTopRight: =6
+          RadiusBottomLeft: =6
+          RadiusBottomRight: =6
+          Size: =11
+          FontWeight: =FontWeight.Semibold
+          Font: =Fonte

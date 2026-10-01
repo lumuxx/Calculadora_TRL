@@ -1,0 +1,30 @@
+﻿Nome,Segmento,Peso,Ordem,Ativa
+Torno convencional,Usinagem,0.5,1,Sim
+Torno CNC,Usinagem,1.0,2,Sim
+Fresadora 3 eixos,Usinagem,1.0,3,Sim
+Fresadora 5 eixos,Usinagem,0.5,4,Sim
+Eletroerosão,Usinagem,0.5,5,Sim
+Retífica,Usinagem,0.5,6,Sim
+MMC,Usinagem,1.0,7,Sim
+Corte,Caldeiraria,1.0,8,Sim
+Dobra,Caldeiraria,1.0,9,Sim
+Calandra,Caldeiraria,0.5,10,Sim
+Soldagem de aço,Caldeiraria,1.0,11,Sim
+Soldagem de inox,Caldeiraria,0.5,12,Sim
+Soldagem de alumínio,Caldeiraria,0.5,13,Sim
+Chapas espessas (maior que 10mm de espessura),Caldeiraria,0.5,14,Sim
+Pintura,Pintura,1.0,15,Sim
+Oxidação negra,Pintura,1.0,16,Sim
+Anodização,Pintura,1.0,17,Sim
+Zincagem,Pintura,1.0,18,Sim
+Níquelagem,Pintura,1.0,19,Sim
+Têmpera/Revenimento,Tratamento Térmico/Superficial,1.0,20,Sim
+Recozimento/Alívio de tensões,Tratamento Térmico/Superficial,1.0,21,Sim
+Nitretação,Tratamento Térmico/Superficial,1.0,22,Sim
+Cementação,Tratamento Térmico/Superficial,1.0,23,Sim
+Tratamento de ligas não ferrosas,Tratamento Térmico/Superficial,1.0,24,Sim
+Impressão 3D,Prototipagem (Compósito),1.0,25,Sim
+Molde de injeção,Prototipagem (Compósito),1.0,26,Sim
+Processo PRFV,Prototipagem (Compósito),1.0,27,Sim
+Vacuum casting,Prototipagem (Compósito),1.0,28,Sim
+Fundição,Prototipagem (Compósito),1.0,29,Sim

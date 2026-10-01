@@ -1,0 +1,31 @@
+﻿Nome,Fornecedor,Segmento,StatusCalculado,Especializado,NotaCapacidade,MediaQualidade,MediaPrazo,MediaCusto,IndiceGlobal,QtdServicos,UltimoServico
+EISEN — Usinagem,EISEN,Usinagem,Homologado,Não,2.5,3.33,3.33,2.0,2.89,6,2026-05-11
+USITEC — Usinagem,USITEC,Usinagem,Em avaliação,Não,2.0,5.0,5.0,3.0,4.33,1,2026-02-03
+GUERCAM — Usinagem,GUERCAM,Usinagem,Em avaliação,Não,2.5,5.0,5.0,1.0,3.67,1,2025-01-20
+USIFIL — Usinagem,USIFIL,Usinagem,Em avaliação,Sim,0.5,,,,,0,
+MEDEIROS — Usinagem,MEDEIROS,Usinagem,Em avaliação,Não,,,,,,0,
+SOLUSI — Usinagem,SOLUSI,Usinagem,Em avaliação,Não,,,,,,0,
+VRM — Usinagem,VRM,Usinagem,Em avaliação,Não,1.5,,,,,0,
+TECHNOFIL — Usinagem,TECHNOFIL,Usinagem,Em avaliação,Sim,0.5,,,,,0,
+FAG (engrenagens) — Usinagem,FAG (engrenagens),Usinagem,Em avaliação,Sim,2.0,,,,,0,
+PERFECTON — Usinagem,PERFECTON,Usinagem,Em avaliação,Não,2.5,,,,,0,
+VITARI — Caldeiraria,VITARI,Caldeiraria,Em avaliação,Não,4.5,4.5,4.5,2.0,3.67,2,2026-08-10
+ELMECA — Caldeiraria,ELMECA,Caldeiraria,Em avaliação,Não,4.0,,,,,0,
+CALINUS — Caldeiraria,CALINUS,Caldeiraria,Em avaliação,Não,,,,,,0,
+MAC LASER — Caldeiraria,MAC LASER,Caldeiraria,Em avaliação,Não,3.5,,,,,0,
+LASERVILLE — Caldeiraria,LASERVILLE,Caldeiraria,Em avaliação,Não,4.5,,,,,0,
+KALDEVILLE — Caldeiraria,KALDEVILLE,Caldeiraria,Em avaliação,Não,4.5,,,,,0,
+DARC — Caldeiraria,DARC,Caldeiraria,Em avaliação,Não,4.5,,,,,0,
+SCM — Caldeiraria,SCM,Caldeiraria,Em avaliação,Não,4.0,,,,,0,
+WELDVISION — Caldeiraria,WELDVISION,Caldeiraria,Em avaliação,Não,4.0,,,,,0,
+LADI'S — Pintura,LADI'S,Pintura,Em avaliação,Sim,1.0,,,,,0,
+POLICROMO — Pintura,POLICROMO,Pintura,Em avaliação,Não,4.0,,,,,0,
+GALVANO — Pintura,GALVANO,Pintura,Em avaliação,Não,3.0,,,,,0,
+EVGALVANOPLASTIA — Pintura,EVGALVANOPLASTIA,Pintura,Em avaliação,Não,3.0,,,,,0,
+ANGRA — Tratamento Térmico/Superficial,ANGRA,Tratamento Térmico/Superficial,Em avaliação,Não,4.0,,,,,0,
+TECNOTÊMPERA — Tratamento Térmico/Superficial,TECNOTÊMPERA,Tratamento Térmico/Superficial,Em avaliação,Não,5.0,,,,,0,
+TEMPERAVILLE — Tratamento Térmico/Superficial,TEMPERAVILLE,Tratamento Térmico/Superficial,Em avaliação,Não,5.0,,,,,0,
+PROTVILLE — Prototipagem (Compósito),PROTVILLE,Prototipagem (Compósito),Em avaliação,Não,5.0,,,,,0,
+LANFIBRAS — Prototipagem (Compósito),LANFIBRAS,Prototipagem (Compósito),Em avaliação,Sim,1.0,,,,,0,
+FASTPARTS — Prototipagem (Compósito),FASTPARTS,Prototipagem (Compósito),Em avaliação,Não,4.0,,,,,0,
+EJP — Caldeiraria,EJP,Caldeiraria,Em avaliação,Não,,,,,,0,
