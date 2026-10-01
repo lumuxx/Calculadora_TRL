@@ -85,7 +85,8 @@ Nova-Coluna 'Fornecedores' 'Observacoes' Note
 Nova-Lista 'FornecedorSegmento' 'Vinculo'                             # ex.: "EISEN — Usinagem"
 Nova-Pesquisa 'FornecedorSegmento' 'Fornecedor' 'Fornecedores' -Obrigatoria
 Nova-Pesquisa 'FornecedorSegmento' 'Segmento'   'Segmentos'    -Obrigatoria
-Nova-Coluna 'FornecedorSegmento' 'Status' Choice @('Em avaliação', 'Homologado', 'Especializado', 'Bloqueado')
+Nova-Coluna 'FornecedorSegmento' 'Status' Choice @('Em avaliação', 'Homologado', 'Bloqueado')
+Nova-Coluna 'FornecedorSegmento' 'Especializado' Boolean                # selo manual, soma ao status
 Nova-Coluna 'FornecedorSegmento' 'JustificativaStatus' Note
 foreach ($c in 'NotaCapacidade', 'MediaQualidade', 'MediaPrazo', 'MediaCusto', 'IndiceGlobal', 'QtdServicos') {
     Nova-Coluna 'FornecedorSegmento' $c Number
@@ -146,7 +147,10 @@ $vinc = @{}
 foreach ($r in Ler 'FornecedorSegmento') {
     $vinc["$($r.Fornecedor)|$($r.Segmento)"] = (Add-PnPListItem -List 'FornecedorSegmento' -Values @{
         Title = "$($r.Fornecedor) — $($r.Segmento)"; Fornecedor = $forn[$r.Fornecedor]
-        Segmento = $seg[$r.Segmento]; Status = $r.Status; QtdServicos = 0 }).Id
+        Segmento = $seg[$r.Segmento]; QtdServicos = 0
+        # na planilha "Especializado" era status; aqui vira selo e o status fica "Em avaliação"
+        Status = $(if ($r.Status -eq 'Especializado') { 'Em avaliação' } else { $r.Status })
+        Especializado = ($r.Status -eq 'Especializado') }).Id
 }
 
 $somaNota = @{}

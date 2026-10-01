@@ -175,15 +175,23 @@ Na planilha o status é digitado à mão. No app ele continua sendo **uma decis�
 Suprimentos** (campo Status + justificativa com data e autor), mas o app mostra um
 **status sugerido** para apoiar a decisão:
 
-| Sugestão | Regra (proposta — ajuste os números) |
+| Sugestão | Regra (aplicada na ordem) |
 |---|---|
 | Em avaliação | menos de 2 serviços avaliados |
 | Bloqueado | índice global < 2,0 |
-| Homologado | índice global ≥ 2,0 e capacidade técnica ≥ 2,5 (atende pelo menos metade do segmento) |
-| Especializado | índice global ≥ 2,0 e capacidade técnica < 2,5 (bom, mas em poucos processos) |
+| Homologado | mais de 4 serviços (5 ou mais) e índice global > 2,0 |
+| Em avaliação | demais casos (2 a 4 serviços com índice global ≥ 2,0) |
 
-Status disponíveis: **Em avaliação, Homologado, Especializado** (os da planilha) e
-**Bloqueado** (novo, para não precisar apagar um fornecedor reprovado e perder o histórico).
+Status disponíveis: **Em avaliação, Homologado** e **Bloqueado** (para não precisar apagar um
+fornecedor reprovado e perder o histórico).
+
+**Especializado** não é mais um status: é um **selo manual** (coluna Sim/Não `Especializado`),
+marcado por Suprimentos ao alterar o status. Ele soma ao status — um fornecedor pode ser
+*Homologado + Especializado*. Os 5 fornecedores que estavam como "Especializado" na planilha
+(USIFIL, TECHNOFIL, FAG, LADI'S, LANFIBRAS) foram importados como *Em avaliação + Especializado*.
+
+Na tela, "Aplicar sugestão" abre a alteração de status já com o status sugerido e uma
+justificativa pronta ("Regra aplicada: 6 serviços, índice global 2,89"), que pode ser editada.
 
 ---
 

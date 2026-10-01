@@ -54,7 +54,10 @@ for r in ler("FornecedorSegmento"):
     vid = "v-" + slug(r["Fornecedor"], r["Segmento"])
     vinc[(r["Fornecedor"], r["Segmento"])] = vid
     out["vinculos"][vid] = {"fornecedorId": forn[r["Fornecedor"]], "segmentoId": seg[r["Segmento"]],
-                            "status": r["Status"], "capacidades": {}, "historicoStatus": []}
+                            # "Especializado" é um selo manual, separado do status
+                            "status": "Em avaliação" if r["Status"] == "Especializado" else r["Status"],
+                            "especializado": r["Status"] == "Especializado",
+                            "capacidades": {}, "historicoStatus": []}
 
 for r in ler("AvaliacaoCapacidade"):
     cid, peso = cap[(r["Segmento"], r["Capacidade"])]

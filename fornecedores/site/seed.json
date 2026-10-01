@@ -751,6 +751,7 @@
    "fornecedorId": "f-eisen",
    "segmentoId": "seg-usinagem",
    "status": "Homologado",
+   "especializado": false,
    "capacidades": {
     "cap-usinagem-torno-convencional": "atende",
     "cap-usinagem-torno-cnc": "parcial",
@@ -766,6 +767,7 @@
    "fornecedorId": "f-usitec",
    "segmentoId": "seg-usinagem",
    "status": "Em avaliação",
+   "especializado": false,
    "capacidades": {
     "cap-usinagem-torno-convencional": "atende",
     "cap-usinagem-torno-cnc": "parcial",
@@ -781,6 +783,7 @@
    "fornecedorId": "f-guercam",
    "segmentoId": "seg-usinagem",
    "status": "Em avaliação",
+   "especializado": false,
    "capacidades": {
     "cap-usinagem-torno-convencional": "atende",
     "cap-usinagem-torno-cnc": "nao",
@@ -795,7 +798,8 @@
   "v-usifil-usinagem": {
    "fornecedorId": "f-usifil",
    "segmentoId": "seg-usinagem",
-   "status": "Especializado",
+   "status": "Em avaliação",
+   "especializado": true,
    "capacidades": {
     "cap-usinagem-torno-convencional": "nao",
     "cap-usinagem-torno-cnc": "nao",
@@ -811,6 +815,7 @@
    "fornecedorId": "f-medeiros",
    "segmentoId": "seg-usinagem",
    "status": "Em avaliação",
+   "especializado": false,
    "capacidades": {},
    "historicoStatus": []
   },
@@ -818,6 +823,7 @@
    "fornecedorId": "f-solusi",
    "segmentoId": "seg-usinagem",
    "status": "Em avaliação",
+   "especializado": false,
    "capacidades": {},
    "historicoStatus": []
   },
@@ -825,6 +831,7 @@
    "fornecedorId": "f-vrm",
    "segmentoId": "seg-usinagem",
    "status": "Em avaliação",
+   "especializado": false,
    "capacidades": {
     "cap-usinagem-torno-convencional": "nao",
     "cap-usinagem-torno-cnc": "nao",
@@ -839,7 +846,8 @@
   "v-technofil-usinagem": {
    "fornecedorId": "f-technofil",
    "segmentoId": "seg-usinagem",
-   "status": "Especializado",
+   "status": "Em avaliação",
+   "especializado": true,
    "capacidades": {
     "cap-usinagem-torno-convencional": "nao",
     "cap-usinagem-torno-cnc": "nao",
@@ -854,7 +862,8 @@
   "v-fag-engrenagens-usinagem": {
    "fornecedorId": "f-fag-engrenagens",
    "segmentoId": "seg-usinagem",
-   "status": "Especializado",
+   "status": "Em avaliação",
+   "especializado": true,
    "capacidades": {
     "cap-usinagem-torno-convencional": "nao",
     "cap-usinagem-torno-cnc": "atende",
@@ -870,6 +879,7 @@
    "fornecedorId": "f-perfecton",
    "segmentoId": "seg-usinagem",
    "status": "Em avaliação",
+   "especializado": false,
    "capacidades": {
     "cap-usinagem-torno-convencional": "atende",
     "cap-usinagem-torno-cnc": "atende",
@@ -885,6 +895,7 @@
    "fornecedorId": "f-vitari",
    "segmentoId": "seg-caldeiraria",
    "status": "Homologado",
+   "especializado": false,
    "capacidades": {
     "cap-caldeiraria-corte": "atende",
     "cap-caldeiraria-dobra": "atende",
@@ -900,6 +911,7 @@
    "fornecedorId": "f-elmeca",
    "segmentoId": "seg-caldeiraria",
    "status": "Em avaliação",
+   "especializado": false,
    "capacidades": {
     "cap-caldeiraria-corte": "atende",
     "cap-caldeiraria-dobra": "atende",
@@ -915,6 +927,7 @@
    "fornecedorId": "f-calinus",
    "segmentoId": "seg-caldeiraria",
    "status": "Em avaliação",
+   "especializado": false,
    "capacidades": {},
    "historicoStatus": []
   },
@@ -922,6 +935,7 @@
    "fornecedorId": "f-mac-laser",
    "segmentoId": "seg-caldeiraria",
    "status": "Em avaliação",
+   "especializado": false,
    "capacidades": {
     "cap-caldeiraria-corte": "atende",
     "cap-caldeiraria-dobra": "atende",
@@ -937,6 +951,7 @@
    "fornecedorId": "f-laserville",
    "segmentoId": "seg-caldeiraria",
    "status": "Em avaliação",
+   "especializado": false,
    "capacidades": {
     "cap-caldeiraria-corte": "atende",
     "cap-caldeiraria-dobra": "atende",
@@ -952,6 +967,7 @@
    "fornecedorId": "f-kaldeville",
    "segmentoId": "seg-caldeiraria",
    "status": "Em avaliação",
+   "especializado": false,
    "capacidades": {
     "cap-caldeiraria-corte": "atende",
     "cap-caldeiraria-dobra": "atende",
@@ -967,6 +983,7 @@
    "fornecedorId": "f-darc",
    "segmentoId": "seg-caldeiraria",
    "status": "Em avaliação",
+   "especializado": false,
    "capacidades": {
     "cap-caldeiraria-corte": "atende",
     "cap-caldeiraria-dobra": "atende",
@@ -982,6 +999,7 @@
    "fornecedorId": "f-scm",
    "segmentoId": "seg-caldeiraria",
    "status": "Em avaliação",
+   "especializado": false,
    "capacidades": {
     "cap-caldeiraria-corte": "atende",
     "cap-caldeiraria-dobra": "atende",
@@ -995,6 +1013,7 @@
    "fornecedorId": "f-weldvision",
    "segmentoId": "seg-caldeiraria",
    "status": "Em avaliação",
+   "especializado": false,
    "capacidades": {
     "cap-caldeiraria-corte": "atende",
     "cap-caldeiraria-dobra": "atende",
@@ -1009,7 +1028,8 @@
   "v-ladi-s-pintura": {
    "fornecedorId": "f-ladi-s",
    "segmentoId": "seg-pintura",
-   "status": "Especializado",
+   "status": "Em avaliação",
+   "especializado": true,
    "capacidades": {
     "cap-pintura-pintura": "nao",
     "cap-pintura-oxidacao-negra": "nao",
@@ -1023,6 +1043,7 @@
    "fornecedorId": "f-policromo",
    "segmentoId": "seg-pintura",
    "status": "Em avaliação",
+   "especializado": false,
    "capacidades": {
     "cap-pintura-pintura": "nao",
     "cap-pintura-oxidacao-negra": "atende",
@@ -1036,6 +1057,7 @@
    "fornecedorId": "f-galvano",
    "segmentoId": "seg-pintura",
    "status": "Em avaliação",
+   "especializado": false,
    "capacidades": {
     "cap-pintura-pintura": "atende",
     "cap-pintura-oxidacao-negra": "nao",
@@ -1049,6 +1071,7 @@
    "fornecedorId": "f-evgalvanoplastia",
    "segmentoId": "seg-pintura",
    "status": "Em avaliação",
+   "especializado": false,
    "capacidades": {
     "cap-pintura-pintura": "nao",
     "cap-pintura-oxidacao-negra": "atende",
@@ -1062,6 +1085,7 @@
    "fornecedorId": "f-angra",
    "segmentoId": "seg-tratamento-termico-superficial",
    "status": "Em avaliação",
+   "especializado": false,
    "capacidades": {
     "cap-tratamento-termico-superficial-tempera-revenimento": "atende",
     "cap-tratamento-termico-superficial-recozimento-alivio-de-tensoes": "atende",
@@ -1075,6 +1099,7 @@
    "fornecedorId": "f-tecnotempera",
    "segmentoId": "seg-tratamento-termico-superficial",
    "status": "Em avaliação",
+   "especializado": false,
    "capacidades": {
     "cap-tratamento-termico-superficial-tempera-revenimento": "atende",
     "cap-tratamento-termico-superficial-recozimento-alivio-de-tensoes": "atende",
@@ -1088,6 +1113,7 @@
    "fornecedorId": "f-temperaville",
    "segmentoId": "seg-tratamento-termico-superficial",
    "status": "Em avaliação",
+   "especializado": false,
    "capacidades": {
     "cap-tratamento-termico-superficial-tempera-revenimento": "atende",
     "cap-tratamento-termico-superficial-recozimento-alivio-de-tensoes": "atende",
@@ -1101,6 +1127,7 @@
    "fornecedorId": "f-protville",
    "segmentoId": "seg-prototipagem-composito",
    "status": "Em avaliação",
+   "especializado": false,
    "capacidades": {
     "cap-prototipagem-composito-impressao-3d": "atende",
     "cap-prototipagem-composito-molde-de-injecao": "atende",
@@ -1113,7 +1140,8 @@
   "v-lanfibras-prototipagem-composito": {
    "fornecedorId": "f-lanfibras",
    "segmentoId": "seg-prototipagem-composito",
-   "status": "Especializado",
+   "status": "Em avaliação",
+   "especializado": true,
    "capacidades": {
     "cap-prototipagem-composito-impressao-3d": "nao",
     "cap-prototipagem-composito-molde-de-injecao": "nao",
@@ -1127,6 +1155,7 @@
    "fornecedorId": "f-fastparts",
    "segmentoId": "seg-prototipagem-composito",
    "status": "Em avaliação",
+   "especializado": false,
    "capacidades": {
     "cap-prototipagem-composito-impressao-3d": "atende",
     "cap-prototipagem-composito-molde-de-injecao": "atende",
@@ -1140,6 +1169,7 @@
    "fornecedorId": "f-ejp",
    "segmentoId": "seg-caldeiraria",
    "status": "Em avaliação",
+   "especializado": false,
    "capacidades": {},
    "historicoStatus": []
   }

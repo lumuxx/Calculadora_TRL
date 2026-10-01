@@ -52,8 +52,8 @@ CorStatus(status: Text): Color =
 // ddSegmento.Items
 Sort(Segmentos, Ordem)
 
-// ddStatus.Items
-["Em avaliação", "Homologado", "Especializado", "Bloqueado"]
+// ddStatus.Items  ("Especializado" filtra pelo selo, não pelo status)
+["Em avaliação", "Homologado", "Bloqueado", "Especializado"]
 ```
 
 (Deixe `AllowEmptySelection = true` nos dois para "todos".)
@@ -78,7 +78,9 @@ Text(Average(Filter(FornecedorSegmento, QtdServicos > 0), IndiceGlobal), "0.00",
 SortByColumns(
     Filter(FornecedorSegmento,
         IsBlank(ddSegmento.Selected) || Segmento.Id = ddSegmento.Selected.ID,
-        IsBlank(ddStatus.Selected.Value) || Status.Value = ddStatus.Selected.Value
+        IsBlank(ddStatus.Selected.Value)
+            || (ddStatus.Selected.Value = "Especializado" && Especializado)
+            || Status.Value = ddStatus.Selected.Value
     ),
     "IndiceGlobal", SortOrder.Descending
 )
@@ -105,8 +107,8 @@ lblSugerido.Text =
     With({s:
         If(Coalesce(ThisItem.QtdServicos, 0) < 2,  "Em avaliação",
            ThisItem.IndiceGlobal < 2,              "Bloqueado",
-           Coalesce(ThisItem.NotaCapacidade, 0) >= 2.5, "Homologado",
-           "Especializado")},
+           ThisItem.QtdServicos >= 5 && ThisItem.IndiceGlobal > 2, "Homologado",
+           "Em avaliação")},
         If(s <> ThisItem.Status.Value, "Sugerido: " & s, ""))
 
 // ao clicar no cartão
@@ -299,12 +301,14 @@ SortByColumns(Filter(HistoricoServicos, Vinculo.Id = varVinculo.ID), "DataOrcame
 
 ```powerfx
 // ddNovoStatus.Items
-["Em avaliação", "Homologado", "Especializado", "Bloqueado"]
+["Em avaliação", "Homologado", "Bloqueado"]
+// chkEspecializado: caixa de seleção do selo manual, Default = varVinculo.Especializado
 
 // btnAlterarStatus.OnSelect
 Set(varVinculo,
     Patch(FornecedorSegmento, LookUp(FornecedorSegmento, ID = varVinculo.ID), {
         Status: {Value: ddNovoStatus.Selected.Value},
+        Especializado: chkEspecializado.Value,
         JustificativaStatus: Text(Today(), "dd/mm/yyyy") & " – " & User().FullName & ": "
                              & txtJustificativa.Text & Char(10) & varVinculo.JustificativaStatus
     })
