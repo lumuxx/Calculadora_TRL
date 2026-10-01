@@ -404,7 +404,7 @@ function vPainel() {
         <select id="filtroStatus" aria-label="Filtrar por status" style="width:auto">
           <option value="">Todos os status</option>${STATUS.map(s => `<option ${ui.status === s ? "selected" : ""}>${s}</option>`).join("")}
         </select>
-        ${ui.seg ? `<button class="btn small" type="button" data-act="filtro-seg" data-id="">Todos os segmentos</button>` : ""}
+        ${selSegmento("filtroSegPainel")}
       </div>
     </div>
     <div class="scroll"><table>
@@ -420,12 +420,19 @@ function vazio() {
     ${perm.write ? `<button class="btn primary" type="button" data-act="novo-fornecedor">Cadastrar fornecedor</button>` : ""}</div>`;
 }
 
+function selSegmento(id) {
+  return `<select id="${id}" class="filtro-seg" aria-label="Filtrar por segmento" style="width:auto">
+    <option value="">Todos os segmentos</option>${segmentos().map(sg => `<option value="${esc(sg.id)}" ${ui.seg === sg.id ? "selected" : ""}>${esc(sg.nome)}</option>`).join("")}
+  </select>`;
+}
+
 /* ---------- Fornecedores ---------- */
 function vFornecedores() {
   const L = linhas();
   const q = ui.buscaF.trim().toLowerCase();
   const fs = [...S.fornecedores].map(([id, f]) => ({ id, ...f }))
     .filter(f => !q || [f.empresa, f.responsavel, f.cnpj].some(x => String(x || "").toLowerCase().includes(q)))
+    .filter(f => !ui.seg || L.some(l => l.fId === f.id && l.segId === ui.seg))
     .sort((a, b) => String(a.empresa).localeCompare(b.empresa, "pt-BR"));
   const rows = fs.map(f => {
     const vs = L.filter(l => l.fId === f.id);
@@ -438,8 +445,9 @@ function vFornecedores() {
     </tr>`;
   }).join("");
   return `<section class="panel">
-    <div class="row spread"><h2>Fornecedores</h2>
+    <div class="row spread"><h2>Fornecedores${ui.seg ? " · " + esc((S.segmentos.get(ui.seg) || {}).nome) : ""}</h2>
       <div class="row"><input type="search" id="buscaForn" placeholder="Empresa, CNPJ ou responsável" value="${esc(ui.buscaF)}" aria-label="Buscar" style="width:240px">
+      ${selSegmento("filtroSegForn")}
       ${perm.write ? `<button class="btn primary" type="button" data-act="novo-fornecedor">Novo fornecedor</button>` : ""}</div></div>
     <div class="scroll"><table><thead><tr><th>Empresa</th><th>Segmentos e status</th><th>Responsável</th><th>Telefone</th><th></th></tr></thead>
     <tbody>${rows || `<tr><td colspan="5" class="muted">Nenhum fornecedor encontrado.</td></tr>`}</tbody></table></div>
@@ -792,6 +800,7 @@ function deferredRenderKeepFocus(t) {
 document.addEventListener("change", async e => {
   const t = e.target;
   if (t.id === "filtroStatus") { ui.status = t.value; t.blur(); render(); return; }
+  if (t.classList.contains("filtro-seg")) { ui.seg = t.value; t.blur(); render(); return; }
   if (t.dataset.edit) {
     const coll = t.dataset.edit, cur = S[coll].get(t.dataset.id); if (!cur) return;
     const val = t.dataset.k === "peso" ? Number(t.value) : t.value.trim();
