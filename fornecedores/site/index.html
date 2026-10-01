@@ -200,8 +200,8 @@ dialog form { padding: 20px; display: grid; gap: 14px; max-height: calc(100dvh -
 const COLLS = ["segmentos", "capacidades", "criterios", "fornecedores", "vinculos", "servicos"];
 const STATUS = ["Em avaliação", "Homologado", "Bloqueado"];
 const MIN_SERV_HOMOLOGADO = 5;   // "acima de 4 serviços"
-// "Especializado" deixou de ser status: é um selo manual que soma ao status (ex.: Homologado + Especializado).
-const statusDe = v => (!v.status || v.status === "Especializado") ? "Em avaliação" : v.status;
+// O status é calculado pelas regras (histórico de serviços). "Especializado" é o único item manual:
+// um selo que soma ao status (ex.: Homologado + Especializado).
 const especDe = v => v.especializado === true || (v.especializado == null && v.status === "Especializado");
 const ATEND = [["atende", "Atende"], ["parcial", "Parcial"], ["nao", "Não atende"]];
 const S = Object.fromEntries(COLLS.map(c => [c, new Map()]));
@@ -310,18 +310,37 @@ function indices(vId) {
   const q = avg(h, s => s.q), p = avg(h, s => s.p), c = avg(h, s => s.c);
   return { n: h.length, q, p, c, g: (q + p + c) / 3, ultimo: h[0].data };
 }
-function sugerido(ix) {
-  if (ix.n < 2) return "Em avaliação";
-  if (ix.g < 2) return "Bloqueado";
-  if (ix.n >= MIN_SERV_HOMOLOGADO && ix.g > 2) return "Homologado";
+function statusPor(n, g) {
+  if (n < 2) return "Em avaliação";
+  if (g < 2) return "Bloqueado";
+  if (n >= MIN_SERV_HOMOLOGADO && g > 2) return "Homologado";
   return "Em avaliação";
+}
+function motivo(ix) {
+  const sv = `${ix.n} serviço${ix.n === 1 ? "" : "s"}`;
+  if (ix.n < 2) return `${sv} avaliado${ix.n === 1 ? "" : "s"}; são precisos pelo menos 2 para sair de Em avaliação`;
+  if (ix.g < 2) return `${sv}, índice global ${fmt(ix.g)}, abaixo de 2`;
+  if (ix.n >= MIN_SERV_HOMOLOGADO && ix.g > 2) return `${sv}, índice global ${fmt(ix.g)}, acima de 2`;
+  if (ix.n < MIN_SERV_HOMOLOGADO) return `${sv}, índice global ${fmt(ix.g)}; faltam ${MIN_SERV_HOMOLOGADO - ix.n} para poder ser Homologado`;
+  return `${sv}, índice global ${fmt(ix.g)}; precisa ficar acima de 2 para ser Homologado`;
+}
+// reconstrói as mudanças de status serviço a serviço, em ordem de data
+function linhaDoTempo(vId) {
+  const h = servicosDo(vId).slice().reverse();
+  const out = []; let q = 0, p = 0, c = 0, ant = "Em avaliação";
+  h.forEach((sv, i) => {
+    q += sv.q; p += sv.p; c += sv.c;
+    const n = i + 1, g = (q + p + c) / (3 * n), st = statusPor(n, g);
+    if (st !== ant) { out.push({ data: sv.data, status: st, n, g }); ant = st; }
+  });
+  return out;
 }
 function linhas() {
   return [...S.vinculos].map(([id, v]) => {
     const f = S.fornecedores.get(v.fornecedorId) || { empresa: "(fornecedor removido)" };
     const sg = S.segmentos.get(v.segmentoId) || { nome: "—" };
     const cap = notaCapacidade(v), ix = indices(id);
-    return { id, v, f, fId: v.fornecedorId, seg: sg.nome, segId: v.segmentoId, status: statusDe(v), espec: especDe(v), cap, ix, sug: sugerido(ix) };
+    return { id, v, f, fId: v.fornecedorId, seg: sg.nome, segId: v.segmentoId, status: statusPor(ix.n, ix.g), espec: especDe(v), cap, ix };
   });
 }
 
@@ -378,7 +397,6 @@ function vPainel() {
   const homol = L.filter(l => l.status === "Homologado").length;
   const nEspec = L.filter(l => l.espec).length;
   const nServ = S.servicos.size;
-  const divergentes = L.filter(l => l.sug !== l.status).length;
 
   const segCards = segmentos().map(sg => {
     const ls = L.filter(l => l.segId === sg.id);
@@ -398,7 +416,7 @@ function vPainel() {
   const rows = vis.map(l => `<tr class="link" data-act="abrir" data-f="${esc(l.fId)}" data-v="${esc(l.id)}" tabindex="0">
       <td class="name">${esc(l.f.empresa)}</td>
       <td>${esc(l.seg)}</td>
-      <td><div class="row" style="gap:4px">${selo(l)}</div>${l.sug !== l.status ? `<div class="hint">sugerido: ${esc(l.sug)}</div>` : ""}</td>
+      <td><div class="row" style="gap:4px" title="${esc(motivo(l.ix))}">${selo(l)}</div></td>
       <td>${gauge(l.cap)}</td><td>${gauge(l.ix.q)}</td><td>${gauge(l.ix.p)}</td><td>${gauge(l.ix.c)}</td>
       <td>${l.ix.g == null ? `<span class="muted" title="Sem serviço avaliado">–</span>` : `<div class="rating">${estrelas(l.ix.g)}<b class="num">${fmt(l.ix.g)}</b></div>`}</td>
       <td class="center"><b class="num">${l.ix.n}</b>${l.ix.ultimo ? `<div class="num muted" style="font-size:.74rem;white-space:nowrap">últ. ${dataBR(l.ix.ultimo)}</div>` : ""}</td>
@@ -408,7 +426,7 @@ function vPainel() {
   <section class="kpis" aria-label="Resumo">
     <div class="kpi"><span class="label">Média global</span><b class="num">${fmt(media)}</b><small>de 5, entre ${comServ.length} fornecedor${comServ.length === 1 ? "" : "es"} com serviço avaliado</small></div>
     <div class="kpi"><span class="label">Fornecedores ativos</span><b class="num">${ativos}</b><small>em ${S.segmentos.size} segmentos</small></div>
-    <div class="kpi"><span class="label">Homologados</span><b class="num">${homol}</b><small>${nEspec} com selo Especializado · ${divergentes} diferente${divergentes === 1 ? "" : "s"} do sugerido</small></div>
+    <div class="kpi"><span class="label">Homologados</span><b class="num">${homol}</b><small>${nEspec} com selo Especializado</small></div>
     <div class="kpi"><span class="label">Serviços avaliados</span><b class="num">${nServ}</b><small>qualidade, prazo e custo</small></div>
   </section>
   <section class="segs" aria-label="Segmentos">${segCards}</section>
@@ -427,7 +445,7 @@ function vPainel() {
       <thead><tr><th>Fornecedor</th><th>Segmento</th><th>Status</th><th>Capacidade</th><th>Qualidade</th><th>Prazo</th><th>Custo</th><th>Global</th><th class="center">Serviços</th></tr></thead>
       <tbody>${rows || `<tr><td colspan="9" class="muted">Nenhum fornecedor com esses filtros.</td></tr>`}</tbody>
     </table></div>
-    <p class="note">Todas as notas vão de 0 a 5. <b>Global</b> = média de qualidade, prazo e custo de todos os serviços; as estrelas mostram a mesma nota (1 estrela = 1 ponto, preenchimento proporcional). <b>Capacidade</b> = soma das notas ponderadas pelos pesos do segmento. O <b>status sugerido</b> segue a regra da aba Metodologia; quem decide o status é Suprimentos. <b>Especializado</b> é um selo manual que pode acompanhar qualquer status.</p>
+    <p class="note">Todas as notas vão de 0 a 5. <b>Global</b> = média de qualidade, prazo e custo de todos os serviços; as estrelas mostram a mesma nota (1 estrela = 1 ponto, preenchimento proporcional). <b>Capacidade</b> = soma das notas ponderadas pelos pesos do segmento. O <b>status</b> é calculado automaticamente pelas regras da aba Metodologia (passe o mouse sobre ele para ver o motivo). <b>Especializado</b> é um selo manual que pode acompanhar qualquer status.</p>
   </section>`;
 }
 function vazio() {
@@ -514,15 +532,18 @@ function vVinculo(l) {
         : `<button class="btn small" type="button" data-act="pedir-confirmacao" data-id="${esc(s.id)}" aria-label="Excluir serviço">Excluir</button>`) : ""}</td>
     </tr>`).join("");
 
-  const hist = (l.v.historicoStatus || []).slice().reverse().map(h =>
-    `<div><span class="num">${dataBR(h.data)}</span> · ${pill(h.status === "Especializado" ? "Em avaliação" : h.status)}${h.especializado || h.status === "Especializado" ? ` <span class="pill st-especializado">Especializado</span>` : ""} ${h.texto ? "— " + esc(h.texto) : ""}</div>`).join("");
+  const tl = linhaDoTempo(l.id).reverse().map(t =>
+    `<div><span class="num">${dataBR(t.data)}</span> · ${pill(t.status)} <span class="muted">ao chegar a ${t.n} serviço${t.n === 1 ? "" : "s"}, índice global ${fmt(t.g)}</span></div>`).join("");
+  const selos = (l.v.historicoStatus || []).filter(h => h.especializado != null).slice().reverse().map(h =>
+    `<div><span class="num">${dataBR(h.data)}</span> · ${h.especializado ? "selo Especializado marcado" : "selo Especializado removido"}${h.texto ? " — " + esc(h.texto) : ""}</div>`).join("");
 
   return `
   <section class="panel">
     <div class="row spread">
-      <div class="row"><h3>${esc(l.seg)}</h3>${selo(l)}${l.sug !== l.status ? `<span class="hint">sugerido pela regra: ${esc(l.sug)}</span>` : ""}</div>
-      ${perm.write ? `<div class="row">${l.sug !== l.status ? `<button class="btn" type="button" data-act="aplicar-sugestao">Aplicar sugestão</button>` : ""}<button class="btn" type="button" data-act="mudar-status">Alterar status</button></div>` : ""}
+      <div class="row"><h3>${esc(l.seg)}</h3>${selo(l)}</div>
+      <label class="row" style="gap:8px"><input type="checkbox" id="chkEspec" data-act-change="espec" ${l.espec ? "checked" : ""} ${perm.write ? "" : "disabled"}> Especializado <span class="muted" style="font-size:.78rem">(manual)</span></label>
     </div>
+    <p class="note" style="margin:0">Status calculado automaticamente: ${esc(motivo(l.ix))}.</p>
     <div class="scorebox">
       <div class="score"><span class="label">Capacidade</span><b class="num">${fmt(l.cap, 1)}</b>${gauge(l.cap)}</div>
       <div class="score"><span class="label">Qualidade</span><b class="num">${fmt(l.ix.q)}</b>${gauge(l.ix.q)}</div>
@@ -530,7 +551,10 @@ function vVinculo(l) {
       <div class="score"><span class="label">Custo</span><b class="num">${fmt(l.ix.c)}</b>${gauge(l.ix.c)}</div>
       <div class="score global"><span class="label">Índice global</span><b class="num">${fmt(l.ix.g)}</b><span class="muted" style="font-size:.78rem">${l.ix.n} serviço${l.ix.n === 1 ? "" : "s"}</span></div>
     </div>
-    ${hist ? `<div class="log"><span class="label">Histórico de status</span>${hist}</div>` : ""}
+    ${tl || selos ? `<div class="grid2">
+      ${tl ? `<div class="log"><span class="label">Mudanças de status</span>${tl}</div>` : ""}
+      ${selos ? `<div class="log"><span class="label">Selo Especializado</span>${selos}</div>` : ""}
+    </div>` : ""}
   </section>
   <div class="two">
     <section class="panel">
@@ -580,14 +604,14 @@ function vMetodologia() {
       <div><div class="label" style="margin-bottom:6px">Índice de prazo (todos os segmentos)</div>${critTabela(criterios(null, "Prazo"), ro, null, "Prazo")}</div>
       <div><div class="label" style="margin-bottom:6px">Índice de custo (todos os segmentos)</div>${critTabela(criterios(null, "Custo"), ro, null, "Custo")}</div>
     </div>
-    <div class="banner"><b>Status sugerido</b> (calculado pelo histórico de serviços):
+    <div class="banner"><b>Status</b> (calculado automaticamente pelo histórico de serviços, a cada serviço registrado ou excluído):
       <ul style="margin:6px 0 0;padding-left:18px">
         <li>menos de 2 serviços → <b>Em avaliação</b></li>
         <li>índice global abaixo de 2 → <b>Bloqueado</b></li>
         <li>mais de 4 serviços (5 ou mais) e índice global acima de 2 → <b>Homologado</b></li>
         <li>demais casos (2 a 4 serviços com índice global de 2 ou mais) → <b>Em avaliação</b></li>
       </ul>
-      <div style="margin-top:6px"><b>Especializado</b> é um selo manual, marcado por Suprimentos ao alterar o status. Ele soma ao status: um fornecedor pode ser Homologado e Especializado ao mesmo tempo.</div></div>
+      <div style="margin-top:6px"><b>Especializado</b> é um selo manual, marcado na ficha do fornecedor. Ele soma ao status: um fornecedor pode ser Homologado e Especializado ao mesmo tempo.</div></div>
   </section>
   ${blocos}
   ${ro ? "" : `<section class="panel"><h3>Novo segmento</h3><div class="row"><input type="text" id="novoSeg" placeholder="Ex.: Corte a laser" aria-label="Nome do segmento" style="flex:1;max-width:320px"><button class="btn" type="button" data-act="add-seg">Adicionar segmento</button></div></section>`}`;
@@ -608,8 +632,8 @@ function critTabela(crit, ro, segId, dim) {
 const TABELAS = {
   "Fornecedores": () => [["Empresa", "CNPJ", "Telefone", "Email", "Endereco", "Responsavel", "Ativo", "Observacoes"],
     ...[...S.fornecedores.values()].map(f => [f.empresa, f.cnpj, f.telefone, f.email, f.endereco, f.responsavel, f.ativo !== false ? "Sim" : "Não", f.observacoes])],
-  "FornecedorSegmento": () => [["Vinculo", "Fornecedor", "Segmento", "Status", "Especializado", "StatusSugerido", "NotaCapacidade", "MediaQualidade", "MediaPrazo", "MediaCusto", "IndiceGlobal", "QtdServicos", "UltimoServico"],
-    ...linhas().map(l => [l.f.empresa + " — " + l.seg, l.f.empresa, l.seg, l.status, l.espec ? "Sim" : "Não", l.sug, r2(l.cap), r2(l.ix.q), r2(l.ix.p), r2(l.ix.c), r2(l.ix.g), l.ix.n, l.ix.ultimo || ""])],
+  "FornecedorSegmento": () => [["Vinculo", "Fornecedor", "Segmento", "Status", "Especializado", "NotaCapacidade", "MediaQualidade", "MediaPrazo", "MediaCusto", "IndiceGlobal", "QtdServicos", "UltimoServico"],
+    ...linhas().map(l => [l.f.empresa + " — " + l.seg, l.f.empresa, l.seg, l.status, l.espec ? "Sim" : "Não", r2(l.cap), r2(l.ix.q), r2(l.ix.p), r2(l.ix.c), r2(l.ix.g), l.ix.n, l.ix.ultimo || ""])],
   "AvaliacaoCapacidade": () => [["Vinculo", "Capacidade", "Atendimento", "Nota"],
     ...linhas().flatMap(l => capsDo(l.segId).filter(c => (l.v.capacidades || {})[c.id]).map(c => {
       const a = l.v.capacidades[c.id];
@@ -696,7 +720,7 @@ function dlgFornecedor(id) {
       email: fd.get("email").trim(), endereco: fd.get("endereco").trim(), observacoes: fd.get("observacoes").trim(), ativo: fd.get("ativo") === "on" };
     await save("fornecedores", fid, doc);
     for (const sid of fd.getAll("seg")) {
-      if (!atuais.has(sid)) await save("vinculos", novoId("v"), { fornecedorId: fid, segmentoId: sid, status: "Em avaliação", especializado: false, capacidades: {}, historicoStatus: [{ data: hoje(), status: "Em avaliação", texto: "Cadastro" }] });
+      if (!atuais.has(sid)) await save("vinculos", novoId("v"), { fornecedorId: fid, segmentoId: sid, especializado: false, capacidades: {}, historicoStatus: [] });
     }
     ui.tab = "detalhe"; ui.fornecedorId = fid; history.replaceState(null, "", "#fornecedores");
     toast(id ? "Cadastro atualizado" : "Fornecedor cadastrado");
@@ -746,26 +770,6 @@ function dlgServico(l) {
   dlgForm.querySelector("#sEnt").addEventListener("change", sug);
 }
 
-function dlgStatus(l, usarSugestao) {
-  const alvo = usarSugestao ? l.sug : l.status;
-  const textoPadrao = usarSugestao ? `Regra aplicada: ${l.ix.n} serviço${l.ix.n === 1 ? "" : "s"}, índice global ${fmt(l.ix.g)}.` : "";
-  abrirDialogo(`
-    <h2>${usarSugestao ? "Aplicar status sugerido" : "Alterar status"}</h2>
-    <p class="note" style="margin:0">${esc(l.f.empresa)} · ${esc(l.seg)} — ${l.ix.n} serviço${l.ix.n === 1 ? "" : "s"}, índice global ${fmt(l.ix.g)} · sugerido pela regra: <b>${esc(l.sug)}</b></p>
-    <label class="field"><span>Status</span><select name="status" id="stNovo">${STATUS.map(s => `<option ${s === alvo ? "selected" : ""}>${s}</option>`).join("")}</select></label>
-    <label class="row" style="gap:8px;align-items:flex-start"><input type="checkbox" name="espec" id="stEspec" ${l.espec ? "checked" : ""} style="margin-top:3px">
-      <span><b>Especializado</b><br><span class="note">Selo manual: o fornecedor se destaca em processos específicos do segmento. Pode acompanhar qualquer status.</span></span></label>
-    <label class="field"><span>Justificativa *</span><textarea name="texto" id="stTexto" required placeholder="Ex.: 5 serviços sem atraso, aprovado na reunião de suprimentos de 15/09">${esc(textoPadrao)}</textarea></label>
-    ${botoes("Salvar status")}`,
-  async fd => {
-    const v = clone(l.v);
-    v.status = fd.get("status");
-    v.especializado = fd.get("espec") === "on";
-    v.historicoStatus = [...(v.historicoStatus || []), { data: hoje(), status: v.status, especializado: v.especializado, texto: fd.get("texto").trim() }];
-    await save("vinculos", l.id, v);
-    toast("Status atualizado");
-  });
-}
 
 /* ================= eventos ================= */
 let toastT = 0;
@@ -788,8 +792,6 @@ document.addEventListener("click", async e => {
     case "novo-fornecedor": dlgFornecedor(null); break;
     case "editar-fornecedor": dlgFornecedor(ui.fornecedorId); break;
     case "novo-servico": { const l = linhaAtual(); if (l) dlgServico(l); break; }
-    case "mudar-status": { const l = linhaAtual(); if (l) dlgStatus(l, false); break; }
-    case "aplicar-sugestao": { const l = linhaAtual(); if (l) dlgStatus(l, true); break; }
     case "pedir-confirmacao": ui.confirm = id; render(); break;
     case "excluir-servico": ui.confirm = null; await remove("servicos", id); toast("Serviço excluído"); break;
     case "cap": {
@@ -829,6 +831,16 @@ function deferredRenderKeepFocus(t) {
 document.addEventListener("change", async e => {
   const t = e.target;
   if (t.id === "filtroStatus") { ui.status = t.value; t.blur(); render(); return; }
+  if (t.id === "chkEspec") {
+    const l = linhaAtual(); if (!l || !perm.write) return;
+    const v = clone(l.v);
+    v.especializado = t.checked;
+    v.historicoStatus = [...(v.historicoStatus || []), { data: hoje(), especializado: t.checked }];
+    t.blur();
+    await save("vinculos", l.id, v);
+    toast(t.checked ? "Selo Especializado marcado" : "Selo Especializado removido");
+    return;
+  }
   if (t.classList.contains("filtro-seg")) { ui.seg = t.value; t.blur(); render(); return; }
   if (t.dataset.edit) {
     const coll = t.dataset.edit, cur = S[coll].get(t.dataset.id); if (!cur) return;

@@ -187,7 +187,10 @@ foreach ($k in $vinc.Keys) {
                  IndiceGlobal = [math]::Round(($q + $p + $c) / 3, 2); QtdServicos = $h.Count
                  UltimoServico = ($h | Sort-Object DataOrcamento | Select-Object -Last 1).DataOrcamento }
     }
-    if ($v.Count) { Set-PnPListItem -List 'FornecedorSegmento' -Identity $vinc[$k] -Values $v | Out-Null }
+    # status automático (README, seção 6)
+    $n = $h.Count; $g = if ($n) { ($q + $p + $c) / 3 } else { 0 }
+    $v.Status = if ($n -lt 2) { 'Em avaliação' } elseif ($g -lt 2) { 'Bloqueado' } elseif ($n -ge 5 -and $g -gt 2) { 'Homologado' } else { 'Em avaliação' }
+    Set-PnPListItem -List 'FornecedorSegmento' -Identity $vinc[$k] -Values $v | Out-Null
 }
 
 Write-Host "Dados da planilha importados." -ForegroundColor Green

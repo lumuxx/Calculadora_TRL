@@ -102,14 +102,8 @@ recQualidade.Width  = Parent.TemplateWidth * 0.5 * Coalesce(ThisItem.MediaQualid
 recPrazo.Width      = Parent.TemplateWidth * 0.5 * Coalesce(ThisItem.MediaPrazo, 0) / 5
 recCusto.Width      = Parent.TemplateWidth * 0.5 * Coalesce(ThisItem.MediaCusto, 0) / 5
 
-// status sugerido pela regra (ver README, seção 6) — mostrado ao lado do status oficial
-lblSugerido.Text =
-    With({s:
-        If(Coalesce(ThisItem.QtdServicos, 0) < 2,  "Em avaliação",
-           ThisItem.IndiceGlobal < 2,              "Bloqueado",
-           ThisItem.QtdServicos >= 5 && ThisItem.IndiceGlobal > 2, "Homologado",
-           "Em avaliação")},
-        If(s <> ThisItem.Status.Value, "Sugerido: " & s, ""))
+// selo manual ao lado do status (o status é calculado ao salvar um serviço, seção 5)
+lblEspecializado.Visible = ThisItem.Especializado
 
 // ao clicar no cartão
 galDashboard.OnSelect = Set(varVinculo, ThisItem); Navigate(scrFornecedor)
@@ -273,6 +267,12 @@ With({h: Filter(HistoricoServicos, Vinculo.Id = varVinculo.ID)},
                 MediaPrazo:     Round(p, 2),
                 MediaCusto:     Round(c, 2),
                 IndiceGlobal:   Round((q + p + c) / 3, 2),
+                // status automático (README, seção 6)
+                Status: {Value:
+                    If(CountRows(h) < 2,                              "Em avaliação",
+                       (q + p + c) / 3 < 2,                           "Bloqueado",
+                       CountRows(h) >= 5 && (q + p + c) / 3 > 2,      "Homologado",
+                       "Em avaliação")},
                 QtdServicos:    CountRows(h),
                 UltimoServico:  Max(h, DataOrcamento)
             })
@@ -297,20 +297,22 @@ SortByColumns(Filter(HistoricoServicos, Vinculo.Id = varVinculo.ID), "DataOrcame
 
 ---
 
-## 6. Alterar status (Suprimentos / Administrador)
+## 6. Selo Especializado (único item manual)
+
+O status não tem tela de edição: ele é recalculado no `btnSalvarServico` (seção 5). Faça o
+mesmo recálculo no botão de excluir serviço. O selo é uma caixa de seleção na ficha:
 
 ```powerfx
-// ddNovoStatus.Items
-["Em avaliação", "Homologado", "Bloqueado"]
-// chkEspecializado: caixa de seleção do selo manual, Default = varVinculo.Especializado
-
-// btnAlterarStatus.OnSelect
+// chkEspecializado.Default
+varVinculo.Especializado
+// chkEspecializado.DisplayMode
+If(PodeEditarCadastro, DisplayMode.Edit, DisplayMode.View)
+// chkEspecializado.OnCheck  (e OnUncheck com o mesmo código)
 Set(varVinculo,
     Patch(FornecedorSegmento, LookUp(FornecedorSegmento, ID = varVinculo.ID), {
-        Status: {Value: ddNovoStatus.Selected.Value},
-        Especializado: chkEspecializado.Value,
-        JustificativaStatus: Text(Today(), "dd/mm/yyyy") & " – " & User().FullName & ": "
-                             & txtJustificativa.Text & Char(10) & varVinculo.JustificativaStatus
+        Especializado: Self.Value,
+        JustificativaStatus: Text(Today(), "dd/mm/yyyy") & " – " & User().FullName & ": selo Especializado "
+                             & If(Self.Value, "marcado", "removido") & Char(10) & varVinculo.JustificativaStatus
     })
 )
 ```

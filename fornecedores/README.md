@@ -171,12 +171,25 @@ Conferência com os dados atuais (calculado pelo `extrair_excel.py` e pelo scrip
 
 ## 6. Status do fornecedor
 
-Na planilha o status é digitado à mão. No app ele continua sendo **uma decisão de
-Suprimentos** (campo Status + justificativa com data e autor), mas o app mostra um
-**status sugerido** para apoiar a decisão:
+O status é **calculado automaticamente** pelo histórico de serviços, a cada serviço registrado
+ou excluído. Ninguém altera o status à mão. As regras são aplicadas nesta ordem:
 
-| Sugestão | Regra (aplicada na ordem) |
+| Status | Regra |
 |---|---|
+| Em avaliação | menos de 2 serviços avaliados |
+| Bloqueado | índice global < 2,0 |
+| Homologado | mais de 4 serviços (5 ou mais) e índice global > 2,0 |
+| Em avaliação | demais casos (2 a 4 serviços com índice global ≥ 2,0) |
+
+A ficha do fornecedor mostra o motivo ("6 serviços, índice global 2,89, acima de 2") e as
+mudanças de status ao longo do tempo, reconstruídas serviço a serviço.
+
+**Especializado** é o único item manual: um **selo** (coluna Sim/Não `Especializado`), marcado
+numa caixa na ficha do fornecedor. Ele soma ao status — um fornecedor pode ser
+*Homologado + Especializado*. Os 5 fornecedores que estavam como "Especializado" na planilha
+(USIFIL, TECHNOFIL, FAG, LADI'S, LANFIBRAS) foram importados com o selo marcado.
+
+---|---|
 | Em avaliação | menos de 2 serviços avaliados |
 | Bloqueado | índice global < 2,0 |
 | Homologado | mais de 4 serviços (5 ou mais) e índice global > 2,0 |
